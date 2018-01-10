@@ -86,8 +86,8 @@
         </div>
         <div id="param_kanim" class="col-sm-4">
             <label for="kanim">Pilih Kantor Imigrasi</label>
-            <select class="form-control select2" id="reg_2" name="kanim">
-                                    <option value=""></option>
+            <select class="form-control select2" id="kanim" name="kanim">
+                                    <option value="6">Jakarta</option>
                                      <?php foreach ($kanim as $key) { ?>
                                         <option <?php if($this->uri->segment(3)==$key->MO_ID){echo"selected";} ?> value="<?php echo $key->MO_ID ?>"><?php echo $key->MO_NAME ?></option>
                                     <?php } ?>
@@ -95,7 +95,7 @@
         </div>
         <div id="param_jmlh" class="col-sm-3">
             <label for="pengajuan">Jumlah Pengajuan</label>
-            <select class="form-control select2" id="reg_3" name="jml">
+            <select class="form-control select2" id="jml" name="jml">
                                     <option value=""></option>
                                     <?php for ($i=1; $i <=4 ; $i++) { ?>
                                         <option <?php if($this->uri->segment(4)==$i){echo"selected";} ?> value="<?php echo $i ?>"><?php echo $i ?> Orang Anggota Keluarga</option>
@@ -103,9 +103,7 @@
                                 </select>
         </div>
         <input type="hidden" name="<?php echo $this->security->get_csrf_token_name();?>" value="<?php echo $this->security->get_csrf_hash();?>">
-        <div class="col-sm-2">
-            <button id="jadwal-search" class="btn bg-green" type="submit" style="margin-top: 26px;">Cari&nbsp; <i class="fa fa-search"></i></button>
-        </div>
+        
         </form>
     </div>
     <div class="row" style="margin-top: 50px;">
@@ -119,7 +117,7 @@
         </div>
         <div class="col-md-4">
             <div id="txt-header">Hasil Pencarian</div>
-            <div class="tresult">
+            <div class="tresult" id="result_tgl">
                 <h3 style="color: #fff">Silahkan Pilih Tanggal Untuk Melihat Kuota</h3>
                 <!-- <table style="width: 100%;">
                     <thead>

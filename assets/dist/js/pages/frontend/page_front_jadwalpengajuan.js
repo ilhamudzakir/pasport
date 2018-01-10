@@ -68,9 +68,15 @@ var setCalendar = function() {
             
             lastClickDate = tgl;
            $.ajax({
-                url: $('#base_url').value +"Home/lala",
+                type: "POST",
+                data: {
+                    kanim:$('#kanim').val(),
+                    start_date:tgl,
+                    jml:$('#jml').val(),
+                } ,
+                url: $('#base_url').val() +"Home/check_quota2",
                 success: function(response) {
-                $('#kabupaten_id').html(response);
+                $('#result_tgl').html(response);
            },
            error: function(jqXHR, textStatus, errorThrown) {
                 alert('Error get data from ajax');
