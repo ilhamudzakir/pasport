@@ -1,0 +1,11 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : May 19, 2016, 2:30:37 PM
+    Author     : Rizman
+*/
+
+div#captcha {background: url(../img/bg-captcha.png) repeat center center fixed #fff;text-align: center;margin-top: 5px;} div#captcha img {width: 60%;height: 40px;} i#load-captcha {cursor: pointer;float: right;font-size: 14pt;margin-right: 8px;top: 13px;}
