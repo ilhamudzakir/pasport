@@ -40,7 +40,7 @@
                             <label style="font-weight: 400;">Kanim</label>
                         </div>
                         <div class="col-sm-9">
-                            <label style="font-weight: 400;">:&nbsp;&nbsp;&nbsp;Kanim Kelas 1 Khusus Jakarta Selatan</label>
+                            <label style="font-weight: 400;">:&nbsp;&nbsp;&nbsp;<?php echo $kanim->MO_NAME?></label>
                         </div>
                     </div>
                     <div class="row">
@@ -48,7 +48,7 @@
                             <label style="font-weight: 400;">Pengajuan</label>
                         </div>
                         <div class="col-sm-9">
-                            <label style="font-weight: 400;">:&nbsp;&nbsp;&nbsp;2 Orang Anggota Keluarga</label>
+                            <label style="font-weight: 400;">:&nbsp;&nbsp;&nbsp;<?php echo $jadwal->jumlah_pengajuan?> Orang Anggota Keluarga</label>
                         </div>
                     </div>
                 </div>
@@ -60,12 +60,12 @@
                             <label style="font-weight: 400;">Tanggal</label>
                         </div>
                         <div class="col-sm-9">
-                            <label style="font-weight: 400;">:&nbsp;&nbsp;&nbsp;28/09/2017</label>
+                            <label style="font-weight: 400;"><?php echo $jadwal->tanggal?></label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-3">
-                            <label style="font-weight: 400;">Waktu</label>
+                            <label style="font-weight: 400;"><?php echo substr($jadwal->waktu, 0,2)?>: <?php echo substr($jadwal->waktu, 2,2)?></label>
                         </div>
                         <div class="col-sm-9">
                             <label style="font-weight: 400;">:&nbsp;&nbsp;&nbsp;09.00</label>
@@ -79,88 +79,144 @@
                 <hr style="margin: 5px auto;" />
             </div>
             <div class="col-sm-12">
+             
                 <table id="tbl2" class="table table-striped" style="width: 100%;">
                     <thead>
                         <tr>
                             <th style="vertical-align: middle;width: 25%;">Nama</th>
                             <th class="text-center" style="vertical-align: middle;">Status</th>
-                            <th class="text-center" style="vertical-align: middle;" id="param_jpengajuan">Jenis Pengajuan</th>
+                            <th class="text-center" style="vertical-align: middle;">Jenis Pengajuan</th>
                             <th class="text-center" style="vertical-align: middle;">Jenis Paspor</th>
-                            <th class="text-center" style="vertical-align: middle;">Status Data</th>
+                            <th class="text-center" style="vertical-align: middle;">NIK</th>
                             <th class="text-center" style="vertical-align: middle;"></th>
                         </tr>
                     </thead>
                     <tbody>
+
+                       <?php  $i=0; foreach ($daftar_pengajuan as $data) {
+                           $i++
+                       ?>
+                       
+                          <form action="<?php echo base_url() ?>Home/insertPengajuan/<?php echo $i?>" method="POST" enctype="multipart/form-data">
                         <tr>
                             <td>
-                                <input type="text" class="form-control" id="data_1" name="data_1" value="" />
+                                 <input type="hidden" class="form-control" id="data_1" name="id[<?php echo $i ?>]" value=" <?php echo  $data->id?>"/>
+                                  <input type="hidden" class="form-control" id="data_1" name="idu[<?php echo $i ?>]" value=" <?php foreach ($data_diri as $user ) { ?><?php if($user->id_daftar_pengajuan == $data->id){ echo $user->id; }?> <?php } ?>"/>
+                                <input type="text" class="form-control" id="data_1" name="nama[<?php echo $i ?>]" value=" <?php foreach ($data_diri as $user ) { ?><?php if($user->id_daftar_pengajuan == $data->id){ echo $user->nama; }?> <?php } ?>" required/>
                             </td>
                             <td>
-                                <select class="form-control select2" id="data_2" name="data_2" style="width: 100%;">
-                                    <option value=""></option>
-                                    <option value="1" selected>Suami</option>
-                                    <option value="2">Istri</option>
-                                    <option value="3">Anak</option>
+                                <select class="form-control select2" id="data_2" name="status[<?php echo $i ?>]" style="width: 100%;">
+                                   
+
+
+                                    <option value="suami" 
+                                    <?php
+                                    foreach ($data_diri as $user ) { 
+
+                                        ?>
+
+                                        <?php if($user->id_daftar_pengajuan == $data->id){
+                                         
+                                            if($user->status == "suami"){
+                                                echo "selected";
+                                            }
+
+                                          }?> 
+                                        <?php } ?>>Suami</option>
+                                    <option value="istri"
+
+                                    <?php
+                                    foreach ($data_diri as $user ) { 
+
+                                        ?>
+
+                                        <?php if($user->id_daftar_pengajuan == $data->id){
+                                         
+                                            if($user->status == "istri"){
+                                                echo "selected";
+                                            }
+
+                                          }?> 
+                                        <?php } ?>>Istri</option>
+                                    <option value="anak" 
+                                    <?php
+                                    foreach ($data_diri as $user ) { 
+
+                                        ?>
+
+                                        <?php if($user->id_daftar_pengajuan == $data->id){
+                                         
+                                            if($user->status == "anak"){
+                                                echo "selected";
+                                            }
+
+                                          }?> 
+                                        <?php } ?>>Anak</option>
                                 </select>
                             </td>
                             <td>
-                                <select class="form-control select2" id="data_3" name="data_3" style="width: 100%;">
-                                    <option value=""></option>
-                                    <option value="1">Paspor Baru</option>
-                                    <option value="2" selected>Pergantian Paspor</option>
+                                <select class="form-control select2" id="jenis_pengajuan[<?php echo $i ?>]" name="jenis_pengajuan[<?php echo $i ?>]" style="width: 100%;">
+                                   
+                                    <option value="1"  <?php
+                                    foreach ($data_diri as $user ) { 
+
+                                        ?>
+
+                                        <?php if($user->id_daftar_pengajuan == $data->id){
+                                         
+                                            if($user->id_jenis_pengajuan == '1'){
+                                                echo "selected";
+                                            }
+
+                                          }?> 
+                                        <?php } ?>>Paspor Baru</option>
+                                    <option value="2"  <?php foreach ($data_diri as $user ) { 
+
+                                        ?>
+
+                                        <?php if($user->id_daftar_pengajuan == $data->id){
+                                         
+                                            if($user->id_jenis_pengajuan == '2'){
+                                                echo "selected";
+                                            }
+
+                                          }?> 
+                                        <?php } ?>>Pergantian Paspor</option>
                                 </select>
                             </td>
                             <td>
-                                <select class="form-control select2" id="data_4" name="data_4" style="width: 100%;">
-                                    <option value=""></option>
-                                    <option value="1">9 Halaman</option>
-                                    <option value="2">12 Halaman</option>
-                                    <option value="3" selected>24 Halaman</option>
-                                </select>
+                                <select class="form-control select2" id="jenis_paspor[<?php echo $i ?>]" name="jenis_paspor[<?php echo $i ?>]" style="width: 100%;">
+                                   <?php foreach ($jenis_paspor as $value) {
+                                      # code...
+                                  ?>
+                                    <option value="<?php echo $value->id?>" <?php  foreach ($data_diri as $user ) { 
+
+                                        ?>
+
+                                        <?php if($user->id_daftar_pengajuan == $data->id){
+                                         
+                                            if($user->id_jenis_paspor == $value->id){
+                                                echo "selected";
+                                            }
+
+                                          }?> 
+                                        <?php } ?>><?php echo $value->jenis_paspor?></option>
+                                    <?php } ?>
+                                   </select>
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" id="nik" name="nik[<?php echo $i ?>]" value=" <?php foreach ($data_diri as $user ) { ?><?php if($user->id_daftar_pengajuan == $data->id){ echo $user->nik; }?> <?php } ?>"  required/>
                             </td>
                             <td class="text-center">
-                                Perbarui Data
-                            </td>
-                            <td class="text-center">
-                                <a href="<?php echo base_url('data_pemohon'); ?>" class="btn btn-sm btn-primary btn-lengkapi" style="padding: 3px 10px;" title="Lengkapi Data Diri Pemohon"><i class="fa fa-files-o"></i>&nbsp; Lengkapi Data</a>
+                            
+                            <BUTTON class="btn btn-sm btn-primary" style="padding: 3px 10px;" title="Lengkapi Data Diri Pemohon" type="submit"><i class="fa fa-files-o"></i>&nbsp; Lengkapi Data</BUTTON>
                             </td>
                         </tr>
-                        <tr>
-                            <td>
-                                <input type="text" class="form-control" id="data_1" name="data_1" value="Putri Kirana" />
-                            </td>
-                            <td>
-                                <select class="form-control select2" id="data_2" name="data_2" style="width: 100%;">
-                                    <option value=""></option>
-                                    <option value="1">Suami</option>
-                                    <option value="2">Istri</option>
-                                    <option value="3" selected>Anak</option>
-                                </select>
-                            </td>
-                            <td>
-                                <select class="form-control select2" id="data_3" name="data_3" style="width: 100%;">
-                                    <option value=""></option>
-                                    <option value="1" selected>Paspor Baru</option>
-                                    <option value="2">Pergantian Paspor</option>
-                                </select>
-                            </td>
-                            <td>
-                                <select class="form-control select2" id="data_4" name="data_4" style="width: 100%;">
-                                    <option value=""></option>
-                                    <option value="1">9 Halaman</option>
-                                    <option value="2">12 Halaman</option>
-                                    <option value="3" selected>24 Halaman</option>
-                                </select>
-                            </td>
-                            <td class="text-center">
-                                Perbarui Data
-                            </td>
-                            <td class="text-center">
-                                <a href="<?php echo base_url('data_pemohon'); ?>" class="btn btn-sm btn-primary btn-lengkapi" style="padding: 3px 10px;" title="Lengkapi Data Diri Pemohon"><i class="fa fa-files-o"></i>&nbsp; Lengkapi Data</a>
-                            </td>
-                        </tr>
+                        </form>
+                        <?php } ?>   
                     </tbody>
                 </table>
+                
             </div>
         </div>
     </div>
