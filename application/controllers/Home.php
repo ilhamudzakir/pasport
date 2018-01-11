@@ -145,7 +145,9 @@ class Home extends CI_Controller {
         );
         insert_all('dc_jadwal',$arrayName);
         $id=$this->db->insert_id();
-        insert_all('dc_daftar_pengajuan',$arrayName = array('id_jadwal' => $id, ));
+        for ($i=1; $i <=$this->input->post('jumlah_pengajuan') ; $i++) { 
+         insert_all('dc_daftar_pengajuan',$arrayName = array('id_jadwal' => $id, ));
+        }
         redirect('daftar_pengajuan/'.$id);
     }
 
