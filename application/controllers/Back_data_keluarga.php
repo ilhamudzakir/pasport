@@ -30,12 +30,21 @@ class Back_data_keluarga extends CI_Controller {
         $this->load->view('backend/page_back_header_view', $data);
     }
 
-      public function createFamily() {
+    public function dataPemohon($id) {
+        // debugCode($id);
+        $data['data1_count']=select_where_array('dc_data_keluarga',$arrayName = array('id_data_diri' => $id,'id_keterangan'=>1 ))->num_rows();
+        $data['data1']=select_where_array('dc_data_keluarga',$arrayName = array('id_data_diri' => $id,'id_keterangan'=>1 ))->row();
+        
+        //debugCode($data);
+        $this->gotoView('page_front_datapemohon_datakeluarga', $data);
+    }
+
+      public function createFamily($id) {
         $login=login_api();
         $data_id=$login->Id;
        //data ayah & ibu
         $arrayName = array(
-            'id_data_diri' => $data_id, 
+            'id_data_diri' => $id, 
             'nomer_surat_nikah' => $this->input->post('aktanikah1'), 
             'id_keterangan' => "1", 
             'nik' => $this->input->post('nik1'), 
@@ -51,7 +60,7 @@ class Back_data_keluarga extends CI_Controller {
 
             // sub byktp ayah & ibu
        $arrayAddress = array( 
-            'id_data_diri' => $data_id, 
+            'id_data_diri' => $id, 
             'FamilyTypeXID' => "1", 
             'alamat_lengkap' => $this->input->post('alkapktp1'), 
             'negara' => $this->input->post('negaraktp1'), 
@@ -63,7 +72,7 @@ class Back_data_keluarga extends CI_Controller {
             insert_all('dc_family_address',$arrayAddress);
           
        $arrayAddress = array(
-            'id_data_diri' => $data_id, 
+            'id_data_diri' => $id, 
             'FamilyTypeXID' => "2", 
             'alamat_lengkap' => $this->input->post('alkap1'), 
             'negara' => $this->input->post('negara'), 
@@ -78,7 +87,7 @@ class Back_data_keluarga extends CI_Controller {
 
  //data ayah
         $arrayName = array(
-            'id_data_diri' => $data_id, 
+            'id_data_diri' => $id, 
             'nomer_surat_nikah' => "0", 
             'id_keterangan' => "2", 
             'nik' => $this->input->post('nik2'), 
@@ -94,7 +103,7 @@ class Back_data_keluarga extends CI_Controller {
 
             // sub byktp ayah & ibu
        $arrayAddress = array( 
-            'id_data_diri' => $data_id, 
+            'id_data_diri' => $id, 
             'FamilyTypeXID' => "1", 
             'alamat_lengkap' => $this->input->post('alkapktp2'), 
             'negara' => $this->input->post('negaraktp2'), 
@@ -106,7 +115,7 @@ class Back_data_keluarga extends CI_Controller {
             insert_all('dc_family_address',$arrayAddress);
           
        $arrayAddress = array(
-            'id_data_diri' => $data_id, 
+            'id_data_diri' => $id, 
             'FamilyTypeXID' => "2", 
             'alamat_lengkap' => $this->input->post('alkap2'), 
             'negara' => $this->input->post('negara2'), 
@@ -122,7 +131,7 @@ class Back_data_keluarga extends CI_Controller {
 
 //data ayah
         $arrayName = array(
-            'id_data_diri' => $data_id, 
+            'id_data_diri' => $id, 
             'nomer_surat_nikah' => "0", 
             'id_keterangan' => "3", 
             'nik' => $this->input->post('nik3'), 
@@ -138,7 +147,7 @@ class Back_data_keluarga extends CI_Controller {
 
             // sub byktp ayah & ibu
        $arrayAddress = array( 
-            'id_data_diri' => $data_id, 
+            'id_data_diri' => $id, 
             'FamilyTypeXID' => "1", 
             'alamat_lengkap' => $this->input->post('alkapktp3'), 
             'negara' => $this->input->post('negaraktp3'), 
@@ -150,7 +159,7 @@ class Back_data_keluarga extends CI_Controller {
             insert_all('dc_family_address',$arrayAddress);
           
        $arrayAddress = array(
-            'id_data_diri' => $data_id, 
+            'id_data_diri' => $id, 
             'FamilyTypeXID' => "2", 
             'alamat_lengkap' => $this->input->post('alkap3'), 
             'negara' => $this->input->post('negara3'), 

@@ -56,6 +56,7 @@ $route['jadwal/(:any)/(:any)/(:any)'] = "home/jadwalpengajuan/$2/$2/$2";
 $route['daftar_pengajuan'] = 'home/daftarpengajuan';
 $route['daftar_pengajuan/(:any)'] = 'home/daftarpengajuan/$2';
 $route['data_pemohon'] = 'home/datapemohon';
+$route['data_pemohon/(:any)'] = 'home/datapemohon/$2';
 //
 $route['beranda'] = 'back_beranda';
 $route['daftar_kanim'] = 'back_daftarkanim';

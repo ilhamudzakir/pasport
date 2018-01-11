@@ -9,7 +9,7 @@
                         <div id="param_aktanikah" class="form-group">
                             <label for="dk1_1" class="col-sm-4 control-label">Nomor Akta Nikah / Surat Nikah</label>
                             <div class="col-sm-4">
-                                <input type="text" required="required" class="form-control" id="aktanikah1" name="aktanikah1" placeholder=". . ." onkeypress="return doFieldFilter(event, 'numeric', '', false)" />
+                                <input type="text" value="" required="required" class="form-control" id="aktanikah1" name="aktanikah1" placeholder=". . ." onkeypress="return doFieldFilter(event, 'numeric', '', false)" />
                             </div>
                         </div>
                         <div id="param_nik2" class="form-group">
