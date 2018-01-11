@@ -19,14 +19,6 @@ class Home extends CI_Controller {
         $data['kanim']=select_where('dc_list_kanim','MP_ID','7')->result();
         $this->gotoView('page_front_jadwalpengajuan_view', $data);
     }
-    
-    public function daftarPengajuan() {
-        $data["halaman"] = "Daftar Pengajuan";
-        $data["menu"] = "1";
-        $data["submenu"] = "";
-        $this->gotoView('page_front_daftarpengajuan_view', $data);
-    }
-    
     public function dataPemohon() {
         $data["halaman"] = "Lengkapi Data Pemohon";
         $data["subhalaman"] = "";
