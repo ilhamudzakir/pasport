@@ -151,4 +151,58 @@ class Home extends CI_Controller {
         redirect('daftar_pengajuan/'.$id);
     }
 
+ public function daftarPengajuan() {
+        $paramID = $this->uri->segment(2);
+        $data["halaman"] = "Daftar Pengajuan";
+        $data["menu"] = "1";
+        $data["submenu"] = "";
+        $data['jadwal'] = select_where('dc_jadwal','id_kantor_imigrasi',$paramID)->row();
+        $data['jenis_paspor'] = select_all('dc_jenis_paspor');
+        $sql=$this->db->query("Select dc_daftar_pengajuan.id,dc_data_diri.nama,dc_data_diri.status,dc_data_diri.id_jenis_paspor,dc_data_diri.id_jenis_pengajuan,dc_data_diri.nik FROM dc_daftar_pengajuan INNER JOIN dc_data_diri ON dc_daftar_pengajuan.id=dc_data_diri.id_daftar_pengajuan where dc_daftar_pengajuan.id =1");
+        $data['daftar_pengajuan'] = select_where('dc_daftar_pengajuan','id_jadwal',$data['jadwal']->id)->result();
+
+       //sint_r( $data['daftar_pengajuan'] );
+        $data['data_diri'] = select_all('dc_data_diri');
+        $data['kanim'] = select_where('dc_list_kanim','MO_ID',$data['jadwal']->id_kantor_imigrasi)->row();
+       
+
+        $this->gotoView('page_front_daftarpengajuan_view', $data);
+    }
+    
+
+
+    public function insertPengajuan ($id){
+print_r($this->input->post('nama')[$id]);
+
+        $paramID = $this->uri->segment(2);
+        $data = select_where('dc_daftar_pengajuan','id_jadwal',$paramID)->result();
+
+      $i=0;
+      foreach ($data as  $value) {
+        $i++;
+        $userInfo = select_where('dc_data_diri','id',$this->input->post('idu')[$id])->row();
+
+        $arrayName = array(
+            'id_daftar_pengajuan' => $this->input->post('id')[$id],
+            'nama' => $this->input->post('nama')[$id], 
+            'id_jenis_paspor'  => $this->input->post('jenis_paspor')[$id], 
+            'id_jenis_pengajuan'  => $this->input->post('jenis_pengajuan')[$id],
+            'nik'  => $this->input->post('nik')[$id], 
+            'status'  => $this->input->post('status')[$id], 
+        );
+
+        print_r($userInfo);
+
+      if ($userInfo) {
+        $user = update('dc_data_diri',$arrayName,'id',$userInfo->id);
+        // nt_r($user);
+        redirect("/data_pemohon/".$userInfo->id);
+      }else{
+       $user = insert_all('dc_data_diri',$arrayName);
+      redirect("/data_pemohon/".$user->id);
+
+    }}
+     
+}
+
 }
