@@ -164,14 +164,11 @@ class Home extends CI_Controller {
 
 
     public function insertPengajuan ($id){
-print_r($this->input->post('nama')[$id]);
+        $paramID = $this->uri->segment(3);
 
-        $paramID = $this->uri->segment(2);
+        print_r($paramID);
         $data = select_where('dc_daftar_pengajuan','id_jadwal',$paramID)->result();
 
-      $i=0;
-      foreach ($data as  $value) {
-        $i++;
         $userInfo = select_where('dc_data_diri','id',$this->input->post('idu')[$id])->row();
 
         $arrayName = array(
@@ -187,13 +184,13 @@ print_r($this->input->post('nama')[$id]);
 
       if ($userInfo) {
         $user = update('dc_data_diri',$arrayName,'id',$userInfo->id);
-        // nt_r($user);
-        redirect("/data_pemohon/".$userInfo->id);
+        print_r($user);
+         redirect("data_pemohon/".$userInfo->id);
       }else{
        $user = insert_all('dc_data_diri',$arrayName);
       redirect("/data_pemohon/".$user->id);
 
-    }}
+    }
      
 }
 
