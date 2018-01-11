@@ -54,6 +54,7 @@ $route['captcha'] = 'login/generatecaptcha';
 $route['jadwal'] = 'home/jadwalpengajuan';
 $route['jadwal/(:any)/(:any)/(:any)'] = "home/jadwalpengajuan/$2/$2/$2";
 $route['daftar_pengajuan'] = 'home/daftarpengajuan';
+$route['daftar_pengajuan/(:any)'] = 'home/daftarpengajuan/$2';
 $route['data_pemohon'] = 'home/datapemohon';
 //
 $route['beranda'] = 'back_beranda';
