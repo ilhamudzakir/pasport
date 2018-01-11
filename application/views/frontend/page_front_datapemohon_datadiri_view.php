@@ -52,26 +52,26 @@
                                     <select class="form-control select2" id="data1_4" name="id_jenis_paspor" style="width: 100%;" >
                                         <option value=""></option>
                                          <?php
-                                        //debugCode($data);
-                                            if(isset($data->id_jenis_paspor)){
+                                        if(isset($data->id_jenis_paspor)){
                                                 if($data->id_jenis_paspor == 1){
-                                                    $ss1 = "selected=selected";
-                                                    $ss2 ="";
+                                                    $jp1 = "selected=selected";
+                                                    $jp2 ="";
+                                                    $jp3 ="";
                                                 }else if($data->id_jenis_paspor == 2){
-                                                    $ss1 = "";
-                                                    $ss2 ="selected=selected";
-                                                    $ss3 ="";
+                                                    $jp1 = "";
+                                                    $jp2 ="selected=selected";
+                                                    $jp3 ="";
                                                 }else if($data->id_jenis_paspor == 3){
-                                                    $ss1 = "";
-                                                    $ss2 ="";
-                                                    $ss3 ="selected=selected";
+                                                    $jp1 = "";
+                                                    $jp2 ="";
+                                                    $jp3 ="selected=selected";
                                                 }
 
                                             }
                                         ?>
-                                        <option value="1" <?php echo $s1; ?>>9 Halaman</option>
-                                        <option value="2" <?php echo $s2; ?>>12 Halaman</option>
-                                        <option value="3" <?php echo $s3; ?>>24 Halaman</option>
+                                        <option value="1" <?php echo $jp1; ?>>9 Halaman</option>
+                                        <option value="2" <?php echo $jp2; ?>>12 Halaman</option>
+                                        <option value="3" <?php echo $jp3; ?>>24 Halaman</option>
                                     </select>
                                 </div>
                             </div>
@@ -484,11 +484,11 @@
                             <div class="form-group">
                                 <label for="data5_2" class="col-sm-3 control-label">Jumlah Penghasilan per Bulan</label>
                                 <div class="col-sm-6">
-                                    <div class="radio" style="margin-bottom: 10px;"><label><input name="salary" value="1" <?php  if($pekerjaan->salary == "1"){ echo 'checked="checked"';} ?> type="radio" />< 1 Juta</label></div>
-                                    <div class="radio" style="margin-bottom: 10px;"><label><input name="salary" value="2" <?php  if($pekerjaan->salary == "2"){ echo 'checked="checked"';} ?> type="radio" />1 Juta &nbsp;<&nbsp; 2,5 Juta</label></div>
-                                    <div class="radio" style="margin-bottom: 10px;"><label><input name="salary" value="3" <?php  if($pekerjaan->salary == "3"){ echo 'checked="checked"';} ?> type="radio" />2,5 Juta &nbsp;<&nbsp; 5 Juta</label></div>
-                                    <div class="radio" style="margin-bottom: 10px;"><label><input name="salary" value="4" <?php  if($pekerjaan->salary == "4"){ echo 'checked="checked"';} ?> type="radio" />5 Juta &nbsp;<&nbsp; 10 Juta</label></div>
-                                    <div class="radio" style="margin-bottom: 10px;"><label><input name="salary" value="5" <?php  if($pekerjaan->salary == "5"){ echo 'checked="checked"';} ?> type="radio" />> 10 Juta</label></div>
+                                    <div class="radio" style="margin-bottom: 10px;"><label><input name="salary" value="1" <?php  if(isset($pekerjaan->salary)){if($pekerjaan->salary == "1"){ echo 'checked="checked"';}} ?> type="radio" />< 1 Juta</label></div>
+                                    <div class="radio" style="margin-bottom: 10px;"><label><input name="salary" value="2" <?php  if(isset($pekerjaan->salary)){if($pekerjaan->salary == "2"){ echo 'checked="checked"';}} ?> type="radio" />1 Juta &nbsp;<&nbsp; 2,5 Juta</label></div>
+                                    <div class="radio" style="margin-bottom: 10px;"><label><input name="salary" value="3" <?php  if(isset($pekerjaan->salary)){if($pekerjaan->salary == "3"){ echo 'checked="checked"';}} ?> type="radio" />2,5 Juta &nbsp;<&nbsp; 5 Juta</label></div>
+                                    <div class="radio" style="margin-bottom: 10px;"><label><input name="salary" value="4" <?php  if(isset($pekerjaan->salary)){if($pekerjaan->salary == "4"){ echo 'checked="checked"';}} ?> type="radio" />5 Juta &nbsp;<&nbsp; 10 Juta</label></div>
+                                    <div class="radio" style="margin-bottom: 10px;"><label><input name="salary" value="5" <?php  if(isset($pekerjaan->salary)){if($pekerjaan->salary == "5"){ echo 'checked="checked"';}} ?> type="radio" />> 10 Juta</label></div>
                                 </div>
                             </div>
                         </div>
@@ -580,22 +580,25 @@
                                     <select class="form-control select2" id="data6_1" name="id_tujuan_perjalanan" style="width: 100%;">
                                         <option value=""></option>
                                         <?php 
-                                             
+                                            // debugCode($mohon);
                                             if(isset($mohon->id_tujuan_perjalanan)){
                                                 if($mohon->id_tujuan_perjalanan == 1){
-                                                    $p1 = "selected=selected";
-                                                    $p2 ="";
+                                                    $pf1 = "selected=selected";
+                                                    $pf2 ="";
                                                 }else if($data->id_jenis_paspor == 2){
-                                                    $p1 = "";
-                                                    $p2 ="selected=selected";
+                                                    $pf1 = "";
+                                                    $pf2 ="selected=selected";
                                                    
                                                 }
 
+                                            }else{
+                                                $pf1 = "";
+                                                $pf2 ="";
                                             }
                                             
                                         ?>
-                                        <option value="1" <?php echo $p1; ?>>Wisata</option>
-                                        <option value="2"  <?php echo $p2; ?>>Sekolah</option>
+                                        <option value="1" <?php echo $pf1; ?>>Wisata</option>
+                                        <option value="2"  <?php echo $pf2; ?>>Sekolah</option>
                                     </select>
                                 </div>
                             </div>
@@ -619,10 +622,10 @@
                             <div class="form-group">
                                 <label for="data6_4" class="col-sm-4 control-label">Tanggungan Biaya Perjalanan Luar Negeri</label>
                                 <div class="col-sm-6">
-                                    <div class="radio" style="margin-bottom: 10px;"><label><input name="tanggungan_biaya" <?php  if($mohon->tanggungan_biaya == "1"){ echo 'checked="checked"';} ?> value="1" type="radio" />Biaya Sendiri</label></div>
-                                    <div class="radio" style="margin-bottom: 10px;"><label><input name="tanggungan_biaya" <?php  if($mohon->tanggungan_biaya == "2"){ echo 'checked="checked"';} ?> value="2" type="radio" />Biaya Dinas</label></div>
-                                    <div class="radio" style="margin-bottom: 10px;"><label><input name="tanggungan_biaya" <?php  if($mohon->tanggungan_biaya == "3"){ echo 'checked="checked"';} ?> value="3" type="radio" />Biaya Penjamin</label></div>
-                                    <div class="radio" style="margin-bottom: 10px;"><label><input name="tanggungan_biaya" <?php  if($mohon->tanggungan_biaya == "4"){ echo 'checked="checked"';} ?> value="4" type="radio" />Biaya Pengundang</label></div>
+                                    <div class="radio" style="margin-bottom: 10px;"><label><input name="tanggungan_biaya" <?php  if(isset($mohon)){if($mohon->tanggungan_biaya == "1"){ echo 'checked="checked"';}} ?> value="1" type="radio" />Biaya Sendiri</label></div>
+                                    <div class="radio" style="margin-bottom: 10px;"><label><input name="tanggungan_biaya" <?php  if(isset($mohon)){if($mohon->tanggungan_biaya == "2"){ echo 'checked="checked"';}} ?> value="2" type="radio" />Biaya Dinas</label></div>
+                                    <div class="radio" style="margin-bottom: 10px;"><label><input name="tanggungan_biaya" <?php  if(isset($mohon)){if($mohon->tanggungan_biaya == "3"){ echo 'checked="checked"';}} ?> value="3" type="radio" />Biaya Penjamin</label></div>
+                                    <div class="radio" style="margin-bottom: 10px;"><label><input name="tanggungan_biaya" <?php  if(isset($mohon)){if($mohon->tanggungan_biaya == "4"){ echo 'checked="checked"';}} ?> value="4" type="radio" />Biaya Pengundang</label></div>
                                 </div>
                             </div>
                             <div class="form-group">

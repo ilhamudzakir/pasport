@@ -25,7 +25,7 @@ class Home extends CI_Controller {
         $data['pendidikan'] = select_where("dc_riwayat_pendidikan",'FormXID',$id)->row();
         $data['pekerjaan'] = select_where("dc_riwayat_pekerjaan",'FormXID',$id)->row();
         $data['mohon'] = select_where("dc_permohonan_paspor",'FormXID',$id)->row();
-        // debugCode($data['data']);
+        // debugCode($data['mohon']);
         $data["halaman"] = "Lengkapi Data Pemohon";
         $data["subhalaman"] = "";
         $data["menu"] = "3";
