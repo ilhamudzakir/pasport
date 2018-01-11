@@ -19,11 +19,18 @@ class Home extends CI_Controller {
         $data['kanim']=select_where('dc_list_kanim','MP_ID','7')->result();
         $this->gotoView('page_front_jadwalpengajuan_view', $data);
     }
-    public function dataPemohon() {
+    public function dataPemohon($id) {
+        // debugCode($id);
+        $data['data'] = select_where("dc_data_diri",'id',$id)->row();
+        $data['pendidikan'] = select_where("dc_riwayat_pendidikan",'FormXID',$id)->row();
+        $data['pekerjaan'] = select_where("dc_riwayat_pekerjaan",'FormXID',$id)->row();
+        $data['mohon'] = select_where("dc_permohonan_paspor",'FormXID',$id)->row();
+        // debugCode($data['data']);
         $data["halaman"] = "Lengkapi Data Pemohon";
         $data["subhalaman"] = "";
         $data["menu"] = "3";
         $data["submenu"] = "";
+        //debugCode($data);
         $this->gotoView('page_front_datapemohon_view', $data);
     }
     public function check_quota(){
