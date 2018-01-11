@@ -148,7 +148,7 @@ class Home extends CI_Controller {
         $data["halaman"] = "Daftar Pengajuan";
         $data["menu"] = "1";
         $data["submenu"] = "";
-        $data['jadwal'] = select_where('dc_jadwal','id_kantor_imigrasi',$paramID)->row();
+        $data['jadwal'] = select_where('dc_jadwal','id',$paramID)->row();
         $data['jenis_paspor'] = select_all('dc_jenis_paspor');
         $sql=$this->db->query("Select dc_daftar_pengajuan.id,dc_data_diri.nama,dc_data_diri.status,dc_data_diri.id_jenis_paspor,dc_data_diri.id_jenis_pengajuan,dc_data_diri.nik FROM dc_daftar_pengajuan INNER JOIN dc_data_diri ON dc_daftar_pengajuan.id=dc_data_diri.id_daftar_pengajuan where dc_daftar_pengajuan.id =1");
         $data['daftar_pengajuan'] = select_where('dc_daftar_pengajuan','id_jadwal',$data['jadwal']->id)->result();
