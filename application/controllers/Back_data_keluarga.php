@@ -172,7 +172,7 @@ class Back_data_keluarga extends CI_Controller {
             insert_all('dc_family_address',$arrayAddress);
 
 
-            redirect("home/dataPemohon/".$id);
+            redirect("data_pemohon/".$id);
 
 
 
@@ -318,7 +318,7 @@ class Back_data_keluarga extends CI_Controller {
              update_where_array('dc_family_address',$arrayName,$arrayName = array('id_data_diri' => $id, 'FamilyTypeXID'=>"2",'id_data_keluarga'=>$this->input->post('idkel3') ));
 
 
-             redirect("home/dataPemohon/".$id);
+             redirect("data_pemohonn/".$id);
 
 
 

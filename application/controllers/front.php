@@ -24,7 +24,7 @@ class Front extends CI_Controller {
         // $insert['id_creator']=$this->session->userdata['admin']['id'];
         $query=update("dc_data_diri",$insert,'id',$id);
        
-        redirect("home/dataPemohon/".$id);
+        redirect("data_pemohon/".$id);
     }
 
     public function save_riwayat_pendidikan($id) {

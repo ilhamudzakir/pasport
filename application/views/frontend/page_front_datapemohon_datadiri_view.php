@@ -12,7 +12,7 @@
             </ul>
             <div class="tab-content">
                 <div class="tab-pane active" id="tab1_1">
-                    <form class="form-horizontal" enctype="multipart/form-data" method="post" action="<?php echo base_url() ?>front/save_datadiri/1" style="margin-top: 20px;">
+                    <form class="form-horizontal" enctype="multipart/form-data" method="post" action="<?php echo base_url() ?>front/save_datadiri/<?php echo $this->uri->segment(2);?>" style="margin-top: 20px;">
                         <input type="hidden" name="id" value="<?php echo isset($data->id)?$data->id:""; ?>">
                         <div class="box-body">
                         
@@ -106,12 +106,12 @@
                                 <div class="col-sm-6">
                                     <div class="col-sm-3" style="padding-left: 0;">
                                         <div class="radio">
-                                            <label><input name="jenis_kelamin" id="data1_3" value="L" <?php  if($data->jenis_kelamin == "L"){ echo 'checked="checked"';} ?> type="radio" />Laki-laki</label>
+                                            <label><input name="jenis_kelamin" id="data1_3" value="L" <?php  if(isset($data->jenis_kelamin)){if($data->jenis_kelamin == "L"){ echo 'checked="checked"';}} ?> type="radio" />Laki-laki</label>
                                         </div>
                                     </div>
                                     <div class="col-sm-4" style="padding-left: 0;">
                                         <div class="radio">
-                                            <label><input name="jenis_kelamin" id="data1_3" value="P" <?php  if($data->jenis_kelamin == "P"){ echo 'checked="checked"';} ?> type="radio" />Perempuan</label>
+                                            <label><input name="jenis_kelamin" id="data1_3" value="P" <?php  if(isset($data->jenis_kelamin)){if($data->jenis_kelamin == "P"){ echo 'checked="checked"';}} ?> type="radio" />Perempuan</label>
                                         </div>
                                     </div>
                                 </div>

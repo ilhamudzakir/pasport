@@ -56,13 +56,12 @@ $route['jadwal/(:any)/(:any)/(:any)'] = "home/jadwalpengajuan/$2/$2/$2";
 $route['daftar_pengajuan'] = 'home/daftarpengajuan';
 $route['daftar_pengajuan/(:any)'] = 'home/daftarpengajuan/$2';
 $route['data_pemohon'] = 'home/datapemohon';
-<<<<<<< Updated upstream
+
 $route['data_pemohon/(:any)'] = 'home/datapemohon/$1';
 $route['data_pemohon/(:any)/(:num)'] = 'home/datapemohon/$1/$2';
-=======
+
 $route['data_pemohon/(:num)'] = 'home/datapemohon/$1';
->>>>>>> Stashed changes
-//
+
 $route['beranda'] = 'back_beranda';
 $route['daftar_kanim'] = 'back_daftarkanim';
 //$route['daftar_pengajuan'] = 'back_daftarpengajuan';
