@@ -12,13 +12,7 @@ class Back_data_keluarga extends CI_Controller {
         $this->gotoView('page_back_daftarpengajuan_view', $data);
     }
     
-    public function dataPemohon() {
-        $data["halaman"] = "Lengkapi Data Pemohon";
-        $data["subhalaman"] = "";
-        $data["menu"] = "3";
-        $data["submenu"] = "";
-        $this->gotoView('page_back_datapemohon_view', $data);
-    }
+    
     
     private function gotoView($pageview, $data) {
         force_ssl();
@@ -36,12 +30,13 @@ class Back_data_keluarga extends CI_Controller {
         $data['data1']=select_where_array('dc_data_keluarga',$arrayName = array('id_data_diri' => $id,'id_keterangan'=>1 ))->row();
         
         //debugCode($data);
-        $this->gotoView('page_front_datapemohon_datakeluarga', $data);
+        $this->gotoView('page_front_datapemohon_datakeluarga_view', $data);
     }
 
-      public function createFamily($id) {
+      public function createFamily() {
         $login=login_api();
         $data_id=$login->Id;
+        $id = $this->input->post('id');
        //data ayah & ibu
         $arrayName = array(
             'id_data_diri' => $id, 
@@ -62,6 +57,7 @@ class Back_data_keluarga extends CI_Controller {
        $arrayAddress = array( 
             'id_data_diri' => $id, 
             'FamilyTypeXID' => "1", 
+            'id_data_keluarga' => $this->input->post('idkel1'), 
             'alamat_lengkap' => $this->input->post('alkapktp1'), 
             'negara' => $this->input->post('negaraktp1'), 
             'provinsi' => $this->input->post('provinsiktp1'), 
@@ -74,6 +70,7 @@ class Back_data_keluarga extends CI_Controller {
        $arrayAddress = array(
             'id_data_diri' => $id, 
             'FamilyTypeXID' => "2", 
+            'id_data_keluarga' => $this->input->post('idkel1'), 
             'alamat_lengkap' => $this->input->post('alkap1'), 
             'negara' => $this->input->post('negara'), 
             'provinsi' => $this->input->post('provinsi'), 
@@ -105,6 +102,7 @@ class Back_data_keluarga extends CI_Controller {
        $arrayAddress = array( 
             'id_data_diri' => $id, 
             'FamilyTypeXID' => "1", 
+            'id_data_keluarga' => $this->input->post('idkel2'), 
             'alamat_lengkap' => $this->input->post('alkapktp2'), 
             'negara' => $this->input->post('negaraktp2'), 
             'provinsi' => $this->input->post('provinsiktp2'), 
@@ -117,6 +115,7 @@ class Back_data_keluarga extends CI_Controller {
        $arrayAddress = array(
             'id_data_diri' => $id, 
             'FamilyTypeXID' => "2", 
+            'id_data_keluarga' => $this->input->post('idkel2'), 
             'alamat_lengkap' => $this->input->post('alkap2'), 
             'negara' => $this->input->post('negara2'), 
             'provinsi' => $this->input->post('provinsi2'), 
@@ -149,6 +148,7 @@ class Back_data_keluarga extends CI_Controller {
        $arrayAddress = array( 
             'id_data_diri' => $id, 
             'FamilyTypeXID' => "1", 
+            'id_data_keluarga' => $this->input->post('idkel3'), 
             'alamat_lengkap' => $this->input->post('alkapktp3'), 
             'negara' => $this->input->post('negaraktp3'), 
             'provinsi' => $this->input->post('provinsiktp3'), 
@@ -161,6 +161,7 @@ class Back_data_keluarga extends CI_Controller {
        $arrayAddress = array(
             'id_data_diri' => $id, 
             'FamilyTypeXID' => "2", 
+            'id_data_keluarga' => $this->input->post('idkel3'), 
             'alamat_lengkap' => $this->input->post('alkap3'), 
             'negara' => $this->input->post('negara3'), 
             'provinsi' => $this->input->post('provinsi3'), 
@@ -171,11 +172,165 @@ class Back_data_keluarga extends CI_Controller {
             insert_all('dc_family_address',$arrayAddress);
 
 
+            redirect("home/dataPemohon/".$id);
+
+
+
+    }
+
+
+ public function updateFamily() {
+        $login=login_api();
+        $data_id=$login->Id;
+        $id = $this->input->post('id');
+       //data ayah & ibu
+        $arrayName = array(
+            'id_data_diri' => $id, 
+            'nomer_surat_nikah' => $this->input->post('aktanikah1'), 
+            'id_keterangan' => "1", 
+            'nik' => $this->input->post('nik1'), 
+            'nama' => $this->input->post('naleng1'), 
+            'jenis_kelamin' => "1", 
+            'tempat_lahir' => $this->input->post('tempatl1'), 
+            'tanggal_lahir' => $this->input->post('tgll1'), 
+            'status' => $this->input->post('status1'), 
+            'jumlah_anak ' => $this->input->post('jml1'), 
+            'id_pekerjaan' => $this->input->post('pekerjaan1')
+        );
+            update_where_array('dc_data_keluarga',$arrayName,$arrayName = array('id_data_diri' => $id, 'id_keterangan'=>$this->input->post('idket1')));
+
+            // sub byktp ayah & ibu
+       $arrayAddress = array( 
+            'id_data_diri' => $id, 
+            'FamilyTypeXID' => "1", 
+            'alamat_lengkap' => $this->input->post('alkapktp1'), 
+            'negara' => $this->input->post('negaraktp1'),
+            'id_data_keluarga' => $this->input->post('idkel1'),  
+            'provinsi' => $this->input->post('provinsiktp1'), 
+            'kota' => $this->input->post('kotaktp1'), 
+            'kecamatan' => $this->input->post('kecamatanktp1'), 
+            'kode_pos' => $this->input->post('kodeposktp1'), 
+        );
+            update_where_array('dc_family_address',$arrayName,$arrayName = array('id_data_diri' => $id, 'FamilyTypeXID'=>"1",'id_data_keluarga'=>$this->input->post('idkel1') ));
+          
+       $arrayAddress = array(
+            'id_data_diri' => $id, 
+            'FamilyTypeXID' => "2", 
+            'alamat_lengkap' => $this->input->post('alkap1'), 
+            'id_data_keluarga' => $this->input->post('idkel1'), 
+            'negara' => $this->input->post('negara'), 
+            'provinsi' => $this->input->post('provinsi'), 
+            'kota' => $this->input->post('kota'), 
+            'kecamatan' => $this->input->post('kecamatan'), 
+            'kode_pos' => $this->input->post('kodepos'), 
+        );
+            update_where_array('dc_family_address',$arrayName,$arrayName = array('id_data_diri' => $id, 'FamilyTypeXID'=>"2",'id_data_keluarga'=>$this->input->post('idkel1') ));
+             
+       //end 
+
+ //data ayah
+        $arrayName = array(
+            'id_data_diri' => $id, 
+            'nomer_surat_nikah' => "0", 
+            'id_keterangan' => "2", 
+            'nik' => $this->input->post('nik2'), 
+            'nama' => $this->input->post('naleng2'), 
+            'jenis_kelamin' => "2", 
+            'tempat_lahir' => $this->input->post('tempatl2'), 
+            'tanggal_lahir' => $this->input->post('tgll2'), 
+            'status' => $this->input->post('status2'), 
+            'jumlah_anak ' => $this->input->post('jml2'), 
+            'id_pekerjaan' => $this->input->post('pekerjaan2')
+        );
+            update_where_array('dc_data_keluarga',$arrayName,$arrayName = array('id_data_diri' => $id, 'id_keterangan'=>$this->input->post('idket2') ));
+            // sub byktp ayah & ibu
+       $arrayAddress = array( 
+            'id_data_diri' => $id, 
+            'FamilyTypeXID' => "1", 
+            'alamat_lengkap' => $this->input->post('alkapktp2'), 
+            'negara' => $this->input->post('negaraktp2'), 
+            'id_data_keluarga' => $this->input->post('idkel2'), 
+            'provinsi' => $this->input->post('provinsiktp2'), 
+            'kota' => $this->input->post('kotaktp2'), 
+            'kecamatan' => $this->input->post('kecamatanktp2'), 
+            'kode_pos' => $this->input->post('kodeposktp2'), 
+        );
+           update_where_array('dc_family_address',$arrayName,$arrayName = array('id_data_diri' => $id, 'FamilyTypeXID'=>"1",'id_data_keluarga'=>$this->input->post('idkel2') ));
+          
+       $arrayAddress = array(
+            'id_data_diri' => $id, 
+            'FamilyTypeXID' => "2", 
+            'alamat_lengkap' => $this->input->post('alkap2'), 
+            'negara' => $this->input->post('negara2'), 
+            'provinsi' => $this->input->post('provinsi2'), 
+            'id_data_keluarga' => $this->input->post('idkel2'), 
+            'kota' => $this->input->post('kota2'), 
+            'kecamatan' => $this->input->post('kecamatan2'), 
+            'kode_pos' => $this->input->post('kodepos2'), 
+        );
+            update_where_array('dc_family_address',$arrayName,$arrayName = array('id_data_diri' => $id, 'FamilyTypeXID'=>"2",'id_data_keluarga'=>$this->input->post('idkel2') ));
+
+
+//end
+
+//data ayah
+        $arrayName = array(
+            'id_data_diri' => $id, 
+            'nomer_surat_nikah' => "0", 
+            'id_keterangan' => "3", 
+            'nik' => $this->input->post('nik3'), 
+            'nama' => $this->input->post('naleng3'), 
+            'jenis_kelamin' => "2", 
+            'tempat_lahir' => $this->input->post('tempatl3'), 
+            'tanggal_lahir' => $this->input->post('tgll3'), 
+            'status' => $this->input->post('status3'), 
+            'jumlah_anak ' => $this->input->post('jml3'), 
+            'id_pekerjaan' => $this->input->post('pekerjaan3')
+        );
+            update_where_array('dc_data_keluarga',$arrayName,$arrayName = array('id_data_diri' => $id, 'id_keterangan'=>$this->input->post('idket3') ));
+
+            // sub byktp ayah & ibu
+       $arrayAddress = array( 
+            'id_data_diri' => $id, 
+            'FamilyTypeXID' => "1", 
+            'alamat_lengkap' => $this->input->post('alkapktp3'), 
+            'negara' => $this->input->post('negaraktp3'), 
+            'provinsi' => $this->input->post('provinsiktp3'), 
+            'id_data_keluarga' => $this->input->post('idkel3'), 
+            'kota' => $this->input->post('kotaktp3'), 
+            'kecamatan' => $this->input->post('kecamatanktp3'), 
+            'kode_pos' => $this->input->post('kodeposktp3'), 
+        );
+             update_where_array('dc_family_address',$arrayName,$arrayName = array('id_data_diri' => $id, 'FamilyTypeXID'=>"1",'id_data_keluarga'=>$this->input->post('idkel3') ));
+
+          
+       $arrayAddress = array(
+            'id_data_diri' => $id, 
+            'FamilyTypeXID' => "2", 
+            'alamat_lengkap' => $this->input->post('alkap3'),
+            'id_data_keluarga' => $this->input->post('idkel3'),  
+            'negara' => $this->input->post('negara3'), 
+            'provinsi' => $this->input->post('provinsi3'), 
+            'kota' => $this->input->post('kota3'), 
+            'kecamatan' => $this->input->post('kecamatan3'), 
+            'kode_pos' => $this->input->post('kodepos3'), 
+        );
+             update_where_array('dc_family_address',$arrayName,$arrayName = array('id_data_diri' => $id, 'FamilyTypeXID'=>"2",'id_data_keluarga'=>$this->input->post('idkel3') ));
+
+
+             redirect("home/dataPemohon/".$id);
 
 
 
 
     }
+
+
+
+
+
+
+
 
 
      function do_upload() {

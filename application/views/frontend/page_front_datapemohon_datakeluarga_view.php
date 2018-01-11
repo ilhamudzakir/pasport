@@ -4,24 +4,50 @@
         <div class="nav-tabs-custom">
             <div class="tab-content">
                 <h3 style="font-family: sans-serif;border-bottom: 1px solid #eee;padding-bottom: 5px;margin-top: 0px;">Data Suami/Istri</h3>
-                <form class="form-horizontal" style="margin-top: 20px;"   action="<?php echo base_url() ?>Back_data_keluarga/createFamily" method="POST" enctype="multipart/form-data">
+                <form class="form-horizontal" style="margin-top: 20px;"   action="<?php echo base_url() ?>Back_data_keluarga/<?php if($data1_count>0){echo"updateFamily";}else{ echo"createFamily"; }?>" method="POST" enctype="multipart/form-data">
                     <div class="box-body">
                         <div id="param_aktanikah" class="form-group">
                             <label for="dk1_1" class="col-sm-4 control-label">Nomor Akta Nikah / Surat Nikah</label>
                             <div class="col-sm-4">
-                                <input type="text" value="" required="required" class="form-control" id="aktanikah1" name="aktanikah1" placeholder=". . ." onkeypress="return doFieldFilter(event, 'numeric', '', false)" />
+                                <input type="text" value="<?php if($data1_count>0){echo $data1->nomer_surat_nikah;} ?>" required="required" class="form-control" id="aktanikah1" name="aktanikah1" placeholder=". . ." onkeypress="return doFieldFilter(event, 'numeric', '', false)" />
                             </div>
                         </div>
                         <div id="param_nik2" class="form-group">
                             <label for="dk1_2" class="col-sm-4 control-label">Nomor Induk Kependudukan (NIK)</label>
                             <div class="col-sm-4">
-                                <input type="text" required="required" class="form-control" id="nik1" name="nik1" placeholder=". . ." onkeypress="return doFieldFilter(event, 'numeric', '', false)" />
+                                <input type="text" required="required" value="<?php if($data1_count>0){echo $data1->nik;} ?>" class="form-control" id="nik1" name="nik1" placeholder=". . ." onkeypress="return doFieldFilter(event, 'numeric', '', false)" />
+                                 <input type="hidden"  class="form-control" id="nik1" name="id" value="<?php echo $this->uri->segment(2) ?>" />
+                            
+                             <input type="hidden"  class="form-control" id="nik1" name="idkel1" value="<?php if($data1_count>0){echo $data1->id;} ?>" />
+
+                              <input type="hidden"  class="form-control" id="nik1" name="idkel2" value="<?php if($data2_count>0){echo $data2->id;} ?>" />
+
+
+                               <input type="hidden"  class="form-control" id="nik1" name="idkel3" value="<?php if($data3_count>0){echo $data3->id; }?>" />
+
+
+
+
+    <input type="hidden"  class="form-control" id="nik1" name="idket1" value="<?php if($data1_count>0){echo $data1->id_keterangan;} ?>" />
+
+                              <input type="hidden"  class="form-control" id="nik1" name="idket2" value="<?php if($data2_count>0){echo $data2->id_keterangan;} ?>" />
+
+
+                               <input type="hidden"  class="form-control" id="nik1" name="idkel3" value="<?php if($data3_count>0){echo $data3->id_keterangan;} ?>" />
+
+
+
+
+
+
+
+
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="dk1_3" class="col-sm-4 control-label">Nama Lengkap</label>
                             <div class="col-sm-4">
-                                <input type="text" required="required" class="form-control" id="naleng1" name="naleng1" placeholder=". . ." />
+                                <input type="text" value="<?php if($data1_count>0){echo $data1->nama;} ?>" required="required" class="form-control" id="naleng1" name="naleng1" placeholder=". . ." />
                             </div>
                         </div>
                         <div class="form-group">
@@ -34,7 +60,7 @@
                                 </div>
                                 <div class="col-sm-4" style="padding-left: 0;">
                                     <div class="radio">
-                                        <label><input  name="jkp1" value="P" type="radio" />Perempuan</label>
+                                        <label><input checked="checked"  name="jkp1" value="P" type="radio" />Perempuan</label>
                                     </div>
                                 </div>
                             </div>
@@ -42,16 +68,22 @@
                         <div class="form-group">
                             <label for="dk1_5" class="col-sm-4 control-label">Tempat & Tanggal Lahir</label>
                             <div class="col-sm-4">
-                                <input type="text" required="required" class="form-control" id="tempatl1" name="tempatl1" placeholder=". . ." />
+                                <input value="<?php if($data1_count>0){echo $data1->tempat_lahir;} ?>" type="text" required="required" class="form-control" id="tempatl1" name="tempatl1" placeholder=". . ." />
                             </div>
                             <div class="col-sm-2">
-                                <input type="text" class="form-control" required="required" id="tgll1" name="tgll1" placeholder="dd/mm/yyyy"  />
+                                <input type="text" value="<?php if($data1_count>0){echo $data1->tanggal_lahir;} ?>" class="form-control" required="required" id="tgll1" name="tgll1" placeholder="dd/mm/yyyy"  />
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="dk1_7" class="col-sm-4 control-label">Status Perkawinan</label>
                             <div class="col-sm-4">
                                 <select class="form-control select2" required="required" id="status1" name="status1" style="width: 100%;">
+                                 <?php if($data1_count>0){ ?>
+
+ <option value="<?php echo $data1->status; ?>">Menikah</option>
+
+                                  <?php } ?>
+                                   
                                     <option value=""></option>
                                     <option value="1">Menikah</option>
                                     <option value="2">Belum Menikah</option>
@@ -62,7 +94,14 @@
                             <label for="dk1_8" class="col-sm-4 control-label">Jumlah Anak</label>
                             <div class="col-sm-4">
                                 <select class="form-control select2" required="required" id="jml1" name="jml1" style="width: 100%;">
-                                    <option value=""></option>
+                                  
+
+ <?php if($data1_count>0){ ?>
+
+ <option value="<?php echo $data1->jumlah_anak; ?>"><?php echo $data1->jumlah_anak; ?></option>
+
+                                  <?php } ?>
+                                   <option value=""></option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="2">3</option>
@@ -73,6 +112,13 @@
                             <label for="dk1_9" class="col-sm-4 control-label">Pekerjaan</label>
                             <div class="col-sm-4">
                                 <select class="form-control select2" required="required" id="pekerjaan1" name="pekerjaan1" style="width: 100%;">
+                                   
+
+ <?php if($data1_count>0){ ?>
+
+ <option value="<?php echo $data1->id_pekerjaan; ?>">Wiraswasta</option>
+
+                                  <?php } ?>
                                     <option value=""></option>
                                     <option value="1">Wiraswasta</option>
                                     <option value="2">Pegawai Swasta</option>
@@ -231,13 +277,13 @@
                         <div class="form-group">
                             <label for="dk3_2" class="col-sm-4 control-label">Nomor Induk Kependudukan (NIK)</label>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" required="required" id="nik2" name="nik2" placeholder=". . ." onkeypress="return doFieldFilter(event, 'numeric', '', false)" />
+                                <input type="text" value="<?php if($data2_count>0){echo $data2->nik;} ?>"  class="form-control" required="required" id="nik2" name="nik2" placeholder=". . ." onkeypress="return doFieldFilter(event, 'numeric', '', false)" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="dk3_3" class="col-sm-4 control-label">Nama Lengkap</label>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" required="required" id="naleng2" name="naleng2" placeholder=". . ." />
+                                <input type="text" value="<?php if($data2_count>0){echo $data2->nama;} ?>" class="form-control" required="required" id="naleng2" name="naleng2" placeholder=". . ." />
                             </div>
                         </div>
                         <div class="form-group">
@@ -245,7 +291,7 @@
                             <div class="col-sm-6">
                                 <div class="col-sm-3" style="padding-left: 0;">
                                     <div class="radio">
-                                        <label><input name="jkl2" value="L"  type="radio" />Laki-laki</label>
+                                        <label><input name="jkl2" checked="checked" value="L"  type="radio" />Laki-laki</label>
                                     </div>
                                 </div>
                                 <div class="col-sm-4" style="padding-left: 0;">
@@ -258,16 +304,22 @@
                         <div class="form-group">
                             <label for="dk3_5" class="col-sm-4 control-label">Tempat & Tanggal Lahir</label>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control"  required="required" id="tempatl2" name="tempatl2" placeholder=". . ." />
+                                <input type="text" value="<?php if($data2_count>0){echo $data2->tempat_lahir;} ?>" class="form-control"  required="required" id="tempatl2" name="tempatl2" placeholder=". . ." />
                             </div>
                             <div class="col-sm-2">
-                                <input type="text" class="form-control" required="required" id="tgll2" name="tgll2" placeholder="dd/mm/yyyy" />
+                                <input type="text" value="<?php if($data2_count>0){echo $data2->tanggal_lahir;} ?>" class="form-control" required="required" id="tgll2" name="tgll2" placeholder="dd/mm/yyyy" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="dk3_7" class="col-sm-4 control-label">Status Perkawinan</label>
                             <div class="col-sm-4">
                                 <select class="form-control select2" required="required" id="status2" name="status2" style="width: 100%;">
+                                  
+ <?php if($data2_count>0){ ?>
+
+ <option value="<?php echo $data2->status; ?>">Menikah</option>
+
+                                  <?php } ?>
                                     <option value=""></option>
                                     <option value="1">Menikah</option>
                                     <option value="2">Belum Menikah</option>
@@ -278,6 +330,12 @@
                             <label for="dk3_8" class="col-sm-4 control-label">Jumlah Anak</label>
                             <div class="col-sm-4">
                                 <select class="form-control select2" required="required" id="jml2" name="jml2" style="width: 100%;">
+                                   
+ <?php if($data2_count>0){ ?>
+
+ <option value="<?php echo $data2->jumlah_anak; ?>"><?php echo $data2->jumlah_anak; ?></option>
+
+                                  <?php } ?>
                                     <option value=""></option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
@@ -289,6 +347,11 @@
                             <label for="dk3_9" class="col-sm-4 control-label">Pekerjaan</label>
                             <div class="col-sm-4">
                                 <select class="form-control select2" required="required" id="pekerjaan2" name="pekerjaan2" style="width: 100%;">
+                                  <?php if($data2_count>0){ ?>
+
+ <option value="<?php echo $data2->id_pekerjaan; ?>">Pegawai Swasta</option>
+
+                                  <?php } ?>
                                     <option value=""></option>
                                     <option value="1">Wiraswasta</option>
                                     <option value="2">Pegawai Swasta</option>
@@ -446,13 +509,13 @@
                         <div class="form-group">
                             <label for="dk4_2" class="col-sm-4 control-label">Nomor Induk Kependudukan (NIK)</label>
                             <div class="col-sm-4">
-                                <input type="text" required="required" class="form-control" id="nik3" name="nik3" placeholder=". . ." onkeypress="return doFieldFilter(event, 'numeric', '', false)" />
+                                <input type="text" required="required" class="form-control" id="nik3" name="nik3" value="<?php if($data3_count>0){echo $data3->nik;} ?>" placeholder=". . ." onkeypress="return doFieldFilter(event, 'numeric', '', false)" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="dk4_3" class="col-sm-4 control-label">Nama Lengkap</label>
                             <div class="col-sm-4">
-                                <input type="text" required="required" class="form-control" id="naleng3" name="naleng3" placeholder=". . ." />
+                                <input type="text" required="required" value="<?php if($data3_count>0){echo $data3->nama;} ?>" class="form-control" id="naleng3" name="naleng3" placeholder=". . ." />
                             </div>
                         </div>
                         <div class="form-group">
@@ -467,7 +530,7 @@
                                 <div class="col-sm-4" style="padding-left: 0;">
                                     <div class="radio">
                                         <label><input name="jkp3" 
-                                         value="P" type="radio" />Perempuan</label>
+                                         value="P" checked="checked" type="radio" />Perempuan</label>
                                     </div>
                                 </div>
                             </div>
@@ -475,16 +538,22 @@
                         <div class="form-group">
                             <label for="dk4_5" class="col-sm-4 control-label">Tempat & Tanggal Lahir</label>
                             <div class="col-sm-4">
-                                <input type="text" required="required" class="form-control" id="tgll3" name="tgll3" placeholder=". . ." />
+                                <input type="text" value="<?php if($data3_count>0){echo $data3->tempat_lahir;} ?>" required="required" class="form-control" id="tgll3" name="tgll3" placeholder=". . ." />
                             </div>
                             <div class="col-sm-2">
-                                <input type="text" required="required" class="form-control" id="tempatl3" name="tempatl3" placeholder="dd/mm/yyyy"  />
+                                <input type="text" value="<?php if($data3_count>0){echo $data3->tanggal_lahir;} ?>" required="required" class="form-control" id="tempatl3" name="tempatl3" placeholder="dd/mm/yyyy"  />
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="dk4_7" class="col-sm-4 control-label">Status Perkawinan</label>
                             <div class="col-sm-4">
                                 <select class="form-control select2" required="required" id="status3" name="status3" style="width: 100%;">
+                                  
+ <?php if($data3_count>0){ ?>
+
+ <option value="<?php echo $data3->status; ?>">Menikah</option>
+
+                                  <?php } ?>
                                     <option value=""></option>
                                     <option value="1">Menikah</option>
                                     <option value="2">Belum Menikah</option>
@@ -495,6 +564,12 @@
                             <label for="dk4_8" class="col-sm-4 control-label">Jumlah Anak</label>
                             <div class="col-sm-4">
                                 <select class="form-control select2" required="required" id="jml3" name="jml3" style="width: 100%;">
+                                   
+ <?php if($data3_count>0){ ?>
+
+ <option value="<?php echo $data3->jumlah_anak; ?>"><?php echo $data3->jumlah_anak; ?></option>
+
+                                  <?php } ?>
                                     <option value=""></option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
@@ -506,6 +581,12 @@
                             <label for="dk4_9" class="col-sm-4 control-label">Pekerjaan</label>
                             <div class="col-sm-4">
                                 <select class="form-control select2" required="required" id="pekerjaan3" name="pekerjaan3" style="width: 100%;">
+                                    
+ <?php if($data3_count>0){ ?>
+
+ <option value="<?php echo $data3->id_pekerjaan; ?>">Pegawai Swasta</option>
+
+                                  <?php } ?>
                                     <option value=""></option>
                                     <option value="1">Wiraswasta</option>
                                     <option value="2">Pegawai Swasta</option>

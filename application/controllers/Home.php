@@ -20,17 +20,50 @@ class Home extends CI_Controller {
         $this->gotoView('page_front_jadwalpengajuan_view', $data);
     }
     public function dataPemohon($id) {
+<<<<<<< Updated upstream
         // debugCode($id);
         $data['data'] = select_where("dc_data_diri",'id',$id)->row();
         $data['pendidikan'] = select_where("dc_riwayat_pendidikan",'FormXID',$id)->row();
         $data['pekerjaan'] = select_where("dc_riwayat_pekerjaan",'FormXID',$id)->row();
         $data['mohon'] = select_where("dc_permohonan_paspor",'FormXID',$id)->row();
         // debugCode($data['mohon']);
+=======
+>>>>>>> Stashed changes
         $data["halaman"] = "Lengkapi Data Pemohon";
         $data["subhalaman"] = "";
         $data["menu"] = "3";
         $data["submenu"] = "";
+<<<<<<< Updated upstream
         //debugCode($data);
+=======
+        
+        $data['data1_count']=select_where_array('dc_data_keluarga',$arrayName = array('id_data_diri' => $id,'id_keterangan'=>1 ))->num_rows();
+        $data['data1']=select_where_array('dc_data_keluarga',$arrayName = array('id_data_diri'  => $id,'id_keterangan'=>1 ))->row();
+
+$data['data2_count']=select_where_array('dc_data_keluarga',$arrayName = array('id_data_diri' => $id,'id_keterangan'=>2))->num_rows();
+       $data['data2']=select_where_array('dc_data_keluarga',$arrayName = array('id_data_diri' => $id,'id_keterangan'=>2 ))->row();
+
+
+
+$data['data3_count']=select_where_array('dc_data_keluarga',$arrayName = array('id_data_diri' => $id,'id_keterangan'=>3 ))->num_rows();
+       $data['data3']=select_where_array('dc_data_keluarga',$arrayName = array('id_data_diri' => $id,'id_keterangan'=>3 ))->row();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+>>>>>>> Stashed changes
         $this->gotoView('page_front_datapemohon_view', $data);
     }
     public function check_quota(){
