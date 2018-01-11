@@ -4,24 +4,24 @@
         <div class="nav-tabs-custom">
             <div class="tab-content">
                 <h3 style="font-family: sans-serif;border-bottom: 1px solid #eee;padding-bottom: 5px;margin-top: 0px;">Data Suami/Istri</h3>
-                <form class="form-horizontal" style="margin-top: 20px;">
+                <form class="form-horizontal" style="margin-top: 20px;"   action="<?php echo base_url() ?>Back_data_keluarga/createFamily" method="POST" enctype="multipart/form-data">
                     <div class="box-body">
                         <div id="param_aktanikah" class="form-group">
                             <label for="dk1_1" class="col-sm-4 control-label">Nomor Akta Nikah / Surat Nikah</label>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" id="dk1_1" name="dk1_1" placeholder=". . ." onkeypress="return doFieldFilter(event, 'numeric', '', false)" />
+                                <input type="text" required="required" class="form-control" id="aktanikah1" name="aktanikah1" placeholder=". . ." onkeypress="return doFieldFilter(event, 'numeric', '', false)" />
                             </div>
                         </div>
                         <div id="param_nik2" class="form-group">
                             <label for="dk1_2" class="col-sm-4 control-label">Nomor Induk Kependudukan (NIK)</label>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" id="dk1_2" name="dk1_2" placeholder=". . ." onkeypress="return doFieldFilter(event, 'numeric', '', false)" />
+                                <input type="text" required="required" class="form-control" id="nik1" name="nik1" placeholder=". . ." onkeypress="return doFieldFilter(event, 'numeric', '', false)" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="dk1_3" class="col-sm-4 control-label">Nama Lengkap</label>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" id="dk1_3" name="dk1_3" placeholder=". . ." />
+                                <input type="text" required="required" class="form-control" id="naleng1" name="naleng1" placeholder=". . ." />
                             </div>
                         </div>
                         <div class="form-group">
@@ -29,12 +29,12 @@
                             <div class="col-sm-6">
                                 <div class="col-sm-3" style="padding-left: 0;">
                                     <div class="radio">
-                                        <label><input name="dk1_4" value="L" type="radio" />Laki-laki</label>
+                                        <label><input  name="jkl1" value="L" type="radio" />Laki-laki</label>
                                     </div>
                                 </div>
                                 <div class="col-sm-4" style="padding-left: 0;">
                                     <div class="radio">
-                                        <label><input name="dk1_4" value="P" type="radio" />Perempuan</label>
+                                        <label><input  name="jkp1" value="P" type="radio" />Perempuan</label>
                                     </div>
                                 </div>
                             </div>
@@ -42,16 +42,16 @@
                         <div class="form-group">
                             <label for="dk1_5" class="col-sm-4 control-label">Tempat & Tanggal Lahir</label>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" id="dk1_5" name="dk1_5" placeholder=". . ." />
+                                <input type="text" required="required" class="form-control" id="tempatl1" name="tempatl1" placeholder=". . ." />
                             </div>
                             <div class="col-sm-2">
-                                <input type="text" class="form-control" id="dk1_6" name="dk1_6" placeholder="dd/mm/yyyy" readonly />
+                                <input type="text" class="form-control" required="required" id="tgll1" name="tgll1" placeholder="dd/mm/yyyy"  />
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="dk1_7" class="col-sm-4 control-label">Status Perkawinan</label>
                             <div class="col-sm-4">
-                                <select class="form-control select2" id="dk1_7" name="dk1_7" style="width: 100%;">
+                                <select class="form-control select2" required="required" id="status1" name="status1" style="width: 100%;">
                                     <option value=""></option>
                                     <option value="1">Menikah</option>
                                     <option value="2">Belum Menikah</option>
@@ -61,7 +61,7 @@
                         <div class="form-group">
                             <label for="dk1_8" class="col-sm-4 control-label">Jumlah Anak</label>
                             <div class="col-sm-4">
-                                <select class="form-control select2" id="dk1_8" name="dk1_8" style="width: 100%;">
+                                <select class="form-control select2" required="required" id="jml1" name="jml1" style="width: 100%;">
                                     <option value=""></option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
@@ -72,7 +72,7 @@
                         <div class="form-group">
                             <label for="dk1_9" class="col-sm-4 control-label">Pekerjaan</label>
                             <div class="col-sm-4">
-                                <select class="form-control select2" id="dk1_9" name="dk1_9" style="width: 100%;">
+                                <select class="form-control select2" required="required" id="pekerjaan1" name="pekerjaan1" style="width: 100%;">
                                     <option value=""></option>
                                     <option value="1">Wiraswasta</option>
                                     <option value="2">Pegawai Swasta</option>
@@ -92,13 +92,13 @@
                                 <div class="form-group">
                                     <label for="dk1_10" class="col-sm-5 control-label">Alamat Lengkap</label>
                                     <div class="col-sm-7">
-                                        <textarea class="form-control" id="dk1_10" name="dk1_10" placeholder=". . ."></textarea>
+                                        <textarea class="form-control" required="required" id="alkapktp1" name="alkapktp1" placeholder=". . ."></textarea>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="dk1_11" class="col-sm-5 control-label">Negara</label>
                                     <div class="col-sm-7">
-                                        <select class="form-control select2" id="dk1_11" name="dk1_11" style="width: 100%;">
+                                        <select class="form-control select2" required="required" id="negaraktp1" name="negaraktp1" style="width: 100%;">
                                             <option value=""></option>
                                             <option value="ID" selected>Indonesia</option>
                                         </select>
@@ -107,7 +107,7 @@
                                 <div class="form-group">
                                     <label for="dk1_12" class="col-sm-5 control-label">Provinsi</label>
                                     <div class="col-sm-7">
-                                        <select class="form-control select2" id="dk1_12" name="dk1_12" style="width: 100%;">
+                                        <select class="form-control select2" required="required" id="provinsiktp1" name="provinsiktp1" style="width: 100%;">
                                             <option value=""></option>
                                             <option value="1" selected>DKI Jakarta</option>
                                         </select>
@@ -116,7 +116,7 @@
                                 <div class="form-group">
                                     <label for="dk1_13" class="col-sm-5 control-label">Kota / Kabupaten</label>
                                     <div class="col-sm-7">
-                                        <select class="form-control select2" id="dk1_13" name="dk1_13" style="width: 100%;">
+                                        <select class="form-control select2" required="required" id="kotaktp1" name="kotaktp1" style="width: 100%;">
                                             <option value=""></option>
                                             <option value="1" selected>Jakarta Selatan</option>
                                         </select>
@@ -125,7 +125,7 @@
                                 <div class="form-group">
                                     <label for="dk1_14" class="col-sm-5 control-label">Kecamatan</label>
                                     <div class="col-sm-7">
-                                        <select class="form-control select2" id="dk1_14" name="dk1_14" style="width: 100%;">
+                                        <select class="form-control select2" required="required" id="kecamatanktp1" name="kecamatanktp1" style="width: 100%;">
                                             <option value=""></option>
                                             <option value="1">Daan Mogot</option>
                                             <option value="2">Grogol</option>
@@ -137,7 +137,7 @@
                                 <div class="form-group">
                                     <label for="dk1_15" class="col-sm-5 control-label">Kode Pos</label>
                                     <div class="col-sm-7">
-                                        <input type="text" class="form-control" id="dk1_15" name="dk1_15" placeholder=". . ." onkeypress="return doFieldFilter(event, 'numeric', '', false)" />
+                                        <input type="text" required="required" class="form-control" id="kodeposktp1" name="kodeposktp1" placeholder=". . ." onkeypress="return doFieldFilter(event, 'numeric', '', false)" />
                                     </div>
                                 </div>
                             </div>
@@ -163,13 +163,13 @@
                                 <div class="form-group">
                                     <label for="dk1_17" class="col-sm-5 control-label">Alamat Lengkap</label>
                                     <div class="col-sm-7">
-                                        <textarea class="form-control" id="dk1_17" name="dk1_17" placeholder=". . ."></textarea>
+                                        <textarea class="form-control" required="required" id="alkap1" name="alkap1" placeholder=". . ."></textarea>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="dk1_18" class="col-sm-5 control-label">Negara</label>
                                     <div class="col-sm-7">
-                                        <select class="form-control select2" id="dk1_18" name="dk1_18" style="width: 100%;">
+                                        <select class="form-control select2" required="required" id="negara" name="negara" style="width: 100%;">
                                             <option value=""></option>
                                             <option value="ID" selected>Indonesia</option>
                                         </select>
@@ -178,7 +178,7 @@
                                 <div class="form-group">
                                     <label for="dk1_19" class="col-sm-5 control-label">Provinsi</label>
                                     <div class="col-sm-7">
-                                        <select class="form-control select2" id="dk1_19" name="dk1_19" style="width: 100%;">
+                                        <select class="form-control select2" required="required" id="provinsi" name="provinsi" style="width: 100%;">
                                             <option value=""></option>
                                             <option value="1" selected>DKI Jakarta</option>
                                         </select>
@@ -187,7 +187,7 @@
                                 <div class="form-group">
                                     <label for="dk1_20" class="col-sm-5 control-label">Kota / Kabupaten</label>
                                     <div class="col-sm-7">
-                                        <select class="form-control select2" id="dk1_20" name="dk1_20" style="width: 100%;">
+                                        <select class="form-control select2" required="required" id="kota" name="kota" style="width: 100%;">
                                             <option value=""></option>
                                             <option value="1" selected>Jakarta Selatan</option>
                                         </select>
@@ -196,7 +196,7 @@
                                 <div class="form-group">
                                     <label for="dk1_21" class="col-sm-5 control-label">Kecamatan</label>
                                     <div class="col-sm-7">
-                                        <select class="form-control select2" id="dk1_21" name="dk1_21" style="width: 100%;">
+                                        <select class="form-control select2" required="required" id="kecamatan" name="kecamatan" style="width: 100%;">
                                             <option value=""></option>
                                             <option value="1">Daan Mogot</option>
                                             <option value="2">Grogol</option>
@@ -208,7 +208,7 @@
                                 <div class="form-group">
                                     <label for="dk1_22" class="col-sm-5 control-label">Kode Pos</label>
                                     <div class="col-sm-7">
-                                        <input type="text" class="form-control" id="dk1_22" name="dk1_22" placeholder=". . ." onkeypress="return doFieldFilter(event, 'numeric', '', false)" />
+                                        <input type="text" class="form-control" required="required" id="kodepos" name="kodepos" placeholder=". . ." onkeypress="return doFieldFilter(event, 'numeric', '', false)" />
                                     </div>
                                 </div>
                             </div>
@@ -223,21 +223,21 @@
                         </div>
                     </div>-->
                     <!-- /.box-footer -->
-                </form>
+                
 
                 <h3 style="font-family: sans-serif;border-bottom: 1px solid #eee;padding-bottom: 5px;margin-top: 30pt;">Data Ayah</h3>
-                <form class="form-horizontal" style="margin-top: 20px;">
+                
                     <div class="box-body">
                         <div class="form-group">
                             <label for="dk3_2" class="col-sm-4 control-label">Nomor Induk Kependudukan (NIK)</label>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" id="dk3_2" name="dk3_2" placeholder=". . ." onkeypress="return doFieldFilter(event, 'numeric', '', false)" />
+                                <input type="text" class="form-control" required="required" id="nik2" name="nik2" placeholder=". . ." onkeypress="return doFieldFilter(event, 'numeric', '', false)" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="dk3_3" class="col-sm-4 control-label">Nama Lengkap</label>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" id="dk3_3" name="dk3_3" placeholder=". . ." />
+                                <input type="text" class="form-control" required="required" id="naleng2" name="naleng2" placeholder=". . ." />
                             </div>
                         </div>
                         <div class="form-group">
@@ -245,12 +245,12 @@
                             <div class="col-sm-6">
                                 <div class="col-sm-3" style="padding-left: 0;">
                                     <div class="radio">
-                                        <label><input name="dk3_4" value="L" type="radio" />Laki-laki</label>
+                                        <label><input name="jkl2" value="L"  type="radio" />Laki-laki</label>
                                     </div>
                                 </div>
                                 <div class="col-sm-4" style="padding-left: 0;">
                                     <div class="radio">
-                                        <label><input name="dk3_4" value="P" type="radio" />Perempuan</label>
+                                        <label><input name="jkp2" value="P" type="radio" />Perempuan</label>
                                     </div>
                                 </div>
                             </div>
@@ -258,16 +258,16 @@
                         <div class="form-group">
                             <label for="dk3_5" class="col-sm-4 control-label">Tempat & Tanggal Lahir</label>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" id="dk3_5" name="dk3_5" placeholder=". . ." />
+                                <input type="text" class="form-control"  required="required" id="tempatl2" name="tempatl2" placeholder=". . ." />
                             </div>
                             <div class="col-sm-2">
-                                <input type="text" class="form-control" id="dk3_6" name="dk3_6" placeholder="dd/mm/yyyy" readonly />
+                                <input type="text" class="form-control" required="required" id="tgll2" name="tgll2" placeholder="dd/mm/yyyy" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="dk3_7" class="col-sm-4 control-label">Status Perkawinan</label>
                             <div class="col-sm-4">
-                                <select class="form-control select2" id="dk3_7" name="dk3_7" style="width: 100%;">
+                                <select class="form-control select2" required="required" id="status2" name="status2" style="width: 100%;">
                                     <option value=""></option>
                                     <option value="1">Menikah</option>
                                     <option value="2">Belum Menikah</option>
@@ -277,7 +277,7 @@
                         <div class="form-group">
                             <label for="dk3_8" class="col-sm-4 control-label">Jumlah Anak</label>
                             <div class="col-sm-4">
-                                <select class="form-control select2" id="dk3_8" name="dk3_8" style="width: 100%;">
+                                <select class="form-control select2" required="required" id="jml2" name="jml2" style="width: 100%;">
                                     <option value=""></option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
@@ -288,7 +288,7 @@
                         <div class="form-group">
                             <label for="dk3_9" class="col-sm-4 control-label">Pekerjaan</label>
                             <div class="col-sm-4">
-                                <select class="form-control select2" id="dk3_9" name="dk3_9" style="width: 100%;">
+                                <select class="form-control select2" required="required" id="pekerjaan2" name="pekerjaan2" style="width: 100%;">
                                     <option value=""></option>
                                     <option value="1">Wiraswasta</option>
                                     <option value="2">Pegawai Swasta</option>
@@ -308,13 +308,13 @@
                                 <div class="form-group">
                                     <label for="dk3_10" class="col-sm-5 control-label">Alamat Lengkap</label>
                                     <div class="col-sm-7">
-                                        <textarea class="form-control" id="dk3_10" name="dk3_10" placeholder=". . ."></textarea>
+                                        <textarea class="form-control" required="required" id="alkapktp2" name="alkapktp2" placeholder=". . ."></textarea>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="dk3_11" class="col-sm-5 control-label">Negara</label>
                                     <div class="col-sm-7">
-                                        <select class="form-control select2" id="dk3_11" name="dk3_11" style="width: 100%;">
+                                        <select class="form-control select2" required="required" id="negaraktp2" name="negaraktp2" style="width: 100%;">
                                             <option value=""></option>
                                             <option value="ID" selected>Indonesia</option>
                                         </select>
@@ -323,7 +323,7 @@
                                 <div class="form-group">
                                     <label for="dk3_12" class="col-sm-5 control-label">Provinsi</label>
                                     <div class="col-sm-7">
-                                        <select class="form-control select2" id="dk3_12" name="dk3_12" style="width: 100%;">
+                                        <select class="form-control select2" required="required" id="provinsiktp2" name="provinsiktp2" style="width: 100%;">
                                             <option value=""></option>
                                             <option value="1" selected>DKI Jakarta</option>
                                         </select>
@@ -332,7 +332,7 @@
                                 <div class="form-group">
                                     <label for="dk3_13" class="col-sm-5 control-label">Kota / Kabupaten</label>
                                     <div class="col-sm-7">
-                                        <select class="form-control select2" id="dk3_13" name="dk3_13" style="width: 100%;">
+                                        <select class="form-control select2" required="required" id="kotaktp2" name="kotaktp2" style="width: 100%;">
                                             <option value=""></option>
                                             <option value="1" selected>Jakarta Selatan</option>
                                         </select>
@@ -341,7 +341,7 @@
                                 <div class="form-group">
                                     <label for="dk3_14" class="col-sm-5 control-label">Kecamatan</label>
                                     <div class="col-sm-7">
-                                        <select class="form-control select2" id="dk3_14" name="dk3_14" style="width: 100%;">
+                                        <select class="form-control select2" required="required" id="kecamatanktp2" name="kecamatanktp2" style="width: 100%;">
                                             <option value=""></option>
                                             <option value="1">Daan Mogot</option>
                                             <option value="2">Grogol</option>
@@ -353,7 +353,7 @@
                                 <div class="form-group">
                                     <label for="dk3_15" class="col-sm-5 control-label">Kode Pos</label>
                                     <div class="col-sm-7">
-                                        <input type="text" class="form-control" id="dk3_15" name="dk3_15" placeholder=". . ." onkeypress="return doFieldFilter(event, 'numeric', '', false)" />
+                                        <input type="text" class="form-control" required="required" id="kodeposktp2" name="kodeposktp2" placeholder=". . ." onkeypress="return doFieldFilter(event, 'numeric', '', false)" />
                                     </div>
                                 </div>
                             </div>
@@ -379,13 +379,13 @@
                                 <div class="form-group">
                                     <label for="dk3_17" class="col-sm-5 control-label">Alamat Lengkap</label>
                                     <div class="col-sm-7">
-                                        <textarea class="form-control" id="dk3_17" name="dk3_17" placeholder=". . ."></textarea>
+                                        <textarea class="form-control" required="required" id="alkap2" name="alkap2" placeholder=". . ."></textarea>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="dk3_18" class="col-sm-5 control-label">Negara</label>
                                     <div class="col-sm-7">
-                                        <select class="form-control select2" id="dk3_18" name="dk3_18" style="width: 100%;">
+                                        <select class="form-control select2" required="required" id="negara2" name="negara2" style="width: 100%;">
                                             <option value=""></option>
                                             <option value="ID" selected>Indonesia</option>
                                         </select>
@@ -394,7 +394,7 @@
                                 <div class="form-group">
                                     <label for="dk3_19" class="col-sm-5 control-label">Provinsi</label>
                                     <div class="col-sm-7">
-                                        <select class="form-control select2" id="dk3_19" name="dk3_19" style="width: 100%;">
+                                        <select class="form-control select2" required="required" id="provinsi2" name="provinsi2" style="width: 100%;">
                                             <option value=""></option>
                                             <option value="1" selected>DKI Jakarta</option>
                                         </select>
@@ -403,7 +403,7 @@
                                 <div class="form-group">
                                     <label for="dk3_20" class="col-sm-5 control-label">Kota / Kabupaten</label>
                                     <div class="col-sm-7">
-                                        <select class="form-control select2" id="dk3_20" name="dk3_20" style="width: 100%;">
+                                        <select class="form-control select2" required="required" id="kota2" name="kota2" style="width: 100%;">
                                             <option value=""></option>
                                             <option value="1" selected>Jakarta Selatan</option>
                                         </select>
@@ -412,7 +412,7 @@
                                 <div class="form-group">
                                     <label for="dk3_21" class="col-sm-5 control-label">Kecamatan</label>
                                     <div class="col-sm-7">
-                                        <select class="form-control select2" id="dk3_21" name="dk3_21" style="width: 100%;">
+                                        <select class="form-control select2" required="required" id="kecamtan2" name="kecamatan2" style="width: 100%;">
                                             <option value=""></option>
                                             <option value="1">Daan Mogot</option>
                                             <option value="2">Grogol</option>
@@ -424,7 +424,7 @@
                                 <div class="form-group">
                                     <label for="dk3_22" class="col-sm-5 control-label">Kode Pos</label>
                                     <div class="col-sm-7">
-                                        <input type="text" class="form-control" id="dk3_22" name="dk3_22" placeholder=". . ." onkeypress="return doFieldFilter(event, 'numeric', '', false)" />
+                                        <input type="text" class="form-control" required="required" id="kodepos2" name="kodepos2" placeholder=". . ." onkeypress="return doFieldFilter(event, 'numeric', '', false)" />
                                     </div>
                                 </div>
                             </div>
@@ -439,20 +439,20 @@
                         </div>
                     </div>-->
                     <!-- /.box-footer -->
-                </form>
+                
                 <h3 style="font-family: sans-serif;border-bottom: 1px solid #eee;padding-bottom: 5px;margin-top: 30pt;">Data Ibu</h3>
-                <form class="form-horizontal" style="margin-top: 20px;">
+               
                     <div class="box-body">
                         <div class="form-group">
                             <label for="dk4_2" class="col-sm-4 control-label">Nomor Induk Kependudukan (NIK)</label>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" id="dk4_2" name="dk4_2" placeholder=". . ." onkeypress="return doFieldFilter(event, 'numeric', '', false)" />
+                                <input type="text" required="required" class="form-control" id="nik3" name="nik3" placeholder=". . ." onkeypress="return doFieldFilter(event, 'numeric', '', false)" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="dk4_3" class="col-sm-4 control-label">Nama Lengkap</label>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" id="dk4_3" name="dk4_3" placeholder=". . ." />
+                                <input type="text" required="required" class="form-control" id="naleng3" name="naleng3" placeholder=". . ." />
                             </div>
                         </div>
                         <div class="form-group">
@@ -460,12 +460,14 @@
                             <div class="col-sm-6">
                                 <div class="col-sm-3" style="padding-left: 0;">
                                     <div class="radio">
-                                        <label><input name="dk4_4" value="L" type="radio" />Laki-laki</label>
+                                        <label><input  name="jkl3" 
+                                         value="L" type="radio" />Laki-laki</label>
                                     </div>
                                 </div>
                                 <div class="col-sm-4" style="padding-left: 0;">
                                     <div class="radio">
-                                        <label><input name="dk4_4" value="P" type="radio" />Perempuan</label>
+                                        <label><input name="jkp3" 
+                                         value="P" type="radio" />Perempuan</label>
                                     </div>
                                 </div>
                             </div>
@@ -473,16 +475,16 @@
                         <div class="form-group">
                             <label for="dk4_5" class="col-sm-4 control-label">Tempat & Tanggal Lahir</label>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" id="dk4_5" name="dk4_5" placeholder=". . ." />
+                                <input type="text" required="required" class="form-control" id="tgll3" name="tgll3" placeholder=". . ." />
                             </div>
                             <div class="col-sm-2">
-                                <input type="text" class="form-control" id="dk4_6" name="dk4_6" placeholder="dd/mm/yyyy" readonly />
+                                <input type="text" required="required" class="form-control" id="tempatl3" name="tempatl3" placeholder="dd/mm/yyyy"  />
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="dk4_7" class="col-sm-4 control-label">Status Perkawinan</label>
                             <div class="col-sm-4">
-                                <select class="form-control select2" id="dk4_7" name="dk4_7" style="width: 100%;">
+                                <select class="form-control select2" required="required" id="status3" name="status3" style="width: 100%;">
                                     <option value=""></option>
                                     <option value="1">Menikah</option>
                                     <option value="2">Belum Menikah</option>
@@ -492,7 +494,7 @@
                         <div class="form-group">
                             <label for="dk4_8" class="col-sm-4 control-label">Jumlah Anak</label>
                             <div class="col-sm-4">
-                                <select class="form-control select2" id="dk4_8" name="dk4_8" style="width: 100%;">
+                                <select class="form-control select2" required="required" id="jml3" name="jml3" style="width: 100%;">
                                     <option value=""></option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
@@ -503,7 +505,7 @@
                         <div class="form-group">
                             <label for="dk4_9" class="col-sm-4 control-label">Pekerjaan</label>
                             <div class="col-sm-4">
-                                <select class="form-control select2" id="dk4_9" name="dk4_9" style="width: 100%;">
+                                <select class="form-control select2" required="required" id="pekerjaan3" name="pekerjaan3" style="width: 100%;">
                                     <option value=""></option>
                                     <option value="1">Wiraswasta</option>
                                     <option value="2">Pegawai Swasta</option>
@@ -523,13 +525,13 @@
                                 <div class="form-group">
                                     <label for="dk4_10" class="col-sm-5 control-label">Alamat Lengkap</label>
                                     <div class="col-sm-7">
-                                        <textarea class="form-control" id="dk4_10" name="dk4_10" placeholder=". . ."></textarea>
+                                        <textarea class="form-control" required="required" id="alkapktp3" name="alkapktp3" placeholder=". . ."></textarea>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="dk4_11" class="col-sm-5 control-label">Negara</label>
                                     <div class="col-sm-7">
-                                        <select class="form-control select2" id="dk4_11" name="dk4_11" style="width: 100%;">
+                                        <select class="form-control select2" required="required" id="negaraktp3" name="negaraktp3" style="width: 100%;">
                                             <option value=""></option>
                                             <option value="ID" selected>Indonesia</option>
                                         </select>
@@ -538,7 +540,7 @@
                                 <div class="form-group">
                                     <label for="dk4_12" class="col-sm-5 control-label">Provinsi</label>
                                     <div class="col-sm-7">
-                                        <select class="form-control select2" id="dk4_12" name="dk4_12" style="width: 100%;">
+                                        <select class="form-control select2" required="required" id="provinsiktp3" name="provinsiktp3" style="width: 100%;">
                                             <option value=""></option>
                                             <option value="1" selected>DKI Jakarta</option>
                                         </select>
@@ -547,7 +549,7 @@
                                 <div class="form-group">
                                     <label for="dk4_13" class="col-sm-5 control-label">Kota / Kabupaten</label>
                                     <div class="col-sm-7">
-                                        <select class="form-control select2" id="dk4_13" name="dk4_13" style="width: 100%;">
+                                        <select class="form-control select2" required="required" id="kotaktp3" name="kotaktp3" style="width: 100%;">
                                             <option value=""></option>
                                             <option value="1" selected>Jakarta Selatan</option>
                                         </select>
@@ -556,19 +558,20 @@
                                 <div class="form-group">
                                     <label for="dk4_14" class="col-sm-5 control-label">Kecamatan</label>
                                     <div class="col-sm-7">
-                                        <select class="form-control select2" id="dk4_14" name="dk4_14" style="width: 100%;">
+                                        <select class="form-control select2" required="required" id="kecamatanktp3" name="kecamatanktp3" style="width: 100%;">
                                             <option value=""></option>
                                             <option value="1">Daan Mogot</option>
                                             <option value="2">Grogol</option>
                                             <option value="3" selected>Setiabudi</option>
                                             <option value="4">Tebet</option>
+
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="dk4_15" class="col-sm-5 control-label">Kode Pos</label>
                                     <div class="col-sm-7">
-                                        <input type="text" class="form-control" id="dk4_15" name="dk4_15" placeholder=". . ." onkeypress="return doFieldFilter(event, 'numeric', '', false)" />
+                                        <input type="text" class="form-control" required="required" id="kodeposktp3" name="kodeposktp3" placeholder=". . ." onkeypress="return doFieldFilter(event, 'numeric', '', false)" />
                                     </div>
                                 </div>
                             </div>
@@ -594,13 +597,13 @@
                                 <div class="form-group">
                                     <label for="dk4_17" class="col-sm-5 control-label">Alamat Lengkap</label>
                                     <div class="col-sm-7">
-                                        <textarea class="form-control" id="dk4_17" name="dk4_17" placeholder=". . ."></textarea>
+                                        <textarea class="form-control" required="required" id="alkap3" name="alkap3" placeholder=". . ."></textarea>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="dk4_18" class="col-sm-5 control-label">Negara</label>
                                     <div class="col-sm-7">
-                                        <select class="form-control select2" id="dk4_18" name="dk4_18" style="width: 100%;">
+                                        <select class="form-control select2" required="required" id="negara3" name="negara3" style="width: 100%;">
                                             <option value=""></option>
                                             <option value="ID" selected>Indonesia</option>
                                         </select>
@@ -609,7 +612,7 @@
                                 <div class="form-group">
                                     <label for="dk4_19" class="col-sm-5 control-label">Provinsi</label>
                                     <div class="col-sm-7">
-                                        <select class="form-control select2" id="dk4_19" name="dk4_19" style="width: 100%;">
+                                        <select class="form-control select2" required="required" id="provinsi3" name="provinsi3" style="width: 100%;">
                                             <option value=""></option>
                                             <option value="1" selected>DKI Jakarta</option>
                                         </select>
@@ -618,7 +621,7 @@
                                 <div class="form-group">
                                     <label for="dk4_20" class="col-sm-5 control-label">Kota / Kabupaten</label>
                                     <div class="col-sm-7">
-                                        <select class="form-control select2" id="dk4_20" name="dk4_20" style="width: 100%;">
+                                        <select class="form-control select2" required="required" id="kota3" name="kota3" style="width: 100%;">
                                             <option value=""></option>
                                             <option value="1" selected>Jakarta Selatan</option>
                                         </select>
@@ -627,7 +630,7 @@
                                 <div class="form-group">
                                     <label for="dk4_21" class="col-sm-5 control-label">Kecamatan</label>
                                     <div class="col-sm-7">
-                                        <select class="form-control select2" id="dk4_21" name="dk4_21" style="width: 100%;">
+                                        <select class="form-control select2" required="required" id="kecamatan3" name="kecamatan3" style="width: 100%;">
                                             <option value=""></option>
                                             <option value="1">Daan Mogot</option>
                                             <option value="2">Grogol</option>
@@ -639,7 +642,7 @@
                                 <div class="form-group">
                                     <label for="dk4_22" class="col-sm-5 control-label">Kode Pos</label>
                                     <div class="col-sm-7">
-                                        <input type="text" class="form-control" id="dk4_22" name="dk4_22" placeholder=". . ." onkeypress="return doFieldFilter(event, 'numeric', '', false)" />
+                                        <input type="text" required="required" class="form-control" id="kodepos3" name="kodepos3" placeholder=". . ." onkeypress="return doFieldFilter(event, 'numeric', '', false)" />
                                     </div>
                                 </div>
                             </div>
@@ -647,16 +650,19 @@
                         </div>
                     </div>
                     <!-- /.box-footer -->
-                </form>
-            </div>
-            <br/>
+                     <br/>
             <!--<div class="box-footer">-->
             <div class="col-sm-offset-4 col-sm-4 text-center" style="margin-top: 20pt;">
                     <button type="submit" class="btn bg-green">Simpan</button>
                     <button id="reset-btn" type="button" class="btn btn-default">Reset</button>
                 </div>
+                
+            </div>
+           
             <!--</div>-->
             <!-- /.tab-content -->
+        
+</form>
         </div>
         <!-- nav-tabs-custom -->
     </div>
