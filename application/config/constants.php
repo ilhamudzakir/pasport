@@ -84,6 +84,6 @@ defined('EXIT_DATABASE')       OR define('EXIT_DATABASE', 8); // database error
 defined('EXIT__AUTO_MIN')      OR define('EXIT__AUTO_MIN', 9); // lowest automatically-assigned error code
 defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
 
-defined('BASE_URL')            OR define('BASE_URL', 'https://'.$_SERVER['HTTP_HOST'].'/ponline/'); // base url
+defined('BASE_URL')            OR define('BASE_URL', 'https://'.$_SERVER['HTTP_HOST'].'/pasport/'); // base url
 defined('FRONTJS_URL')         OR define('FRONTJS_URL', BASE_URL.'assets/dist/js/pages/frontend/'); // front base url
 defined('BACKJS_URL')          OR define('BACKJS_URL', BASE_URL.'assets/dist/js/pages/backend/'); // back base url
