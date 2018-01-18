@@ -43,17 +43,19 @@ class Home extends CI_Controller {
 
         // debugCode($id);
         $data['data'] = select_where("dc_data_diri",'id',$id)->row();
+        $data['alamat1'] = select_where_array('dc_alamat_pengaju_paspor',$arrayName = array('id_data_diri' => $id,'type_alamat'=>1 ))->row();
+        $data['alamat2'] = select_where_array('dc_alamat_pengaju_paspor',$arrayName = array('id_data_diri' => $id,'type_alamat'=>2 ))->row();
         $data['pendidikan'] = select_where("dc_riwayat_pendidikan",'FormXID',$id)->row();
         $data['pekerjaan'] = select_where("dc_riwayat_pekerjaan",'FormXID',$id)->row();
         $data['mohon'] = select_where("dc_permohonan_paspor",'FormXID',$id)->row();
 
         $data['negara'] = select_all('dc_negara');
-        $data['provinsi'] = select_all('dc_provinsi');
-        $data['kota'] = select_all('dc_kota');
-         $data['kecamatan'] = select_all('dc_kecamatan');
+        $data['provinsi'] = select_all('propinsi');
+        $data['kota'] = select_all('kabupaten');
+         $data['kecamatan'] = select_all('kecamatan');
 
-        // debugCode($data['mohon']);
-       $data["halaman"] = "Lengkapi Data Pemohon";
+
+        $data["halaman"] = "Lengkapi Data Pemohon";
         $data["subhalaman"] = "";
         $data["menu"] = "3";
         $data["submenu"] = "";

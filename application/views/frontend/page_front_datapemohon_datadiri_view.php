@@ -171,81 +171,128 @@
                 </div>
                
                 <div class="tab-pane" id="tab1_3">
-                    <form class="form-horizontal" style="margin-top: 20px;">
+                    <form class="form-horizontal" method="POST" action="<?php echo base_url() ?>front/save_data_alamat/<?php echo $this->uri->segment(2);?>" style="margin-top: 20px;">
+                       
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="col-sm-12 text-right" style="margin: 10px 0px 20px 0px;">
                                     <span style="font-size: 12pt;">Alamat Sesuai KTP</span>
                                     <hr style="margin: 5px auto;" />
                                 </div>
+
+                                <input type="hidden" name="id[0]" value="<?php if($alamat1){ echo $alamat1->id; } ?>">
+                                <input type="hidden" name="type_alamat[0]" value="1">
+
+
                                 <div class="box-body" style="background-color: #f9f9f9;">
-                                    <div class="form-group">
+                                    <div id="param_alamatdiri" class="form-group">
                                         <label for="data3_1" class="col-sm-5 control-label">Alamat Lengkap</label>
                                         <div class="col-sm-7">
-                                            <textarea class="form-control" id="data3_1" name="data3_1" placeholder=". . ." required></textarea>
+                                            <textarea class="form-control" id="alamat_1" name="alamat[0]" placeholder=". . ." required><?php if($alamat1){ echo $alamat1->alamat; } ?></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="data3_2" class="col-sm-5 control-label">Negara</label>
                                         <div class="col-sm-7">
-                                            <select class="form-control select2" id="data3_2" name="data3_2" style="width: 100%;">
+                                            <select class="form-control select2" id="user_negara" name="id_negara[0]" onchange="comboCPC('#user_negara','#user_province','ajax/getProvince')" style="width: 100%;">
                                                 <option value=""></option>
-                                                <option value="ID" selected>Indonesia</option>
+                                                <?php
+                                                    // debugCode($alamat1);
+                                                    if(count($negara)>0){
+                                                        foreach($negara as $r){
+                                                            // debugCode($r);
+                                                            $t = isset($alamat1->id_negara)?$alamat1->id_negara:"";
+                                                            $s = ($r->id==$t)?"selected='selected'":'';
+                                                            echo "<option value='".$r->id."' $s >".$r->negara."</option>";
+                                                        }
+                                                    }  
+                                                ?>
+                                               
                                             </select>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="data3_3" class="col-sm-5 control-label">Provinsi</label>
                                         <div class="col-sm-7">
-                                            <select class="form-control select2" id="data3_3" name="data3_3" style="width: 100%;">
+                                            <select class="form-control select2" id="user_province" name="id_provinsi[0]" onchange="comboCPC('#user_province','#user_kota','ajax/getCity')"  style="width: 100%;">
                                                 <option value=""></option>
-                                                <option value="1" selected>DKI Jakarta</option>
+                                                 <?php
+                                                    // debugCode($alamat1);
+                                                    if(count($provinsi)>0){
+                                                        foreach($provinsi as $r){
+                                                            // debugCode($r);
+                                                            $t = isset($alamat1->id_provinsi)?$alamat1->id_provinsi:"";
+                                                            $s = ($r->propinsi_id==$t)?"selected='selected'":'';
+                                                            echo "<option value='".$r->propinsi_id."' $s >".$r->title."</option>";
+                                                        }
+                                                    }  
+                                                ?>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="data3_4" class="col-sm-5 control-label">Kota / Kabupaten</label>
                                         <div class="col-sm-7">
-                                            <select class="form-control select2" id="data3_4" name="data3_4" style="width: 100%;">
+                                            <select class="form-control select2" id="user_kota" name="id_kota[0]" onchange="comboCPC('#user_kota','#user_kecamatan','ajax/getKecamatan')" style="width: 100%;">
                                                 <option value=""></option>
-                                                <option value="1" selected>Jakarta Selatan</option>
+                                                <?php
+                                                    // debugCode($alamat1);
+                                                    if(count($kota)>0){
+                                                        foreach($kota as $r){
+                                                            // debugCode($r);
+                                                            $t = isset($alamat1->id_kota)?$alamat1->id_kota:"";
+                                                            $s = ($r->kabupaten_id==$t)?"selected='selected'":'';
+                                                            echo "<option value='".$r->kabupaten_id."' $s >".$r->title."</option>";
+                                                        }
+                                                    }  
+                                                ?>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="data3_5" class="col-sm-5 control-label">Kecamatan</label>
                                         <div class="col-sm-7">
-                                            <select class="form-control select2" id="data3_5" name="data3_5" style="width: 100%;">
+                                            <select class="form-control select2" id="user_kecamatan" name="id_kecamatan[0]" style="width: 100%;">
                                                 <option value=""></option>
-                                                <option value="1">Daan Mogot</option>
-                                                <option value="2">Grogol</option>
-                                                <option value="3" selected>Setiabudi</option>
-                                                <option value="4">Tebet</option>
+                                                <?php
+                                                    // debugCode($alamat1);
+                                                    if(count($kecamatan)>0){
+                                                        foreach($kecamatan as $r){
+                                                            // debugCode($r);
+                                                            $t = isset($alamat1->id_kecamatan)?$alamat1->id_kecamatan:"";
+                                                            $s = ($r->kecamatan_id==$t)?"selected='selected'":'';
+                                                            echo "<option value='".$r->kecamatan_id."' $s >".$r->title."</option>";
+                                                        }
+                                                    }  
+                                                ?>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="data3_6" class="col-sm-5 control-label">Kode Pos</label>
                                         <div class="col-sm-7">
-                                            <input type="text" class="form-control" id="data3_6" name="data3_6" placeholder=". . ." onkeypress="return doFieldFilter(event, 'numeric', '', false)" />
+                                            <input type="text" class="form-control" id="kodepos_1" name="nomer_pos[0]" value="<?php echo isset($alamat1->nomer_pos)?$alamat1->nomer_pos:""; ?>" placeholder=". . ." onkeypress="return doFieldFilter(event, 'numeric', '', false)" />
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="data3_7" class="col-sm-5 control-label">Nomor Telepon Rumah</label>
                                         <div class="col-sm-7">
-                                            <input type="text" class="form-control" id="data3_7" name="data3_7" placeholder=". . ." onkeypress="return doFieldFilter(event, 'numeric', ' ()-', false)" />
+                                            <input type="text" class="form-control" id="telepon_1" name="telepon[0]" value="<?php echo isset($alamat1->telepon)?$alamat1->telepon:""; ?>" placeholder=". . ." onkeypress="return doFieldFilter(event, 'numeric', ' ()-', false)" />
+                                            <input type="hidden" class="form-control" id="data3_8" name="telepon[1]" value="" />
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="data3_8" class="col-sm-5 control-label">Nomor Handphone</label>
                                         <div class="col-sm-7">
-                                            <input type="text" class="form-control" id="data3_8" name="data3_8" placeholder=". . ." onkeypress="return doFieldFilter(event, 'numeric', '+', false)" />
+                                            <input type="text" class="form-control" id="data3_8" name="hp[0]" value="<?php echo isset($alamat1->hp)?$alamat1->hp:""; ?>" placeholder=". . ." onkeypress="return doFieldFilter(event, 'numeric', '+', false)" />
+                                            <input type="hidden" class="form-control" id="data3_8" name="hp[1]" value="" />
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="data3_9" class="col-sm-5 control-label">Alamat Email</label>
                                         <div class="col-sm-7">
-                                            <input type="text" class="form-control" id="data3_9" name="data3_9" placeholder=". . ." />
+                                            <input type="text" class="form-control" id="data3_9" name="email[0]" value="<?php echo isset($alamat1->email)?$alamat1->email:""; ?>" placeholder=". . ." />
+                                            <input type="hidden" class="form-control" id="data3_9" name="email[1]" value="" placeholder=". . ." />
                                         </div>
                                     </div>
                                 </div>
@@ -262,62 +309,105 @@
                                         <div class="col-sm-7">
                                             <div class="checkbox">
                                                 <label>
-                                                    <input type="checkbox" id="as_ktp" style="cursor: pointer;" />
-                                                    <input type="hidden" id="data3_10" name="data3_10" />
+                                                    <input type="checkbox" onclick="asktp()" id="as_ktp" name="ktp" value="1" style="cursor: pointer;" />
+                                                    
                                                 </label>
                                             </div>
                                             <div style="font-size: 9pt;">** checklist apabila alamat anda sesuai dengan ktp</div>
                                         </div>
                                     </div>
+                                    <input type="hidden" name="id[1]" value="<?php if($alamat2){ echo $alamat2->id; } ?>">
+                                    <input type="hidden" name="type_alamat[1]" value="2">
                                     <div class="form-group">
                                         <label for="data3_11" class="col-sm-5 control-label">Alamat Lengkap</label>
                                         <div class="col-sm-7">
-                                            <textarea class="form-control" id="data3_11" name="data3_11" placeholder=". . ."></textarea>
+                                            <textarea class="form-control" id="alamat_2" name="alamat[1]" value="" placeholder=". . ."><?php echo isset($alamat2->alamat)?$alamat2->alamat:""; ?></textarea>
                                         </div>
                                     </div>
+                                    
                                     <div class="form-group">
-                                        <label for="data3_12" class="col-sm-5 control-label">Negara</label>
+                                        <label for="data3_2" class="col-sm-5 control-label">Negara</label>
                                         <div class="col-sm-7">
-                                            <select class="form-control select2" id="data3_12" name="data3_12" style="width: 100%;">
+                                            <select class="form-control select2" id="user_negara2" name="id_negara[1]" value="" onchange="comboCPC('#user_negara2','#user_province2','ajax/getProvince')" style="width: 100%;">
                                                 <option value=""></option>
-                                                <option value="ID" selected>Indonesia</option>
+                                                <?php
+                                                // debugCode($negara);
+                                                    if(count($negara)>0){
+                                                        foreach($negara as $r){
+                                                            // debugCode($r);
+                                                            $t = isset($alamat2->id_negara)?$alamat2->id_negara:"";
+                                                            $s = ($r->id==$t)?"selected='selected'":'';
+                                                            echo "<option value='".$r->id."' $s >".$r->negara."</option>";
+                                                        }
+                                                    }  
+                                                ?>
+                                               
                                             </select>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="data3_13" class="col-sm-5 control-label">Provinsi</label>
+                                        <label for="data3_3" class="col-sm-5 control-label">Provinsi</label>
                                         <div class="col-sm-7">
-                                            <select class="form-control select2" id="data3_13" name="data3_13" style="width: 100%;">
+                                            <select class="form-control select2" id="user_province2" name="id_provinsi[1]" onchange="comboCPC('#user_province2','#user_kota2','ajax/getCity')"  style="width: 100%;">
                                                 <option value=""></option>
-                                                <option value="1" selected>DKI Jakarta</option>
+                                                <?php
+                                                    // debugCode($alamat1);
+                                                    if(count($provinsi)>0){
+                                                        foreach($provinsi as $r){
+                                                            // debugCode($r);
+                                                            $t = isset($alamat2->id_provinsi)?$alamat2->id_provinsi:"";
+                                                            $s = ($r->propinsi_id==$t)?"selected='selected'":'';
+                                                            echo "<option value='".$r->propinsi_id."' $s >".$r->title."</option>";
+                                                        }
+                                                    }  
+                                                ?>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="data3_14" class="col-sm-5 control-label">Kota / Kabupaten</label>
+                                        <label for="data3_4" class="col-sm-5 control-label">Kota / Kabupaten</label>
                                         <div class="col-sm-7">
-                                            <select class="form-control select2" id="data3_14" name="data3_14" style="width: 100%;">
+                                            <select class="form-control select2" id="user_kota2" name="id_kota[1]" onchange="comboCPC('#user_kota2','#user_kecamatan2','ajax/getKecamatan')" style="width: 100%;">
                                                 <option value=""></option>
-                                                <option value="1" selected>Jakarta Selatan</option>
+                                                <?php
+                                                    // debugCode($alamat1);
+                                                    if(count($kota)>0){
+                                                        foreach($kota as $r){
+                                                            // debugCode($r);
+                                                            $t = isset($alamat2->id_kota)?$alamat2->id_kota:"";
+                                                            $s = ($r->kabupaten_id==$t)?"selected='selected'":'';
+                                                            echo "<option value='".$r->kabupaten_id."' $s >".$r->title."</option>";
+                                                        }
+                                                    }  
+                                                ?>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="data3_15" class="col-sm-5 control-label">Kecamatan</label>
+                                        <label for="data3_5" class="col-sm-5 control-label">Kecamatan</label>
                                         <div class="col-sm-7">
-                                            <select class="form-control select2" id="data3_15" name="data3_15" style="width: 100%;">
+                                            <select class="form-control select2" id="user_kecamatan2" name="id_kecamatan[1]" style="width: 100%;">
                                                 <option value=""></option>
-                                                <option value="1">Daan Mogot</option>
-                                                <option value="2">Grogol</option>
-                                                <option value="3" selected>Setiabudi</option>
-                                                <option value="4">Tebet</option>
+                                               <?php
+                                                    // debugCode($alamat1);
+                                                    if(count($kecamatan)>0){
+                                                        foreach($kecamatan as $r){
+                                                            // debugCode($r);
+                                                            $t = isset($alamat2->id_kecamatan)?$alamat2->id_kecamatan:"";
+                                                            $s = ($r->kecamatan_id==$t)?"selected='selected'":'';
+                                                            echo "<option value='".$r->kecamatan_id."' $s >".$r->title."</option>";
+                                                        }
+                                                    }  
+                                                ?>
                                             </select>
                                         </div>
                                     </div>
+
+
                                     <div class="form-group">
                                         <label for="data3_16" class="col-sm-5 control-label">Kode Pos</label>
                                         <div class="col-sm-7">
-                                            <input type="text" class="form-control" id="data3_16" name="data3_16" placeholder=". . ." onkeypress="return doFieldFilter(event, 'numeric', '', false)" />
+                                            <input type="text" class="form-control" id="kodepos_2" name="nomer_pos[1]" value="<?php echo isset($alamat2->nomer_pos)?$alamat2->nomer_pos:""; ?>" placeholder=". . ." onkeypress="return doFieldFilter(event, 'numeric', '', false)" />
                                         </div>
                                     </div>
                                 </div>
@@ -670,3 +760,52 @@
         <!-- nav-tabs-custom -->
     </div>
 </div>
+
+<script type="text/javascript">
+   $(document).ready(function() {
+        //set initial state.
+
+        var alamat_1 = $('textarea#alamat_1').val();
+        var user_kecamatan_1 = $("#user_kecamatan option:selected" ).text();
+         alert(user_kecamatan_1);
+        console.log(user_kecamatan_1);
+        console.log(alamat_1);
+        $('#as_ktp').change(function() {
+            if($(this).is(":checked")) {
+
+              $("textarea#alamat_2").val(alamat_1);
+              $(target).append($('<option>').text(value.title).attr('value', value.propinsi_id));
+            }else{
+                console.log("not");
+            }
+                  
+        });
+    });
+
+    function comboCPC(id,target,url) {
+
+            c = $(id);
+            <?php //echo "asas ". site_url('"+url+"');?>
+            urlCountry = "<?php echo site_url('"+url+"');?>";
+             console.log(urlCountry);
+            var id = c.val();
+            $.ajax({
+              type: "POST",
+              url: urlCountry+"/"+id,
+                dataType:"json",
+              success: function(json){
+                $(target).find('option').remove();
+                console.log(json);
+                 $.each(json.rows, function(i, value) {
+                    if (url =='ajax/getProvince') {
+                        $(target).append($('<option>').text(value.title).attr('value', value.propinsi_id));
+                    } else if (url == 'ajax/getCity') {
+                        $(target).append($('<option>').text(value.title).attr('value', value.kabupaten_id));
+                    } else if (url == 'ajax/getKecamatan'){
+                        $(target).append($('<option>').text(value.title).attr('value', value.kecamatan_id));
+                    }
+                });
+              }
+            }); 
+        }
+</script>
