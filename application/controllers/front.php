@@ -27,8 +27,9 @@ class Front extends CI_Controller {
         redirect("data_pemohon/".$id);
     }
 
-    public function save_riwayat_pendidikan($id) {
-       // debugCode($id);
+    public function save_riwayat_pendidikan($param,$id) {
+       //debugCode($id);
+       print_r($id);
        $table_field = $this->db->list_fields("dc_riwayat_pendidikan");
         $insert = array();
         foreach ($table_field as $field) {
@@ -44,10 +45,10 @@ class Front extends CI_Controller {
         
         }
        
-        redirect("home/dataPemohon/".$id);
+        redirect("data_pemohon/".$param);
     } 
 
-    public function save_riwayat_pekerjaan($id) {
+    public function save_riwayat_pekerjaan($param,$id) {
        // debugCode($id);
        $table_field = $this->db->list_fields("dc_riwayat_pekerjaan");
         $insert = array();
@@ -65,10 +66,10 @@ class Front extends CI_Controller {
         }
 
        
-        redirect("home/dataPemohon/".$id);
+       redirect("data_pemohon/".$param);
     }
 
-    public function save_permohonan_paspor($id) {
+    public function save_permohonan_paspor($param,$id) {
        // debugCode($id);
        $table_field = $this->db->list_fields("dc_permohonan_paspor");
         $insert = array();
@@ -86,7 +87,7 @@ class Front extends CI_Controller {
         }
 
        
-        redirect("home/dataPemohon/".$id);
+        redirect("data_pemohon/".$param);
     }
 }
     

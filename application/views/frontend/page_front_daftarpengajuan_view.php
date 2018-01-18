@@ -97,12 +97,13 @@
                            $i++
                        ?>
                        
-                          <form action="<?php echo base_url() ?>Home/insertPengajuan/<?php echo $i?>" method="POST" enctype="multipart/form-data">
+                          <form  id="form<?php echo $i?>"   onsubmit="return validateForm(<?php echo $i?>)"  name="form<?php echo $i?>" action="<?php echo base_url() ?>Home/insertPengajuan/<?php echo $i?>" role="form" method="post" enctype="multipart/form-data">
                         <tr>
                             <td>
-                                 <input type="hidden" class="form-control" id="data_1" name="id[<?php echo $i ?>]" value=" <?php echo  $data->id?>"/>
-                                  <input type="hidden" class="form-control" id="data_1" name="idu[<?php echo $i ?>]" value=" <?php foreach ($data_diri as $user ) { ?><?php if($user->id_daftar_pengajuan == $data->id){ echo $user->id; }?> <?php } ?>"/>
-                                <input type="text" class="form-control" id="data_1" name="nama[<?php echo $i ?>]" value=" <?php foreach ($data_diri as $user ) { ?><?php if($user->id_daftar_pengajuan == $data->id){ echo $user->nama; }?> <?php } ?>" required/>
+                                 <input type="hidden" class="form-control" id="data_1" name="id[<?php echo $i ?>]" value="<?php echo  $data->id?>"/>
+                                  <input type="hidden" class="form-control" id="data_1" name="idu[<?php echo $i ?>]" value="<?php foreach ($data_diri as $user ) { ?><?php if($user->id_daftar_pengajuan == $data->id){ echo $user->id; }?> <?php } ?>"/>
+                                <input type="text" class="form-control" id="data_1" name="nama[<?php echo $i ?>]" value="<?php foreach ($data_diri as $user){?><?php if($user->id_daftar_pengajuan == $data->id){ echo $user->nama; }?><?php }?>" required/>
+                            
                             </td>
                             <td>
                                 <select class="form-control select2" id="data_2" name="status[<?php echo $i ?>]" style="width: 100%;">
@@ -205,7 +206,7 @@
                                    </select>
                             </td>
                             <td>
-                                <input type="text" class="form-control" id="nik" name="nik[<?php echo $i ?>]" value=" <?php foreach ($data_diri as $user ) { ?><?php if($user->id_daftar_pengajuan == $data->id){ echo $user->nik; }?> <?php } ?>"  required/>
+                                <input type="text" class="form-control" id="nik" name="nik[<?php echo $i ?>]" value="<?php foreach ($data_diri as $user ) { ?><?php if($user->id_daftar_pengajuan == $data->id){ echo $user->nik; }?> <?php } ?>"  required/>
                             </td>
                             <td class="text-center">
                             
@@ -245,3 +246,16 @@
 <script type="text/javascript" src="<?php echo BASE_URL; ?>assets/plugins/jquery.simpletip-1.3.1.min.js"></script>
 
 <script src="<?php echo FRONTJS_URL; ?>page_front_daftarpengajuan.js"></script>
+
+
+<script type="text/javascript">
+
+function validateForm(i) {
+    var x = document.forms["form"+i]["nama"+i].value;
+     var y = document.forms["form"+i]["nik"+i].value;
+    if (x == "" || y='') {
+        alert("Name must be filled out");
+        return false;
+    }
+}
+</script>

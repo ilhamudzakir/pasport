@@ -44,7 +44,8 @@
                     <hr style="margin: 5px auto;" />
                 </div>
                 <div class="col-md-12">
-                     <form class="form-horizontal" style="margin-top: 20px;" enctype="multipart/form-data" action="<?php echo base_url() ?>Back_data_keluarga/do_upload" method="POST">
+                    <form class="form-horizontal" style="margin-top: 20px;" enctype="multipart/form-data" method="post" action="<?php echo base_url() ?>Home/insert_dokumen">
+                        <input type="hidden" name="id" value="<?php echo $this->uri->segment(2) ?>">
                         <div class="box-body">
                             <div class="form-group">
                                 <div class="col-sm-offset-3 col-sm-4">Format file yang didukung adalah <strong class="text-danger">jpg, png, pdf</strong>.</div>
@@ -52,33 +53,33 @@
                             <div class="form-group">
                                 <label for="ud_1" class="col-sm-3 control-label">Akta Kelahiran <span class="text-danger">*</span></label>
                                 <div class="col-sm-4">
-                                    <input type="file" class="form-control" id="gambar" name="gambar" />
+                                    <input type="file" class="form-control" id="ud_1" name="akta_kelahiran" required/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-offset-3 col-sm-9" style="font-style: italic;margin-bottom: 5px;">Jika anda tidak memiliki Akta Kelahiran, silahkan upload data dibawah ini.</div>
                                 <label for="ud_4" class="col-sm-3 control-label">Ijazah</label>
                                 <div class="col-sm-4">
-                                    <input type="file" class="form-control" id="ud_4" name="gambar1" />
+                                    <input type="file" class="form-control" id="ud_4" name="izasah" required />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="ud_2" class="col-sm-3 control-label">KTP <span class="text-danger">*</span></label>
                                 <div class="col-sm-4">
-                                    <input type="file" class="form-control" id="gambar2" name="gambar2" />
+                                    <input type="file" class="form-control" id="ud_2" name="ktp" required />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="ud_3" class="col-sm-3 control-label">Kartu Keluarga <span class="text-danger">*</span></label>
                                 <div class="col-sm-4">
-                                    <input type="file" class="form-control" id="gambar3" name="gambar3" />
+                                    <input type="file" class="form-control" id="ud_3" name="kk" required />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-offset-3 col-sm-7" style="font-style: italic;margin-bottom: 5px;">Jika anda memiliki Paspor Lama, silahkan upload data dibawah ini.</div>
                                 <label for="ud_5" class="col-sm-3 control-label">Paspor Lama</label>
                                 <div class="col-sm-4">
-                                    <input type="file" class="form-control" id="gambar4" name="gambar4" />
+                                    <input type="file" class="form-control" id="ud_5" name="paspor_lama" />
                                 </div>
                             </div>
                         </div>
@@ -91,7 +92,7 @@
                             </div>
                         </div>
                         <!-- /.box-footer -->
-                                </form>
+                    </form>
                 </div>
             </div>
         </div>

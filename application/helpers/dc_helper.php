@@ -1,12 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-function debugCode($r=array(),$f=TRUE){
-	echo "<pre>";
-	print_r($r);
-	echo "</pre>";
-	
-	if($f==TRUE)
-		die;
-}
+
 function get_client_ip_server() {
         $ipaddress = '';
         if (isset($_SERVER['HTTP_CLIENT_IP']))

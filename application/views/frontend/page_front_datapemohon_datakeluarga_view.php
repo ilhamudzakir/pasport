@@ -9,31 +9,31 @@
                         <div id="param_aktanikah" class="form-group">
                             <label for="dk1_1" class="col-sm-4 control-label">Nomor Akta Nikah / Surat Nikah</label>
                             <div class="col-sm-4">
-                                <input type="text" value="<?php if($data1_count>0){echo $data1->nomer_surat_nikah;} ?>" required="required" class="form-control" id="aktanikah1" name="aktanikah1" placeholder=". . ." onkeypress="return doFieldFilter(event, 'numeric', '', false)" />
+                                <input type="text" value="<?php if($data1_count>0){echo $data1->nomer_surat_nikah;} ?>" required="required" class="form-control" id="aktanikah1" name="aktanikah1" placeholder=". . ." onkeypress="return doFieldFilter(event, 'numeric', '', false)"  required/>
                             </div>
                         </div>
                         <div id="param_nik2" class="form-group">
                             <label for="dk1_2" class="col-sm-4 control-label">Nomor Induk Kependudukan (NIK)</label>
                             <div class="col-sm-4">
-                                <input type="text" required="required" value="<?php if($data1_count>0){echo $data1->nik;} ?>" class="form-control" id="nik1" name="nik1" placeholder=". . ." onkeypress="return doFieldFilter(event, 'numeric', '', false)" />
-                                 <input type="hidden"  class="form-control" id="nik1" name="id" value="<?php echo $this->uri->segment(2) ?>" />
+                                <input type="text" required="required" value="<?php if($data1_count>0){echo $data1->nik;} ?>" class="form-control" id="nik1" name="nik1" placeholder=". . ." onkeypress="return doFieldFilter(event, 'numeric', '', false)" required />
+                                 <input type="hidden"  class="form-control" id="nik1" name="id" value="<?php echo $this->uri->segment(2) ?>" required/>
                             
-                             <input type="hidden"  class="form-control" id="nik1" name="idkel1" value="<?php if($data1_count>0){echo $data1->id;} ?>" />
+                             <input type="hidden"  class="form-control" id="nik1" name="idkel1" value="<?php if($data1_count>0){echo $data1->id;} ?>" required/>
 
-                              <input type="hidden"  class="form-control" id="nik1" name="idkel2" value="<?php if($data2_count>0){echo $data2->id;} ?>" />
-
-
-                               <input type="hidden"  class="form-control" id="nik1" name="idkel3" value="<?php if($data3_count>0){echo $data3->id; }?>" />
+                              <input type="hidden"  class="form-control" id="nik1" name="idkel2" value="<?php if($data2_count>0){echo $data2->id;} ?>" required/>
 
 
+                               <input type="hidden"  class="form-control" id="nik1" name="idkel3" value="<?php if($data3_count>0){echo $data3->id; }?>" required/>
 
 
-    <input type="hidden"  class="form-control" id="nik1" name="idket1" value="<?php if($data1_count>0){echo $data1->id_keterangan;} ?>" />
-
-                              <input type="hidden"  class="form-control" id="nik1" name="idket2" value="<?php if($data2_count>0){echo $data2->id_keterangan;} ?>" />
 
 
-                               <input type="hidden"  class="form-control" id="nik1" name="idkel3" value="<?php if($data3_count>0){echo $data3->id_keterangan;} ?>" />
+    <input type="hidden"  class="form-control" id="nik1" name="idket1" value="<?php if($data1_count>0){echo $data1->id_keterangan;} ?>" required/>
+
+                              <input type="hidden"  class="form-control" id="nik1" name="idket2" value="<?php if($data2_count>0){echo $data2->id_keterangan;} ?>" required/>
+
+
+                               <input type="hidden"  class="form-control" id="nik1" name="idkel3" value="<?php if($data3_count>0){echo $data3->id_keterangan;} ?>" required/>
 
 
 
@@ -47,7 +47,7 @@
                         <div class="form-group">
                             <label for="dk1_3" class="col-sm-4 control-label">Nama Lengkap</label>
                             <div class="col-sm-4">
-                                <input type="text" value="<?php if($data1_count>0){echo $data1->nama;} ?>" required="required" class="form-control" id="naleng1" name="naleng1" placeholder=". . ." />
+                                <input type="text" value="<?php if($data1_count>0){echo $data1->nama;} ?>" required="required" class="form-control" id="naleng1" name="naleng1" placeholder=". . ."  required/>
                             </div>
                         </div>
                         <div class="form-group">

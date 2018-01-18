@@ -61,7 +61,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="reg_2">Nama Kantor Imigrasi</label>
-                                <select class="form-control select2" id="reg_2" name="kanim">
+                                <select class="form-control select2" required id="reg_2" name="kanim" required>
                                     <option value=""></option>
                                      <?php foreach ($kanim as $key) { ?>
                                         <option value="<?php echo $key->MO_ID ?>"><?php echo $key->MO_NAME ?></option>
@@ -70,7 +70,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="reg_3">Jumlah Pengajuan</label>
-                                <select class="form-control select2" id="reg_3" name="jml">
+                                <select class="form-control select2" required id="reg_3" name="jml" required>
                                     <option value=""></option>
                                      <?php for ($i=1; $i <=4 ; $i++) { ?>
                                         <option value="<?php echo $i ?>"><?php echo $i ?> Orang Anggota Keluarga</option>

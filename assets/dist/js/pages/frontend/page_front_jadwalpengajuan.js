@@ -55,6 +55,8 @@ var setCalendar = function() {
         editable: true,
         droppable: true, // this allows things to be dropped onto the calendar !!!
         dayClick: function (date, jsEvent, view) {
+            $('#result_tgl').html('<i class="fa fa-circle-o-notch fa-spin" style="font-size:24px;color:#fff;"></i>');
+            
             var tgl = date.format();
             if(tgl !== lastClickDate){ setDefaultCalBg(); }
             // set curdate
@@ -76,6 +78,8 @@ var setCalendar = function() {
                 } ,
                 url: $('#base_url').val() +"Home/check_quota2",
                 success: function(response) {
+                    console.log("cekkkkkkkkkkkkk");
+                    console.log(response);
                 $('#result_tgl').html(response);
            },
            error: function(jqXHR, textStatus, errorThrown) {

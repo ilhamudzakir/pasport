@@ -9,6 +9,7 @@ class Home extends CI_Controller {
         $data["menu"] = "1";
         $data["submenu"] = "";
         $data['kanim']=select_where('dc_list_kanim','MP_ID','7')->result();
+
         $this->gotoView('page_front_beranda_view', $data);
     }
     
@@ -19,6 +20,25 @@ class Home extends CI_Controller {
         $data['kanim']=select_where('dc_list_kanim','MP_ID','7')->result();
         $this->gotoView('page_front_jadwalpengajuan_view', $data);
     }
+    
+     public function daftarPengajuan() {
+        $paramID = $this->uri->segment(2);
+        $data["halaman"] = "Daftar Pengajuan";
+        $data["menu"] = "1";
+        $data["submenu"] = "";
+        $data['jadwal'] = select_where('dc_jadwal','id',$paramID)->row();
+        $data['jenis_paspor'] = select_all('dc_jenis_paspor');
+        $sql=$this->db->query("Select dc_daftar_pengajuan.id,dc_data_diri.nama,dc_data_diri.status,dc_data_diri.id_jenis_paspor,dc_data_diri.id_jenis_pengajuan,dc_data_diri.nik FROM dc_daftar_pengajuan INNER JOIN dc_data_diri ON dc_daftar_pengajuan.id=dc_data_diri.id_daftar_pengajuan where dc_daftar_pengajuan.id =1");
+        $data['daftar_pengajuan'] = select_where('dc_daftar_pengajuan','id_jadwal',$data['jadwal']->id)->result();
+
+       //sint_r( $data['daftar_pengajuan'] );
+        $data['data_diri'] = select_all('dc_data_diri');
+        $data['kanim'] = select_where('dc_list_kanim','MO_ID',$data['jadwal']->id_kantor_imigrasi)->row();
+       
+
+        $this->gotoView('page_front_daftarpengajuan_view', $data);
+    }
+    
     public function dataPemohon($id) {
 
         // debugCode($id);
@@ -26,6 +46,12 @@ class Home extends CI_Controller {
         $data['pendidikan'] = select_where("dc_riwayat_pendidikan",'FormXID',$id)->row();
         $data['pekerjaan'] = select_where("dc_riwayat_pekerjaan",'FormXID',$id)->row();
         $data['mohon'] = select_where("dc_permohonan_paspor",'FormXID',$id)->row();
+
+        $data['negara'] = select_all('dc_negara');
+        $data['provinsi'] = select_all('dc_provinsi');
+        $data['kota'] = select_all('dc_kota');
+         $data['kecamatan'] = select_all('dc_kecamatan');
+
         // debugCode($data['mohon']);
        $data["halaman"] = "Lengkapi Data Pemohon";
         $data["subhalaman"] = "";
@@ -55,11 +81,82 @@ class Home extends CI_Controller {
 
     public function download(){
         $data=login_api();
-        print_r($data->Token);
+        print_r($data->Tokeny);
         
     }
+    private function gotoView($pageview, $data) {
+        force_ssl();
+        if ($this->session->userdata('logged_in') != NULL || $this->session->userdata('logged_in') === TRUE) {
+            redirect('/');
+            exit();
+        }
+        $data['page'] = 'frontend/'.$pageview;
+        $this->load->view('frontend/page_front_header_view', $data);
+    }
 
-    public function check_quota2(){
+    public function insert_dokumen(){
+        $this->load->helper(array('form', 'url'));
+        $arrayName = array(
+            'id_data_diri' => $this->input->post('id'),
+            'akta_kelahiran' => $_FILES['akta_kelahiran']['name'],
+            'izasah' => $_FILES['izasah']['name'],
+            'ktp' => $_FILES['ktp']['name'],
+            'kk' => $_FILES['kk']['name'],
+            'paspor_lama' => $_FILES['paspor_lama']['name'],
+        );
+        $insert=insert_all('dc_dokumen',$arrayName);
+        $id=$this->db->insert_id($insert);
+            if (!file_exists('assets/uploads/'.$this->input->post('id'))) {
+                    mkdir('assets/uploads/'.$this->input->post('id'), 0777, true);
+             }
+         $config['upload_path']          = 'assets/uploads/'.$this->input->post('id');
+        $config['allowed_types']        = 'gif|jpg|png|PNG';
+        $this->load->library('upload', $config);
+        $this->upload->initialize($config);
+        $this->upload->do_upload('akta_kelahiran');
+        $this->upload->do_upload('izasah');
+        $this->upload->do_upload('ktp');
+        $this->upload->do_upload('kk');
+        $this->upload->do_upload('paspor_lama');
+        if ( ! $this->upload->do_upload('akta_kelahiran')){
+           echo $this->upload->display_errors();
+           die();
+        }
+       redirect("/data_pemohon/".$this->input->post('id')."#step-4");
+    }
+    public function insertPengajuan ($id){
+        $paramID = $this->uri->segment(3);
+
+       // print_r($paramID);
+        $data = select_where('dc_daftar_pengajuan','id_jadwal',$paramID)->result();
+
+        $userInfo = select_where('dc_data_diri','id',$this->input->post('idu')[$id])->row();
+
+       
+
+        $arrayName = array(
+            'id_daftar_pengajuan' => $this->input->post('id')[$id],
+            'nama' => $this->input->post('nama')[$id], 
+            'id_jenis_paspor'  => $this->input->post('jenis_paspor')[$id], 
+            'id_jenis_pengajuan'  => $this->input->post('jenis_pengajuan')[$id],
+            'nik'  => $this->input->post('nik')[$id], 
+            'status'  => $this->input->post('status')[$id], 
+        );
+
+       // print_r($userInfo);
+
+      if ($userInfo) {
+        $user = update('dc_data_diri',$arrayName,'id',$userInfo->id);
+        print_r($user);
+         redirect("data_pemohon/".$userInfo->id);
+      }else{
+       $user = insert_all('dc_data_diri',$arrayName);
+      redirect("/data_pemohon/".$user->id);
+
+    }
+     
+}
+ public function check_quota2(){
         $kanim=$this->input->post('kanim');
         $start_date=$this->input->post('start_date');
         $jml=$this->input->post('jml');
@@ -136,17 +233,9 @@ class Home extends CI_Controller {
       }
        echo $html;
 
-    }
-    private function gotoView($pageview, $data) {
-        force_ssl();
-        if ($this->session->userdata('logged_in') != NULL || $this->session->userdata('logged_in') === TRUE) {
-            redirect('/');
-            exit();
-        }
-        $data['page'] = 'frontend/'.$pageview;
-        $this->load->view('frontend/page_front_header_view', $data);
-    }
+       return $data;
 
+    }
     public function add_pengajuan(){
         $arrayName = array(
             'id_kantor_imigrasi' => $this->input->post('id_kantor_imigrasi'),
@@ -161,56 +250,4 @@ class Home extends CI_Controller {
         }
         redirect('daftar_pengajuan/'.$id);
     }
-
- public function daftarPengajuan() {
-        $paramID = $this->uri->segment(2);
-        $data["halaman"] = "Daftar Pengajuan";
-        $data["menu"] = "1";
-        $data["submenu"] = "";
-        $data['jadwal'] = select_where('dc_jadwal','id',$paramID)->row();
-        $data['jenis_paspor'] = select_all('dc_jenis_paspor');
-        $sql=$this->db->query("Select dc_daftar_pengajuan.id,dc_data_diri.nama,dc_data_diri.status,dc_data_diri.id_jenis_paspor,dc_data_diri.id_jenis_pengajuan,dc_data_diri.nik FROM dc_daftar_pengajuan INNER JOIN dc_data_diri ON dc_daftar_pengajuan.id=dc_data_diri.id_daftar_pengajuan where dc_daftar_pengajuan.id =1");
-        $data['daftar_pengajuan'] = select_where('dc_daftar_pengajuan','id_jadwal',$data['jadwal']->id)->result();
-
-       //sint_r( $data['daftar_pengajuan'] );
-        $data['data_diri'] = select_all('dc_data_diri');
-        $data['kanim'] = select_where('dc_list_kanim','MO_ID',$data['jadwal']->id_kantor_imigrasi)->row();
-       
-
-        $this->gotoView('page_front_daftarpengajuan_view', $data);
-    }
-    
-
-
-    public function insertPengajuan ($id){
-        $paramID = $this->uri->segment(3);
-
-        print_r($paramID);
-        $data = select_where('dc_daftar_pengajuan','id_jadwal',$paramID)->result();
-
-        $userInfo = select_where('dc_data_diri','id',$this->input->post('idu')[$id])->row();
-
-        $arrayName = array(
-            'id_daftar_pengajuan' => $this->input->post('id')[$id],
-            'nama' => $this->input->post('nama')[$id], 
-            'id_jenis_paspor'  => $this->input->post('jenis_paspor')[$id], 
-            'id_jenis_pengajuan'  => $this->input->post('jenis_pengajuan')[$id],
-            'nik'  => $this->input->post('nik')[$id], 
-            'status'  => $this->input->post('status')[$id], 
-        );
-
-        print_r($userInfo);
-
-      if ($userInfo) {
-        $user = update('dc_data_diri',$arrayName,'id',$userInfo->id);
-        print_r($user);
-         redirect("data_pemohon/".$userInfo->id);
-      }else{
-       $user = insert_all('dc_data_diri',$arrayName);
-      redirect("/data_pemohon/".$user->id);
-
-    }
-     
-}
-
 }
