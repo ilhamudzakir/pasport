@@ -51,13 +51,13 @@ class Back_data_keluarga extends CI_Controller {
             'jumlah_anak ' => $this->input->post('jml1'), 
             'id_pekerjaan' => $this->input->post('pekerjaan1')
         );
-            insert_all('dc_data_keluarga',$arrayName);
+          $idkeluarga1  = insert_all('dc_data_keluarga',$arrayName);
 
             // sub byktp ayah & ibu
        $arrayAddress = array( 
             'id_data_diri' => $id, 
             'FamilyTypeXID' => "1", 
-            'id_data_keluarga' => $this->input->post('idkel1'), 
+            'id_data_keluarga' => $idkeluarga1->id, 
             'alamat_lengkap' => $this->input->post('alkapktp1'), 
             'negara' => $this->input->post('negaraktp1'), 
             'provinsi' => $this->input->post('provinsiktp1'), 
@@ -70,7 +70,7 @@ class Back_data_keluarga extends CI_Controller {
        $arrayAddress = array(
             'id_data_diri' => $id, 
             'FamilyTypeXID' => "2", 
-            'id_data_keluarga' => $this->input->post('idkel1'), 
+            'id_data_keluarga' => $idkeluarga1->id, 
             'alamat_lengkap' => $this->input->post('alkap1'), 
             'negara' => $this->input->post('negara'), 
             'provinsi' => $this->input->post('provinsi'), 
@@ -96,13 +96,13 @@ class Back_data_keluarga extends CI_Controller {
             'jumlah_anak ' => $this->input->post('jml2'), 
             'id_pekerjaan' => $this->input->post('pekerjaan2')
         );
-            insert_all('dc_data_keluarga',$arrayName);
+          $idkeluarga2 =  insert_all('dc_data_keluarga',$arrayName);
 
             // sub byktp ayah & ibu
        $arrayAddress = array( 
             'id_data_diri' => $id, 
             'FamilyTypeXID' => "1", 
-            'id_data_keluarga' => $this->input->post('idkel2'), 
+            'id_data_keluarga' => $idkeluarga2->id, 
             'alamat_lengkap' => $this->input->post('alkapktp2'), 
             'negara' => $this->input->post('negaraktp2'), 
             'provinsi' => $this->input->post('provinsiktp2'), 
@@ -115,7 +115,7 @@ class Back_data_keluarga extends CI_Controller {
        $arrayAddress = array(
             'id_data_diri' => $id, 
             'FamilyTypeXID' => "2", 
-            'id_data_keluarga' => $this->input->post('idkel2'), 
+            'id_data_keluarga' => $idkeluarga2->id, 
             'alamat_lengkap' => $this->input->post('alkap2'), 
             'negara' => $this->input->post('negara2'), 
             'provinsi' => $this->input->post('provinsi2'), 
@@ -142,13 +142,13 @@ class Back_data_keluarga extends CI_Controller {
             'jumlah_anak ' => $this->input->post('jml3'), 
             'id_pekerjaan' => $this->input->post('pekerjaan3')
         );
-            insert_all('dc_data_keluarga',$arrayName);
+           $idkeluarga3 = insert_all('dc_data_keluarga',$arrayName);
 
             // sub byktp ayah & ibu
        $arrayAddress = array( 
             'id_data_diri' => $id, 
             'FamilyTypeXID' => "1", 
-            'id_data_keluarga' => $this->input->post('idkel3'), 
+            'id_data_keluarga' => $idkeluarga3->id, 
             'alamat_lengkap' => $this->input->post('alkapktp3'), 
             'negara' => $this->input->post('negaraktp3'), 
             'provinsi' => $this->input->post('provinsiktp3'), 
@@ -161,7 +161,7 @@ class Back_data_keluarga extends CI_Controller {
        $arrayAddress = array(
             'id_data_diri' => $id, 
             'FamilyTypeXID' => "2", 
-            'id_data_keluarga' => $this->input->post('idkel3'), 
+            'id_data_keluarga' => $idkeluarga3->id, 
             'alamat_lengkap' => $this->input->post('alkap3'), 
             'negara' => $this->input->post('negara3'), 
             'provinsi' => $this->input->post('provinsi3'), 
@@ -200,7 +200,7 @@ class Back_data_keluarga extends CI_Controller {
             update_where_array('dc_data_keluarga',$arrayName,$arrayName = array('id_data_diri' => $id, 'id_keterangan'=>$this->input->post('idket1')));
 
             // sub byktp ayah & ibu
-       $arrayAddress = array( 
+       $arrayAddress1 = array( 
             'id_data_diri' => $id, 
             'FamilyTypeXID' => "1", 
             'alamat_lengkap' => $this->input->post('alkapktp1'), 
@@ -211,9 +211,9 @@ class Back_data_keluarga extends CI_Controller {
             'kecamatan' => $this->input->post('kecamatanktp1'), 
             'kode_pos' => $this->input->post('kodeposktp1'), 
         );
-            update_where_array('dc_family_address',$arrayName,$arrayName = array('id_data_diri' => $id, 'FamilyTypeXID'=>"1",'id_data_keluarga'=>$this->input->post('idkel1') ));
+            update_where_array('dc_family_address',$arrayAddress1,$arrayAddress1 = array('id_data_diri' => $id, 'FamilyTypeXID'=>"1",'id_data_keluarga'=>$this->input->post('idkel1') ));
           
-       $arrayAddress = array(
+       $arrayAddress2 = array(
             'id_data_diri' => $id, 
             'FamilyTypeXID' => "2", 
             'alamat_lengkap' => $this->input->post('alkap1'), 
@@ -224,12 +224,12 @@ class Back_data_keluarga extends CI_Controller {
             'kecamatan' => $this->input->post('kecamatan'), 
             'kode_pos' => $this->input->post('kodepos'), 
         );
-            update_where_array('dc_family_address',$arrayName,$arrayName = array('id_data_diri' => $id, 'FamilyTypeXID'=>"2",'id_data_keluarga'=>$this->input->post('idkel1') ));
+            update_where_array('dc_family_address',$arrayAddress2,$arrayAddress2 = array('id_data_diri' => $id, 'FamilyTypeXID'=>"2",'id_data_keluarga'=>$this->input->post('idkel1') ));
              
        //end 
 
  //data ayah
-        $arrayName = array(
+        $arrayName2 = array(
             'id_data_diri' => $id, 
             'nomer_surat_nikah' => "0", 
             'id_keterangan' => "2", 
@@ -242,9 +242,9 @@ class Back_data_keluarga extends CI_Controller {
             'jumlah_anak ' => $this->input->post('jml2'), 
             'id_pekerjaan' => $this->input->post('pekerjaan2')
         );
-            update_where_array('dc_data_keluarga',$arrayName,$arrayName = array('id_data_diri' => $id, 'id_keterangan'=>$this->input->post('idket2') ));
+            update_where_array('dc_data_keluarga',$arrayName2,$arrayName2 = array('id_data_diri' => $id, 'id_keterangan'=>$this->input->post('idket2') ));
             // sub byktp ayah & ibu
-       $arrayAddress = array( 
+       $arrayAddress3 = array( 
             'id_data_diri' => $id, 
             'FamilyTypeXID' => "1", 
             'alamat_lengkap' => $this->input->post('alkapktp2'), 
@@ -255,9 +255,9 @@ class Back_data_keluarga extends CI_Controller {
             'kecamatan' => $this->input->post('kecamatanktp2'), 
             'kode_pos' => $this->input->post('kodeposktp2'), 
         );
-           update_where_array('dc_family_address',$arrayName,$arrayName = array('id_data_diri' => $id, 'FamilyTypeXID'=>"1",'id_data_keluarga'=>$this->input->post('idkel2') ));
+           update_where_array('dc_family_address',$arrayAddress3,$arrayAddress3 = array('id_data_diri' => $id, 'FamilyTypeXID'=>"1",'id_data_keluarga'=>$this->input->post('idkel2') ));
           
-       $arrayAddress = array(
+       $arrayAddress4 = array(
             'id_data_diri' => $id, 
             'FamilyTypeXID' => "2", 
             'alamat_lengkap' => $this->input->post('alkap2'), 
@@ -268,13 +268,13 @@ class Back_data_keluarga extends CI_Controller {
             'kecamatan' => $this->input->post('kecamatan2'), 
             'kode_pos' => $this->input->post('kodepos2'), 
         );
-            update_where_array('dc_family_address',$arrayName,$arrayName = array('id_data_diri' => $id, 'FamilyTypeXID'=>"2",'id_data_keluarga'=>$this->input->post('idkel2') ));
+            update_where_array('dc_family_address',$arrayAddress4,$arrayAddress4 = array('id_data_diri' => $id, 'FamilyTypeXID'=>"2",'id_data_keluarga'=>$this->input->post('idkel2') ));
 
 
 //end
 
 //data ayah
-        $arrayName = array(
+        $arrayName3 = array(
             'id_data_diri' => $id, 
             'nomer_surat_nikah' => "0", 
             'id_keterangan' => "3", 
@@ -287,10 +287,10 @@ class Back_data_keluarga extends CI_Controller {
             'jumlah_anak ' => $this->input->post('jml3'), 
             'id_pekerjaan' => $this->input->post('pekerjaan3')
         );
-            update_where_array('dc_data_keluarga',$arrayName,$arrayName = array('id_data_diri' => $id, 'id_keterangan'=>$this->input->post('idket3') ));
+            update_where_array('dc_data_keluarga',$arrayName3,$arrayName3 = array('id_data_diri' => $id, 'id_keterangan'=>$this->input->post('idket3') ));
 
             // sub byktp ayah & ibu
-       $arrayAddress = array( 
+       $arrayAddress5 = array( 
             'id_data_diri' => $id, 
             'FamilyTypeXID' => "1", 
             'alamat_lengkap' => $this->input->post('alkapktp3'), 
@@ -301,10 +301,10 @@ class Back_data_keluarga extends CI_Controller {
             'kecamatan' => $this->input->post('kecamatanktp3'), 
             'kode_pos' => $this->input->post('kodeposktp3'), 
         );
-             update_where_array('dc_family_address',$arrayName,$arrayName = array('id_data_diri' => $id, 'FamilyTypeXID'=>"1",'id_data_keluarga'=>$this->input->post('idkel3') ));
+             update_where_array('dc_family_address',$arrayAddress5,$arrayAddress5 = array('id_data_diri' => $id, 'FamilyTypeXID'=>"1",'id_data_keluarga'=>$this->input->post('idkel3') ));
 
           
-       $arrayAddress = array(
+       $arrayAddress6 = array(
             'id_data_diri' => $id, 
             'FamilyTypeXID' => "2", 
             'alamat_lengkap' => $this->input->post('alkap3'),
@@ -315,10 +315,10 @@ class Back_data_keluarga extends CI_Controller {
             'kecamatan' => $this->input->post('kecamatan3'), 
             'kode_pos' => $this->input->post('kodepos3'), 
         );
-             update_where_array('dc_family_address',$arrayName,$arrayName = array('id_data_diri' => $id, 'FamilyTypeXID'=>"2",'id_data_keluarga'=>$this->input->post('idkel3') ));
+             update_where_array('dc_family_address',$arrayAddress6,$arrayAddress6 = array('id_data_diri' => $id, 'FamilyTypeXID'=>"2",'id_data_keluarga'=>$this->input->post('idkel3') ));
 
 
-             redirect("data_pemohonn/".$id);
+             redirect("data_pemohon/".$id);
 
 
 

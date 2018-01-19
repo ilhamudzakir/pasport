@@ -233,3 +233,53 @@
 <script type="text/javascript" src="<?php echo BASE_URL; ?>assets/plugins/jquery.simpletip-1.3.1.min.js"></script>
 
 <script src="<?php echo FRONTJS_URL; ?>page_front_datapemohon.js"></script>
+
+
+<script type="text/javascript">
+   $(document).ready(function() {
+        //set initial state.
+
+        var alamat_1 = $('textarea#alamat_1').val();
+        var user_kecamatan_1 = $("#user_kecamatan option:selected" ).text();
+         alert(user_kecamatan_1);
+        console.log(user_kecamatan_1);
+        console.log(alamat_1);
+        $('#as_ktp').change(function() {
+            if($(this).is(":checked")) {
+
+              $("textarea#alamat_2").val(alamat_1);
+              $(target).append($('<option>').text(value.title).attr('value', value.propinsi_id));
+            }else{
+                console.log("not");
+            }
+                  
+        });
+    });
+
+    function comboCPC(id,target,url) {
+
+            c = $(id);
+            <?php //echo "asas ". site_url('"+url+"');?>
+            urlCountry = "<?php echo site_url('"+url+"');?>";
+             console.log(urlCountry);
+            var id = c.val();
+            $.ajax({
+              type: "POST",
+              url: urlCountry+"/"+id,
+                dataType:"json",
+              success: function(json){
+                $(target).find('option').remove();
+                console.log(json);
+                 $.each(json.rows, function(i, value) {
+                    if (url =='ajax/getProvince') {
+                        $(target).append($('<option>').text(value.title).attr('value', value.propinsi_id));
+                    } else if (url == 'ajax/getCity') {
+                        $(target).append($('<option>').text(value.title).attr('value', value.kabupaten_id));
+                    } else if (url == 'ajax/getKecamatan'){
+                        $(target).append($('<option>').text(value.title).attr('value', value.kecamatan_id));
+                    }
+                });
+              }
+            }); 
+        }
+</script>
