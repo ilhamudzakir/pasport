@@ -125,7 +125,7 @@ class Front extends CI_Controller {
         }
 
        
-        redirect("data_pemohon/".$param);
+        redirect("data_pemohon/".$param."#step-2");
     }
 }
     

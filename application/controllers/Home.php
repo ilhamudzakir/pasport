@@ -42,6 +42,7 @@ class Home extends CI_Controller {
     public function dataPemohon($id) {
 
         // debugCode($id);
+        $data['kanim']=select_where('dc_list_kanim','MP_ID','7')->result();
         $data['data'] = select_where("dc_data_diri",'id',$id)->row();
         $data['alamat1'] = select_where_array('dc_alamat_pengaju_paspor',$arrayName = array('id_data_diri' => $id,'type_alamat'=>1 ))->row();
         $data['alamat2'] = select_where_array('dc_alamat_pengaju_paspor',$arrayName = array('id_data_diri' => $id,'type_alamat'=>2 ))->row();
@@ -62,31 +63,38 @@ class Home extends CI_Controller {
         
         $data['data1_count']=select_where_array('dc_data_keluarga',$arrayName = array('id_data_diri' => $id,'id_keterangan'=>1 ))->num_rows();
         $data['data1']=select_where_array('dc_data_keluarga',$arrayName = array('id_data_diri'  => $id,'id_keterangan'=>1 ))->row();
+      $data['data1addresktp1']= '';
+       $data['data1addresktp2']= '';
+        $data['data2addresktp1']= '';
+         $data['data2addresktp2']= '';
+          $data['data3addresktp1']= '';
+           $data['data13addresktp2']= '';
+       if($data['data1']){
          $data['data1addresktp1']=select_where_array('dc_family_address',$arrayName = array('id_data_keluarga'  =>  $data['data1']->id,'FamilyTypeXID '=>1 ))->row();
          $data['data1addresktp2']=select_where_array('dc_family_address',$arrayName = array('id_data_keluarga'  =>  $data['data1']->id,'FamilyTypeXID '=>2 ))->row();
      // print_r($data['data1addresktp1']);
 
      //       print_r($data['data1addresktp2']);
-
+}
         $data['data2_count']=select_where_array('dc_data_keluarga',$arrayName = array('id_data_diri' => $id,'id_keterangan'=>2))->num_rows();
        $data['data2']=select_where_array('dc_data_keluarga',$arrayName = array('id_data_diri' => $id,'id_keterangan'=>2 ))->row();
-
+ if($data['data2']){
         $data['data2addresktp1']=select_where_array('dc_family_address',$arrayName = array('id_data_keluarga'  =>  $data['data2']->id,'FamilyTypeXID '=>1 ))->row();
          $data['data2addresktp2']=select_where_array('dc_family_address',$arrayName = array('id_data_keluarga'  =>  $data['data2']->id,'FamilyTypeXID '=>2 ))->row();
-
+}
 
 
         $data['data3_count']=select_where_array('dc_data_keluarga',$arrayName = array('id_data_diri' => $id,'id_keterangan'=>3 ))->num_rows();
        $data['data3']=select_where_array('dc_data_keluarga',$arrayName = array('id_data_diri' => $id,'id_keterangan'=>3 ))->row();
 
-
+ if($data['data3']){
 //print_r( $data['data3']);
          $data['data3addresktp1']=select_where_array('dc_family_address',$arrayName = array('id_data_keluarga'  =>  $data['data3']->id,'FamilyTypeXID '=>1 ))->row();
          $data['data3addresktp2']=select_where_array('dc_family_address',$arrayName = array('id_data_keluarga'  =>  $data['data3']->id,'FamilyTypeXID '=>2 ))->row();
 
          // print_r( $data['data3addresktp1']);
          // print_r( $data['data3addresktp2']);
-
+}
         $this->gotoView('page_front_datapemohon_view', $data);
     }
     public function check_quota(){
@@ -154,6 +162,7 @@ class Home extends CI_Controller {
 
         $arrayName = array(
             'id_daftar_pengajuan' => $this->input->post('id')[$id],
+            'id_kantor_imgirasi' => $this->input->post('idkanim'),
             'nama' => $this->input->post('nama')[$id], 
             'id_jenis_paspor'  => $this->input->post('jenis_paspor')[$id], 
             'id_jenis_pengajuan'  => $this->input->post('jenis_pengajuan')[$id],

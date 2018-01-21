@@ -43,7 +43,7 @@
                             <div id="param_pasporlama" class="form-group">
                                 <label for="data1_3" class="col-sm-4 control-label">Nomor Paspor Lama</label>
                                 <div class="col-sm-4">
-                                    <input type="text" class="form-control" id="data1_3" value="<?php echo isset($data->nomer_pasport_lama)?$data->nomer_pasport_lama:"" ?>" name="nomer_pasport_lama" placeholder=". . ."  required/>
+                                    <input type="text" class="form-control" id="data1_32" value="<?php echo isset($data->nomer_pasport_lama)?$data->nomer_pasport_lama:"" ?>" name="nomer_pasport_lama" placeholder=". . ."  required/>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -83,8 +83,14 @@
                             </div>
                             <div class="form-group">
                                 <label for="data1_6" class="col-sm-4 control-label">Kantor Imigrasi</label>
+                                
                                 <div class="col-sm-4">
-                                    <input type="text" class="form-control" id="data1_6" name="kantor_imigrasi" placeholder=". . ." value="<?php echo isset($data->kantor_imigrasi)?$data->kantor_imigrasi:"" ?>" readonly />
+                               <select class="form-control select2"  name="id_kantor_imgirasi" required disabled>
+                                    <option value=""><?php echo $data->id_kantor_imgirasi;?></option>
+                                     <?php foreach ($kanim as $key) { ?>
+                                        <option value="<?php echo $key->MO_ID ?>" <?php if(isset($data->id_kantor_imgirasi)){ if($data->id_kantor_imgirasi == $key->MO_ID ){ echo "selected";}else{"";}} ?> ><?php echo $key->MO_NAME ?></option>
+                                    <?php } ?>
+                                </select>
                                 </div>
                             </div>
 
@@ -106,12 +112,12 @@
                                 <div class="col-sm-6">
                                     <div class="col-sm-3" style="padding-left: 0;">
                                         <div class="radio">
-                                            <label><input name="jenis_kelamin" id="data1_3" value="L" <?php  if(isset($data->jenis_kelamin)){if($data->jenis_kelamin == "L"){ echo 'checked="checked"';}} ?> type="radio" />Laki-laki</label>
+                                            <label><input name="jenis_kelamin" id="data1_33" value="L" <?php  if(isset($data->jenis_kelamin)){if($data->jenis_kelamin == "L"){ echo 'checked="checked"';}} ?> type="radio" />Laki-laki</label>
                                         </div>
                                     </div>
                                     <div class="col-sm-4" style="padding-left: 0;">
                                         <div class="radio">
-                                            <label><input name="jenis_kelamin" id="data1_3" value="P" <?php  if(isset($data->jenis_kelamin)){if($data->jenis_kelamin == "P"){ echo 'checked="checked"';}} ?> type="radio" />Perempuan</label>
+                                            <label><input name="jenis_kelamin" id="data1_34" value="P" <?php  if(isset($data->jenis_kelamin)){if($data->jenis_kelamin == "P"){ echo 'checked="checked"';}} ?> type="radio" />Perempuan</label>
                                         </div>
                                     </div>
                                 </div>
@@ -163,7 +169,7 @@
                         <div class="box-footer">
                             <div class="col-sm-offset-3 col-sm-9">
                                 <button type="submit" name="save_datadiri" class="btn bg-green">Simpan</button>
-                                <button id="reset-btn" type="button" class="btn btn-default">Reset</button>
+                                <button id="reset-btn3" type="button" class="btn btn-default">Reset</button>
                             </div>
                         </div>
                         <!-- /.box-footer -->
@@ -284,15 +290,15 @@
                                     <div class="form-group">
                                         <label for="data3_8" class="col-sm-5 control-label">Nomor Handphone</label>
                                         <div class="col-sm-7">
-                                            <input type="text" class="form-control" id="data3_8" name="hp[0]" value="<?php echo isset($alamat1->hp)?$alamat1->hp:""; ?>" placeholder=". . ." onkeypress="return doFieldFilter(event, 'numeric', '+', false)" />
-                                            <input type="hidden" class="form-control" id="data3_8" name="hp[1]" value="" />
+                                            <input type="text" class="form-control" id="data3_82" name="hp[0]" value="<?php echo isset($alamat1->hp)?$alamat1->hp:""; ?>" placeholder=". . ." onkeypress="return doFieldFilter(event, 'numeric', '+', false)" />
+                                            <input type="hidden" class="form-control" id="data3_83" name="hp[1]" value="" />
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="data3_9" class="col-sm-5 control-label">Alamat Email</label>
                                         <div class="col-sm-7">
                                             <input type="text" class="form-control" id="data3_9" name="email[0]" value="<?php echo isset($alamat1->email)?$alamat1->email:""; ?>" placeholder=". . ." />
-                                            <input type="hidden" class="form-control" id="data3_9" name="email[1]" value="" placeholder=". . ." />
+                                            <input type="hidden" class="form-control" id="data3_92" name="email[1]" value="" placeholder=". . ." />
                                         </div>
                                     </div>
                                 </div>
@@ -420,7 +426,7 @@
                                 <div class="box-footer">
                                     <div class="col-sm-offset-5 col-sm-7">
                                         <button type="submit" class="btn bg-green">Simpan</button>
-                                        <button id="reset-btn" type="button" class="btn btn-default">Reset</button>
+                                        <button id="reset-btn1" type="button" class="btn btn-default">Reset</button>
                                     </div>
                                 </div>
                                 <!-- /.box-footer -->
@@ -466,7 +472,7 @@
                         <div class="box-footer">
                             <div class="col-sm-offset-4 col-sm-8">
                                 <button type="submit" class="btn bg-green">Simpan</button>
-                                <button id="reset-btn" type="button" class="btn btn-default">Reset</button>
+                                <button id="reset-btn4" type="button" class="btn btn-default">Reset</button>
                             </div>
                         </div>
                         <!-- /.box-footer -->
@@ -480,13 +486,13 @@
                             <div id="param_jabatan" class="form-group">
                                 <label for="data5_1" class="col-sm-3 control-label">Nama Perusahaan</label>
                                 <div class="col-sm-4">
-                                    <input type="text" class="form-control" id="data5_1" value="<?php echo isset($pekerjaan->nama_perusahan)?$pekerjaan->nama_perusahan:""; ?>" name="nama_perusahan" placeholder=". . ."  required/>
+                                    <input type="text" class="form-control" id="data5_12" value="<?php echo isset($pekerjaan->nama_perusahan)?$pekerjaan->nama_perusahan:""; ?>" name="nama_perusahan" placeholder=". . ."  required/>
                                 </div>
                             </div> 
                             <div id="param_jabatan" class="form-group">
                                 <label for="data5_1" class="col-sm-3 control-label">Jabatan</label>
                                 <div class="col-sm-4">
-                                    <input type="text" class="form-control" id="data5_1" value="<?php echo isset($pekerjaan->jabatan)?$pekerjaan->jabatan:""; ?>" name="jabatan" placeholder=". . ." required/>
+                                    <input type="text" class="form-control" id="data5_123" value="<?php echo isset($pekerjaan->jabatan)?$pekerjaan->jabatan:""; ?>" name="jabatan" placeholder=". . ." required/>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -748,7 +754,7 @@
                         <div class="box-footer">
                             <div class="col-sm-offset-4 col-sm-8">
                                 <button type="submit" class="btn bg-green">Simpan</button>
-                                <button id="reset-btn" type="button" class="btn btn-default">Reset</button>
+                                <button id="reset-btn2" type="button" class="btn btn-default">Reset</button>
                             </div>
                         </div>
                         <!-- /.box-footer -->
@@ -760,4 +766,6 @@
         <!-- nav-tabs-custom -->
     </div>
 </div>
+
+
 

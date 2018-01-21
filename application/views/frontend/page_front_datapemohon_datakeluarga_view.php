@@ -16,19 +16,19 @@
                             <label for="dk1_2" class="col-sm-4 control-label">Nomor Induk Kependudukan (NIK)</label>
                             <div class="col-sm-4">
                                 <input type="text" required="required" value="<?php if($data1_count>0){echo $data1->nik;} ?>" class="form-control" id="nik1" name="nik1" placeholder=". . ." onkeypress="return doFieldFilter(event, 'numeric', '', false)" required />
-                                 <input type="hidden"  class="form-control" id="nik1" name="id" value="<?php echo $this->uri->segment(2) ?>" required/>
+                                 <input type="hidden"  class="form-control" id="nik13" name="id" value="<?php echo $this->uri->segment(2) ?>" required/>
                             
-                             <input type="hidden"  class="form-control" id="nik1" name="idkel1" value="<?php if($data1_count>0){echo $data1->id;} ?>" required/>
+                             <input type="hidden"  class="form-control" id="nik11" name="idkel1" value="<?php if($data1_count>0){echo $data1->id;} ?>" required/>
 
-                              <input type="hidden"  class="form-control" id="nik1" name="idkel2" value="<?php if($data2_count>0){echo $data2->id;} ?>" required/>
+                              <input type="hidden"  class="form-control" id="nik22" name="idkel2" value="<?php if($data2_count>0){echo $data2->id;} ?>" required/>
 
-                               <input type="hidden"  class="form-control" id="nik1" name="idkel3" value="<?php if($data3_count>0){echo $data3->id; }?>" required/>
+                               <input type="hidden"  class="form-control" id="nik33" name="idkel3" value="<?php if($data3_count>0){echo $data3->id; }?>" required/>
 
-                            <input type="hidden"  class="form-control" id="nik1" name="idket1" value="<?php if($data1_count>0){echo $data1->id_keterangan;} ?>" required/>
+                            <input type="hidden"  class="form-control" id="nik4" name="idket1" value="<?php if($data1_count>0){echo $data1->id_keterangan;} ?>" required/>
 
-                              <input type="hidden"  class="form-control" id="nik1" name="idket2" value="<?php if($data2_count>0){echo $data2->id_keterangan;} ?>" required/>
+                              <input type="hidden"  class="form-control" id="nik5" name="idket2" value="<?php if($data2_count>0){echo $data2->id_keterangan;} ?>" required/>
 
-                               <input type="hidden"  class="form-control" id="nik1" name="idkel3" value="<?php if($data3_count>0){echo $data3->id_keterangan;} ?>" required/>
+                               <input type="hidden"  class="form-control" id="nik6" name="idkel3" value="<?php if($data3_count>0){echo $data3->id_keterangan;} ?>" required/>
 
                             </div>
                         </div>
@@ -59,7 +59,7 @@
                                 <input value="<?php if($data1_count>0){echo $data1->tempat_lahir;} ?>" type="text" required="required" class="form-control" id="tempatl1" name="tempatl1" placeholder=". . ." />
                             </div>
                             <div class="col-sm-2">
-                                <input type="text" value="<?php if($data1_count>0){echo $data1->tanggal_lahir;} ?>" class="form-control" required="required" id="tgll1" name="tgll1" placeholder="dd/mm/yyyy"  />
+                                <input type="date" value="<?php if($data1_count>0){echo $data1->tanggal_lahir;} ?>" class="form-control" required="required" id="tgll1" name="tgll1" placeholder="dd/mm/yyyy"  />
                             </div>
                         </div>
                         <div class="form-group">
@@ -126,7 +126,7 @@
                                 <div class="form-group">
                                     <label for="dk1_10" class="col-sm-5 control-label">Alamat Lengkap</label>
                                     <div class="col-sm-7">
-                                        <textarea class="form-control" required="required" id="alkapktp1" name="alkapktp1" placeholder=". . ."> <?php echo $data1addresktp1->alamat_lengkap ?> </textarea>
+                                        <textarea class="form-control" required="required" id="alkapktp1" name="alkapktp1" placeholder=". . ."> <?php  if(isset($data1addresktp1->alamat_lengkap)) { echo $data1addresktp1->alamat_lengkap; } ?> </textarea>
                                     </div>
                                 </div>
                                
@@ -215,7 +215,7 @@
                                 <div class="form-group">
                                     <label for="dk1_15" class="col-sm-5 control-label">Kode Pos</label>
                                     <div class="col-sm-7">
-                                        <input type="text" required="required" class="form-control" id="kodeposktp1" name="kodeposktp1" placeholder=". . ." onkeypress="return doFieldFilter(event, 'numeric', '', false)" value="<?php echo $data1addresktp1->kode_pos ?>" />
+                                        <input type="text" required="required" class="form-control" id="kodeposktp1" name="kodeposktp1" placeholder=". . ." onkeypress="return doFieldFilter(event, 'numeric', '', false)" value="<?php  if(isset($data1addresktp1->kode_pos)) { echo $data1addresktp1->kode_pos; } ?>" />
                                     </div>
                                 </div>
                             </div>
@@ -241,7 +241,7 @@
                                 <div class="form-group">
                                     <label for="dk1_17" class="col-sm-5 control-label">Alamat Lengkap</label>
                                     <div class="col-sm-7">
-                                        <textarea class="form-control" required="required" id="alkap1" name="alkap1" placeholder=". . ."> <?php echo $data1addresktp2->alamat_lengkap; ?> </textarea>
+                                        <textarea class="form-control" required="required" id="alkap1" name="alkap1" placeholder=". . ."> <?php if(isset($data1addresktp2->alamat_lengkap)) { echo $data1addresktp2->alamat_lengkap; } ?> </textarea>
                                     </div>
                                 </div>
                                
@@ -326,7 +326,7 @@
                                 <div class="form-group">
                                     <label for="dk1_22" class="col-sm-5 control-label">Kode Pos</label>
                                     <div class="col-sm-7">
-                                        <input type="text" class="form-control" required="required" value="<?php echo $data1addresktp2->kode_pos ?>" id="kodepos" name="kodepos" placeholder=". . ." onkeypress="return doFieldFilter(event, 'numeric', '', false)" />
+                                        <input type="text" class="form-control" required="required" value="<?php if(isset($data1addresktp2->kode_pos)){ echo $data1addresktp2->kode_pos; }?>" id="kodepos" name="kodepos" placeholder=". . ." onkeypress="return doFieldFilter(event, 'numeric', '', false)" />
                                     </div>
                                 </div>
                             </div>
@@ -379,7 +379,7 @@
                                 <input type="text" value="<?php if($data2_count>0){echo $data2->tempat_lahir;} ?>" class="form-control"  required="required" id="tempatl2" name="tempatl2" placeholder=". . ." />
                             </div>
                             <div class="col-sm-2">
-                                <input type="text" value="<?php if($data2_count>0){echo $data2->tanggal_lahir;} ?>" class="form-control" required="required" id="tgll2" name="tgll2" placeholder="dd/mm/yyyy" />
+                                <input type="date" value="<?php if($data2_count>0){echo $data2->tanggal_lahir;} ?>" class="form-control" required="required" id="data2_6" name="tgll2" placeholder="dd/mm/yyyy" />
                             </div>
                         </div>
                         <div class="form-group">
@@ -443,7 +443,7 @@
                                 <div class="form-group">
                                     <label for="dk3_10" class="col-sm-5 control-label">Alamat Lengkap</label>
                                     <div class="col-sm-7">
-                                        <textarea class="form-control" required="required" id="alkapktp2" name="alkapktp2" placeholder=". . .">  <?php echo $data2addresktp1->alamat_lengkap ?> </textarea>
+                                        <textarea class="form-control" required="required" id="alkapktp2" name="alkapktp2" placeholder=". . .">  <?php if(isset($data2addresktp1->alamat_lengkap)) { echo $data2addresktp1->alamat_lengkap; } ?> </textarea>
                                     </div>
                                 </div>
                                
@@ -529,7 +529,7 @@
                                 <div class="form-group">
                                     <label for="dk3_15" class="col-sm-5 control-label">Kode Pos</label>
                                     <div class="col-sm-7">
-                                        <input type="text" class="form-control" required="required" id="kodeposktp2"  value="<?php echo $data2addresktp1->kode_pos ?>" name="kodeposktp2" placeholder=". . ." onkeypress="return doFieldFilter(event, 'numeric', '', false)" />
+                                        <input type="text" class="form-control" required="required" id="kodeposktp2"  value="<?php if(isset($data2addresktp1->kode_pos)){ echo $data2addresktp1->kode_pos; }?>" name="kodeposktp2" placeholder=". . ." onkeypress="return doFieldFilter(event, 'numeric', '', false)" />
                                     </div>
                                 </div>
                             </div>
@@ -555,7 +555,7 @@
                                 <div class="form-group">
                                     <label for="dk3_17" class="col-sm-5 control-label">Alamat Lengkap</label>
                                     <div class="col-sm-7">
-                                        <textarea class="form-control" required="required" id="alkap2" name="alkap2" placeholder=". . ."> <?php echo $data2addresktp2->alamat_lengkap ?> </textarea>
+                                        <textarea class="form-control" required="required" id="alkap2" name="alkap2" placeholder=". . ."> <?php  if(isset($data2addresktp2->alamat_lengkap)) { echo $data2addresktp2->alamat_lengkap; } ?> </textarea>
                                     </div>
                                 </div>
                              
@@ -644,7 +644,7 @@
                                 <div class="form-group">
                                     <label for="dk3_22" class="col-sm-5 control-label">Kode Pos</label>
                                     <div class="col-sm-7">
-                                        <input type="text" class="form-control" required="required" id="kodepos2" name="kodepos2" value="<?php echo $data2addresktp2->kode_pos ?>" placeholder=". . ." onkeypress="return doFieldFilter(event, 'numeric', '', false)" />
+                                        <input type="text" class="form-control" required="required" id="kodepos2" name="kodepos2" value="<?php if(isset($data2addresktp2->kode_pos)){  echo $data2addresktp2->kode_pos; } ?>" placeholder=". . ." onkeypress="return doFieldFilter(event, 'numeric', '', false)" />
                                     </div>
                                 </div>
                             </div>
@@ -698,7 +698,7 @@
                                 <input type="text" value="<?php if($data3_count>0){echo $data3->tempat_lahir;} ?>" required="required" class="form-control" id="tgll3" name="tgll3" placeholder=". . ." />
                             </div>
                             <div class="col-sm-2">
-                                <input type="text" value="<?php if($data3_count>0){echo $data3->tanggal_lahir;} ?>" required="required" class="form-control" id="tempatl3" name="tempatl3" placeholder="dd/mm/yyyy"  />
+                                <input type="date" value="<?php if($data3_count>0){echo $data3->tanggal_lahir;} ?>" required="required" class="form-control" id="tempatl3" name="tempatl3" placeholder="dd/mm/yyyy"  />
                             </div>
                         </div>
                         <div class="form-group">
@@ -763,7 +763,7 @@
                                 <div class="form-group">
                                     <label for="dk4_10" class="col-sm-5 control-label">Alamat Lengkap</label>
                                     <div class="col-sm-7">
-                                        <textarea class="form-control" required="required" id="alkapktp3" name="alkapktp3" placeholder=". . ."> <?php echo $data3addresktp1->alamat_lengkap ?> </textarea>
+                                        <textarea class="form-control" required="required" id="alkapktp3" name="alkapktp3" placeholder=". . ."> <?php  if(isset($data3addresktp1->alamat_lengkap)) { echo $data3addresktp1->alamat_lengkap; }?> </textarea>
                                     </div>
                                 </div>
                             
@@ -848,7 +848,7 @@
                                 <div class="form-group">
                                     <label for="dk4_15" class="col-sm-5 control-label">Kode Pos</label>
                                     <div class="col-sm-7">
-                                        <input type="text" class="form-control" required="required" id="kodeposktp3" name="kodeposktp3" value="<?php echo $data3addresktp1->kode_pos ?>" placeholder=". . ." onkeypress="return doFieldFilter(event, 'numeric', '', false)" />
+                                        <input type="text" class="form-control" required="required" id="kodeposktp3" name="kodeposktp3" value="<?php if(isset($data3addresktp1->kode_pos)) { echo $data3addresktp1->kode_pos; }?>" placeholder=". . ." onkeypress="return doFieldFilter(event, 'numeric', '', false)" />
                                     </div>
                                 </div>
                             </div>
@@ -874,7 +874,7 @@
                                 <div class="form-group">
                                     <label for="dk4_17" class="col-sm-5 control-label">Alamat Lengkap</label>
                                     <div class="col-sm-7">
-                                        <textarea class="form-control" required="required" id="alkap3" name="alkap3" placeholder=". . ."> <?php echo $data3addresktp2->alamat_lengkap ?> </textarea>
+                                        <textarea class="form-control" required="required" id="alkap3" name="alkap3" placeholder=". . ."> <?php if(isset($data3addresktp2->alamat_lengkap)) { echo $data3addresktp2->alamat_lengkap; }?> </textarea>
                                     </div>
                                 </div>
                                
@@ -962,7 +962,7 @@
                                 <div class="form-group">
                                     <label for="dk4_22" class="col-sm-5 control-label">Kode Pos</label>
                                     <div class="col-sm-7">
-                                        <input type="text" required="required" class="form-control" id="kodepos3" name="kodepos3" value="<?php echo $data3addresktp2->kode_pos ?>" placeholder=". . ." onkeypress="return doFieldFilter(event, 'numeric', '', false)" />
+                                        <input type="text" required="required" class="form-control" id="kodepos3" name="kodepos3" value="<?php if(isset($data3addresktp2->kode_pos)){  echo $data3addresktp2->kode_pos; }?>" placeholder=". . ." onkeypress="return doFieldFilter(event, 'numeric', '', false)" />
                                     </div>
                                 </div>
                             </div>
@@ -974,7 +974,7 @@
             <!--<div class="box-footer">-->
             <div class="col-sm-offset-4 col-sm-4 text-center" style="margin-top: 20pt;">
                     <button type="submit" class="btn bg-green">Simpan</button>
-                    <button id="reset-btn" type="button" class="btn btn-default">Reset</button>
+                    <button id="reset-btn6" type="button" class="btn btn-default">Reset</button>
                 </div>
                 
             </div>

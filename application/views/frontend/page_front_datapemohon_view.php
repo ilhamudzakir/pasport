@@ -88,7 +88,7 @@
                         <div class="box-footer">
                             <div class="col-sm-offset-3 col-sm-9">
                                 <button type="submit" class="btn bg-green">Simpan</button>
-                                <button id="reset-btn" type="button" class="btn btn-default">Reset</button>
+                                <button id="reset-btn9" type="button" class="btn btn-default">Reset</button>
                             </div>
                         </div>
                         <!-- /.box-footer -->
@@ -107,38 +107,58 @@
                             </div>
                             <div class="col-lg-4">
                                 <p id="pemohon" class="text-center" style="border: 2px solid #333;"> Lembar Untuk: Pemohon</p>
-                                <p class="text-left"> Dicetak tanggal: 25/09/2017</p>
+                                <p class="text-left"> Dicetak tanggal: <?php echo date("Y/m/d"); ?></p>
                             </div>
                             <div class="col-lg-12">
                                 <br><br>
-                                <p class="text-center" style="margin-bottom: 0px;font-size: 18pt;font-weight: bold;">SINGGIH AJI NUGROHO</p>
-                                <p class="text-center" style="margin-bottom: 0px;font-size: 16pt;font-weight: bold;">Kanim Kelas I Khusus Jakarta Selatan</p>
-                                <p class="text-center" style="margin-bottom: 30px;font-size: 16pt;font-weight: bold;">28/09/2017 10:00</p>
+                                <p class="text-center" style="margin-bottom: 0px;font-size: 18pt;font-weight: bold;"><?php echo $data->nama; ?></p>
+                                <p class="text-center" style="margin-bottom: 0px;font-size: 16pt;font-weight: bold;">   <?php foreach ($kanim as $key) { ?>
+                                         <?php if(isset($data->id_kantor_imgirasi)){ if($data->id_kantor_imgirasi == $key->MO_ID ){ echo $key->MO_NAME; }else{"";}} ?>
+                                    <?php } ?></p>
+                                <p class="text-center" style="margin-bottom: 30px;font-size: 16pt;font-weight: bold;"><?php echo date("Y/m/d"); ?></p>
                             </div>
                         </div>
                         <!--<br>Tanggal Lahir<br>Jenis Permohonan<br>Harap Datang Ke<br><br><br>Tanggal Kedatangan<br>Jam-->
                         <!--<p class="text-left"> : SINGGIH AJI NUGROHO<br>: 26-10-1987<br>: 1A11 - 48H Perorangan Baru-Paspor Biasa<br>: Kanim Kelas I Khusus Jakarta Selatan<br>JL.warung Buncit Raya No.207,Jakarta Selatan<br>Jakarta, 12760<br>: rabu, 30-08-2017<br>: 08:00 - 10:00</p>-->
                         <div class="row" style="margin: 5px 0px;">
                             <div class="col-lg-offset-1 col-lg-3" style="font-weight: bold;">Nama</div><div class="col-lg-1" style="width: 0px;padding-right: 0px;">:</div>
-                            <div class="col-lg-6">SINGGIH AJI NUGROHO</div>
+                            <div class="col-lg-6"><?php echo $data->nama; ?></div>
                         </div>
                         <div class="row" style="margin: 5px 0px;">
                             <div class="col-lg-offset-1 col-lg-3" style="font-weight: bold;">Tanggal Lahir</div><div class="col-lg-1" style="width: 0px;padding-right: 0px;">:</div>
-                            <div class="col-lg-6">26/10/1987</div>
+                            <div class="col-lg-6"><?php
+                            $date=date_create($data->tanggal_lahir);
+                        echo date_format($date,"Y/m/d H:i:s");
+                            ?></div>
                         </div>
                         <div class="row" style="margin: 5px 0px;">
                             <div class="col-lg-offset-1 col-lg-3" style="font-weight: bold;">Jenis Permohonan</div><div class="col-lg-1" style="width: 0px;padding-right: 0px;">:</div>
-                            <div class="col-lg-6">1A11 - 48H Perorangan Baru-Paspor Biasa</div>
+                            <div class="col-lg-6">1A11 - 48H Perorangan  <?php
+                                        // debugCode($data);
+                                            if(isset($data->id_jenis_pengajuan)){
+                                                if($data->id_jenis_pengajuan == 1){
+                                                    echo "Paspor Baru";
+                                                }else if($data->id_jenis_pengajuan == 2){
+                                                   echo "Pergantian Paspor";
+                                                }
+
+                                            }
+                                        ?></div>
                         </div>
                         <div class="row" style="margin: 5px 0px;">
                             <div class="col-lg-offset-1 col-lg-3" style="font-weight: bold;">Kantor Imigrasi</div><div class="col-lg-1" style="width: 0px;padding-right: 0px;">:</div>
-                            <div class="col-lg-6">Kanim Kelas I Khusus Jakarta Selatan<br>JL.warung Buncit Raya No.207,Jakarta Selatan<br>Jakarta, 12760</div>
+                            <div class="col-lg-6"><?php foreach ($kanim as $key) { ?>
+                                     <?php if(isset($data->id_kantor_imgirasi)){ if($data->id_kantor_imgirasi == $key->MO_ID ){ 
+                                        echo $key->MO_NAME;}else{"";}} ?>
+                                    <?php } ?>
+
+                                </div>
                         </div>
-                        <div class="row" style="margin: 5px 0px;">
+                        <div class="row hide" style="margin: 5px 0px;">
                             <div class="col-lg-offset-1 col-lg-3" style="font-weight: bold;">Tanggal Kedatangan</div><div class="col-lg-1" style="width: 0px;padding-right: 0px;">:</div>
                             <div class="col-lg-6">28/09/2017</div>
                         </div>
-                        <div class="row" style="margin: 5px 0px;">
+                        <div class="row hide" style="margin: 5px 0px;">
                             <div class="col-lg-offset-1 col-lg-3" style="font-weight: bold;">Pukul</div><div class="col-lg-1" style="width: 0px;padding-right: 0px;">:</div>
                             <div class="col-lg-6">10:00</div>
                         </div>
@@ -231,7 +251,7 @@
 <script src="<?php echo BASE_URL; ?>assets/dist/js/app.min.js"></script>
 <!-- simpletip -->
 <script type="text/javascript" src="<?php echo BASE_URL; ?>assets/plugins/jquery.simpletip-1.3.1.min.js"></script>
-
+<!-- simpletip -->
 <script src="<?php echo FRONTJS_URL; ?>page_front_datapemohon.js"></script>
 
 
@@ -241,7 +261,7 @@
 
         var alamat_1 = $('textarea#alamat_1').val();
         var user_kecamatan_1 = $("#user_kecamatan option:selected" ).text();
-         alert(user_kecamatan_1);
+         //alert(user_kecamatan_1);
         console.log(user_kecamatan_1);
         console.log(alamat_1);
         $('#as_ktp').change(function() {
@@ -259,10 +279,16 @@
     function comboCPC(id,target,url) {
 
             c = $(id);
-            <?php //echo "asas ". site_url('"+url+"');?>
+           
+console.log("ccc"+c);
+           
             urlCountry = "<?php echo site_url('"+url+"');?>";
              console.log(urlCountry);
             var id = c.val();
+if(id){
+ console.log(id);
+
+           
             $.ajax({
               type: "POST",
               url: urlCountry+"/"+id,
@@ -281,5 +307,7 @@
                 });
               }
             }); 
-        }
+        }}
+
+        
 </script>

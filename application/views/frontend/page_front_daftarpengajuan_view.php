@@ -40,6 +40,7 @@
                             <label style="font-weight: 400;">Kanim</label>
                         </div>
                         <div class="col-sm-9">
+                          
                             <label style="font-weight: 400;">:&nbsp;&nbsp;&nbsp;<?php echo $kanim->MO_NAME?></label>
                         </div>
                     </div>
@@ -100,6 +101,7 @@
                           <form  id="form<?php echo $i?>"   onsubmit="return validateForm(<?php echo $i?>)"  name="form<?php echo $i?>" action="<?php echo base_url() ?>Home/insertPengajuan/<?php echo $i?>" role="form" method="post" enctype="multipart/form-data">
                         <tr>
                             <td>
+                                  <input name="idkanim"  type="hidden" value="<?php echo $kanim->MO_ID?>"/>
                                  <input type="hidden" class="form-control" id="data_1" name="id[<?php echo $i ?>]" value="<?php echo  $data->id?>"/>
                                   <input type="hidden" class="form-control" id="data_1" name="idu[<?php echo $i ?>]" value="<?php foreach ($data_diri as $user ) { ?><?php if($user->id_daftar_pengajuan == $data->id){ echo $user->id; }?> <?php } ?>"/>
                                 <input type="text" class="form-control" id="data_1" name="nama[<?php echo $i ?>]" value="<?php foreach ($data_diri as $user){?><?php if($user->id_daftar_pengajuan == $data->id){ echo $user->nama; }?><?php }?>" required/>
