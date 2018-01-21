@@ -111,7 +111,7 @@
                             </div>
                             <div class="col-lg-12">
                                 <br><br>
-                                <p class="text-center" style="margin-bottom: 0px;font-size: 18pt;font-weight: bold;"><?php echo $data->nama; ?></p>
+                                <p class="text-center" style="margin-bottom: 0px;font-size: 18pt;font-weight: bold;"><?php   if(isset($data->nama)){ echo $data->nama; }?></p>
                                 <p class="text-center" style="margin-bottom: 0px;font-size: 16pt;font-weight: bold;">   <?php foreach ($kanim as $key) { ?>
                                          <?php if(isset($data->id_kantor_imgirasi)){ if($data->id_kantor_imgirasi == $key->MO_ID ){ echo $key->MO_NAME; }else{"";}} ?>
                                     <?php } ?></p>
@@ -122,18 +122,38 @@
                         <!--<p class="text-left"> : SINGGIH AJI NUGROHO<br>: 26-10-1987<br>: 1A11 - 48H Perorangan Baru-Paspor Biasa<br>: Kanim Kelas I Khusus Jakarta Selatan<br>JL.warung Buncit Raya No.207,Jakarta Selatan<br>Jakarta, 12760<br>: rabu, 30-08-2017<br>: 08:00 - 10:00</p>-->
                         <div class="row" style="margin: 5px 0px;">
                             <div class="col-lg-offset-1 col-lg-3" style="font-weight: bold;">Nama</div><div class="col-lg-1" style="width: 0px;padding-right: 0px;">:</div>
-                            <div class="col-lg-6"><?php echo $data->nama; ?></div>
+                            <div class="col-lg-6"><?php 
+                            if(isset($data->nama)){
+                            echo $data->nama; }?></div>
                         </div>
                         <div class="row" style="margin: 5px 0px;">
                             <div class="col-lg-offset-1 col-lg-3" style="font-weight: bold;">Tanggal Lahir</div><div class="col-lg-1" style="width: 0px;padding-right: 0px;">:</div>
                             <div class="col-lg-6"><?php
-                            $date=date_create($data->tanggal_lahir);
-                        echo date_format($date,"Y/m/d H:i:s");
+
+                            if(isset($data->tanggal_lahir)){
+                                     echo $data->tanggal_lahir;
+                            }
+                      
+                    
                             ?></div>
                         </div>
                         <div class="row" style="margin: 5px 0px;">
                             <div class="col-lg-offset-1 col-lg-3" style="font-weight: bold;">Jenis Permohonan</div><div class="col-lg-1" style="width: 0px;padding-right: 0px;">:</div>
-                            <div class="col-lg-6">1A11 - 48H Perorangan  <?php
+                            <div class="col-lg-6">
+                                  <?php
+                                        if(isset($data->id_jenis_paspor)){
+                                                if($data->id_jenis_paspor == 1){
+                                                    echo "9 Halaman ";
+                                                }else if($data->id_jenis_paspor == 2){
+                                                    echo "11 Halaman ";
+                                                }else if($data->id_jenis_paspor == 3){
+                                                   echo "24 Halaman ";
+                                                }
+
+                                            }
+                                            ?>
+
+                              <?php
                                         // debugCode($data);
                                             if(isset($data->id_jenis_pengajuan)){
                                                 if($data->id_jenis_pengajuan == 1){
