@@ -208,7 +208,7 @@
                                    </select>
                             </td>
                             <td>
-                                <input type="text" class="form-control" id="nik" name="nik[<?php echo $i ?>]" value="<?php foreach ($data_diri as $user ) { ?><?php if($user->id_daftar_pengajuan == $data->id){ echo $user->nik; }?> <?php } ?>"  required/>
+                                <input type="text" class="form-control" id="nik" name="nik[<?php echo $i ?>]" value="<?php foreach ($data_diri as $user ){ ?><?php if($user->id_daftar_pengajuan == $data->id){ echo $user->nik; }?><?php } ?>"  required/>
                             </td>
                             <td class="text-center">
                             
