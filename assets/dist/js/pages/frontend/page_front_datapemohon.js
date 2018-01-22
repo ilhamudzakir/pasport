@@ -16,7 +16,12 @@ $(document).ready(function(){
     // Toolbar extra buttons
     btnFinish = $('<button></button>').text('Submit')
                     .addClass('btn btn-success')
-                    .on('click', function(){ alert('Submit Clicked'); });
+                    .on('click', function(){ 
+
+                        var id = document.getElementById("idJadwal").value
+                        console.log(id);
+                        window.location = window.location.origin +'/ponline/daftar_pengajuan/'+ id;
+                         });
     var btnCancel = $('<button></button>').text('Cancel')
                                      .addClass('btn btn-danger')
                                      .on('click', function(){ $('#smartwizard').smartWizard("reset"); });  

@@ -46,6 +46,7 @@
                 <div class="col-md-12">
                     <form class="form-horizontal" style="margin-top: 20px;" enctype="multipart/form-data" method="post" action="<?php echo base_url() ?>Home/insert_dokumen">
                         <input type="hidden" name="id" value="<?php echo $this->uri->segment(2) ?>">
+                          <input type="hidden" id="idJadwal" name="idxxx" value="<?php echo $jadwal->id?>">
                         <div class="box-body">
                             <div class="form-group">
                                 <div class="col-sm-offset-3 col-sm-4">Format file yang didukung adalah <strong class="text-danger">jpg, png, pdf</strong>.</div>

@@ -66,10 +66,10 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-3">
-                            <label style="font-weight: 400;"><?php echo substr($jadwal->waktu, 0,2)?>: <?php echo substr($jadwal->waktu, 2,2)?></label>
+                            <label style="font-weight: 400;">Jam</label>
                         </div>
                         <div class="col-sm-9">
-                            <label style="font-weight: 400;">:&nbsp;&nbsp;&nbsp;09.00</label>
+                            <label style="font-weight: 400;">:&nbsp;&nbsp;&nbsp;<?php echo substr($jadwal->waktu, 0,1)?>: <?php echo substr($jadwal->waktu, 1,2)?></label>
                         </div>
                     </div>
                 </div>
@@ -218,6 +218,19 @@
                         </form>
                         <?php } ?>   
                     </tbody>
+<br><br><br>
+                    <tfoot>
+                        <tr>
+                            <th style="vertical-align: middle;width: 25%;"></th>
+                            <th class="text-center" style="vertical-align: middle;"></th>
+                            <th class="text-center" style="vertical-align: middle;"></th>
+                                <th class="text-center" style="vertical-align: middle;"></th>
+                       
+                            <th class="text-center" style="vertical-align: middle;"></th>
+                            <th class="text-center" style="vertical-align: middle;"><a href="<?php echo base_url() ?>"><button class="btn btn-success">Selsai</button></a></th>
+                         </tr>
+                    
+                    </tfoot>
                 </table>
                 
             </div>

@@ -50,6 +50,15 @@ class Home extends CI_Controller {
         $data['pekerjaan'] = select_where("dc_riwayat_pekerjaan",'FormXID',$id)->row();
         $data['mohon'] = select_where("dc_permohonan_paspor",'FormXID',$id)->row();
 
+        // print_r($data['data']->id_daftar_pengajuan);
+        $data['data_pengajuan'] = select_where('dc_daftar_pengajuan','id',$data['data']->id_daftar_pengajuan)->row();
+
+        $data['jadwal'] = select_where('dc_jadwal','id',$data['data_pengajuan']->id_jadwal)->row();
+
+
+         // print_r($data['data_pengajuan']);
+         // print_r($data['jadwal']);
+
         $data['negara'] = select_all('dc_negara');
         $data['provinsi'] = select_all('propinsi');
         $data['kota'] = select_all('kabupaten');
@@ -73,8 +82,7 @@ class Home extends CI_Controller {
          $data['data1addresktp1']=select_where_array('dc_family_address',$arrayName = array('id_data_keluarga'  =>  $data['data1']->id,'FamilyTypeXID '=>1 ))->row();
          $data['data1addresktp2']=select_where_array('dc_family_address',$arrayName = array('id_data_keluarga'  =>  $data['data1']->id,'FamilyTypeXID '=>2 ))->row();
      // print_r($data['data1addresktp1']);
-
-     //       print_r($data['data1addresktp2']);
+      //print_r($data['data1addresktp2']);
 }
         $data['data2_count']=select_where_array('dc_data_keluarga',$arrayName = array('id_data_diri' => $id,'id_keterangan'=>2))->num_rows();
        $data['data2']=select_where_array('dc_data_keluarga',$arrayName = array('id_data_diri' => $id,'id_keterangan'=>2 ))->row();
