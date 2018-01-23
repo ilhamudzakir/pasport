@@ -279,17 +279,51 @@
 <script type="text/javascript">
    $(document).ready(function() {
         //set initial state.
+        $("#param_pasporlama").hide();
+        $("#jml_ank").hide();
 
-        var alamat_1 = $('textarea#alamat_1').val();
-        var user_kecamatan_1 = $("#user_kecamatan option:selected" ).text();
-         //alert(user_kecamatan_1);
-        console.log(user_kecamatan_1);
-        console.log(alamat_1);
-        $('#as_ktp').change(function() {
+          $("#user_negara2").val("adad");
+       
+        $('#jpengajuan').change(function() {
+            // console.log($("#jpengajuan").val());
+            if($(this).val() == 2){
+                // console.log("asdasd");
+                 $("#param_pasporlama").show();
+              
+            }else{
+                // console.log("gfh");
+                $("#param_pasporlama").hide();
+            }
+                  
+        }); 
+
+        $('#statusP').change(function() {
+            // console.log($("#jpengajuan").val());
+            if($(this).val() == 1){
+                // console.log("asdasd");
+                 $("#jml_ank").show();
+              
+            }else{
+                // console.log("gfh");
+                $("#jml_ank").hide();
+            }
+                  
+        });
+
+
+         $('#as_ktp').click(function() {
             if($(this).is(":checked")) {
-
+                var alamat_1 = $('textarea#alamat_1').val();
+                var kodepos_1 = $('input#kodepos_1').val();
+                var user_negara_t = $("#user_negara option:selected" ).text();
+                var user_negara_id = $("#user_negara option:selected" ).val();
+              console.log(user_negara_t);
               $("textarea#alamat_2").val(alamat_1);
-              $(target).append($('<option>').text(value.title).attr('value', value.propinsi_id));
+              $("#user_negara2").val(user_negara_t);
+
+              // $('#user_negara2').append('<option value="foo" selected="selected">Foo</option>');
+              // $("#user_negara2").append($('<option>').text(user_negara_t).attr('value', user_negara_id));
+              // $('#kodepos_2').val(kodepos_1);
             }else{
                 console.log("not");
             }
@@ -299,15 +333,12 @@
 
     function comboCPC(id,target,url) {
 
-            c = $(id);
-           
-console.log("ccc"+c);
-           
-            urlCountry = "<?php echo site_url('"+url+"');?>";
-             console.log(urlCountry);
-            var id = c.val();
-if(id){
- console.log(id);
+        c = $(id);        
+        urlCountry = "<?php echo site_url('"+url+"');?>";
+        // console.log(urlCountry);
+        var id = c.val();
+        if(id){
+         console.log(id);
 
            
             $.ajax({
@@ -328,7 +359,7 @@ if(id){
                 });
               }
             }); 
-        }}
+    }}
 
         
 </script>

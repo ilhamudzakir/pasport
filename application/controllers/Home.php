@@ -103,7 +103,7 @@ class Home extends CI_Controller {
          // print_r( $data['data3addresktp1']);
          // print_r( $data['data3addresktp2']);
 }
-        $this->gotoView('page_front_datapemohon_view', $data);
+    $this->gotoView('page_front_datapemohon_view', $data);
     }
     public function check_quota(){
         $provinsi=$this->input->post('provinsi');

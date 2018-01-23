@@ -14,12 +14,13 @@
                 <div class="tab-pane active" id="tab1_1">
                     <form class="form-horizontal" enctype="multipart/form-data" method="post" action="<?php echo base_url() ?>front/save_datadiri/<?php echo $this->uri->segment(2);?>" style="margin-top: 20px;">
                         <input type="hidden" name="id" value="<?php echo isset($data->id)?$data->id:""; ?>">
+                        <input type="hidden" name="id_daftar_pengajuan" value="<?php echo isset($data->id_daftar_pengajuan)?$data->id_daftar_pengajuan:""; ?>">
                         <div class="box-body">
                         
                             <div id="param_jpengajuan" class="form-group">
                                 <label for="data1_2" class="col-sm-4 control-label">Jenis Pengajuan</label>
                                 <div class="col-sm-4">
-                                    <select class="form-control select2" id="data1_2" name="id_jenis_pengajuan" style="width: 100%;" required >
+                                    <select class="form-control select2" id="jpengajuan" name="id_jenis_pengajuan" style="width: 100%;" required >
                                         <option value=""></option>
                                         <?php
                                         // debugCode($data);
@@ -43,7 +44,7 @@
                             <div id="param_pasporlama" class="form-group">
                                 <label for="data1_3" class="col-sm-4 control-label">Nomor Paspor Lama</label>
                                 <div class="col-sm-4">
-                                    <input type="text" class="form-control" id="data1_32" value="<?php echo isset($data->nomer_pasport_lama)?$data->nomer_pasport_lama:"" ?>" name="nomer_pasport_lama" placeholder=". . ."  required/>
+                                    <input type="text" class="form-control" id="data1_32" value="<?php echo isset($data->nomer_pasport_lama)?$data->nomer_pasport_lama:"" ?>" name="nomer_pasport_lama" placeholder=". . ."  />
                                 </div>
                             </div>
                             <div class="form-group">
@@ -85,12 +86,13 @@
                                 <label for="data1_6" class="col-sm-4 control-label">Kantor Imigrasi</label>
                                 
                                 <div class="col-sm-4">
-                               <select class="form-control select2"  name="id_kantor_imgirasi" required disabled>
-                                    <option value=""><?php echo $data->id_kantor_imgirasi;?></option>
-                                     <?php foreach ($kanim as $key) { ?>
-                                        <option value="<?php echo $key->MO_ID ?>" <?php if(isset($data->id_kantor_imgirasi)){ if($data->id_kantor_imgirasi == $key->MO_ID ){ echo "selected";}else{"";}} ?> ><?php echo $key->MO_NAME ?></option>
-                                    <?php } ?>
-                                </select>
+                                    <select class="form-control select2"  name="id_kantor_imgirasi" style="width: 100%;" required disabled>
+                                        
+                                        <?php //debugCode($data); ?>
+                                         <?php foreach ($kanim as $key) { ?>
+                                            <option value="<?php echo $data->id_kantor_imgirasi;?>" <?php if(isset($data->id_kantor_imgirasi)){ if($data->id_kantor_imgirasi == $key->MO_ID ){ echo "selected";}else{"";}} ?> ><?php echo $key->MO_NAME ?></option>
+                                        <?php } ?>
+                                    </select>
                                 </div>
                             </div>
 
@@ -112,7 +114,7 @@
                                 <div class="col-sm-6">
                                     <div class="col-sm-3" style="padding-left: 0;">
                                         <div class="radio">
-                                            <label><input name="jenis_kelamin" id="data1_33" value="L" <?php  if(isset($data->jenis_kelamin)){if($data->jenis_kelamin == "L"){ echo 'checked="checked"';}} ?> type="radio" />Laki-laki</label>
+                                            <label><input name="jenis_kelamin" id="data1_33" value="L" checked="checked" <?php  if(isset($data->jenis_kelamin)){if($data->jenis_kelamin == "L"){ echo 'checked="checked"';}} ?> type="radio" />Laki-laki</label>
                                         </div>
                                     </div>
                                     <div class="col-sm-4" style="padding-left: 0;">
@@ -131,21 +133,22 @@
                                     <input type="text" class="form-control" id="data2_5" name="tanggal_lahir" value="<?php echo isset($data->tanggal_lahir)?$data->tanggal_lahir:"" ?>" placeholder="dd/mm/yyyy"  required/>
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div id="stat_p" class="form-group">
                                 <label for="data2_6" class="col-sm-4 control-label">Status Perkawinan</label>
                                 <div class="col-sm-4">
-                                    <select class="form-control select2" id="data2_6" name="status" style="width: 100%;" required>
+                                    <select class="form-control select2" id="statusP" name="status" style="width: 100%;" required>
                                         <option value=""></option>
                                         <option value="1" <?php if(isset($data->status)){ if($data->status == 1 ){ echo "selected";}else{"";}} ?>>Menikah</option>
                                         <option value="2" <?php if(isset($data->status)){ if($data->status == 2 ){ echo "selected";}else{"";}} ?> >Belum Menikah</option>
                                     </select>
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div id="jml_ank" class="form-group">
                                 <label for="data2_7" class="col-sm-4 control-label">Jumlah Anak</label>
                                 <div class="col-sm-4">
-                                    <select class="form-control select2" id="data2_7" name="jumlah_anak" style="width: 100%;" required>
+                                    <select class="form-control select2" id="jumlah_anak" name="jumlah_anak" style="width: 100%;" >
                                         <option value=""></option>
+                                        <option value="0" <?php if(isset($data->jumlah_anak)){ if($data->jumlah_anak == 0 ){ echo "selected";}else{"";}} ?>>0</option>
                                         <option value="1" <?php if(isset($data->jumlah_anak)){ if($data->jumlah_anak == 1 ){ echo "selected";}else{"";}} ?>>1</option>
                                         <option value="2" <?php if(isset($data->jumlah_anak)){ if($data->jumlah_anak == 2 ){ echo "selected";}else{"";}} ?>>2</option>
                                         <option value="2" <?php if(isset($data->jumlah_anak)){ if($data->jumlah_anak == 3 ){ echo "selected";}else{"";}} ?> >3</option>
@@ -315,7 +318,7 @@
                                         <div class="col-sm-7">
                                             <div class="checkbox">
                                                 <label>
-                                                    <input type="checkbox" onclick="asktp()" id="as_ktp" name="ktp" value="1" style="cursor: pointer;" />
+                                                    <input type="checkbox"  id="as_ktp" name="ktp" value="1" style="cursor: pointer;" />
                                                     
                                                 </label>
                                             </div>
@@ -768,4 +771,6 @@
 </div>
 
 
-
+<script type="text/javascript">
+    
+</script>
