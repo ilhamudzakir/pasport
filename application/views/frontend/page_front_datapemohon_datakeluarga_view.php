@@ -59,7 +59,7 @@
                                 <input value="<?php if($data1_count>0){echo $data1->tempat_lahir;} ?>" type="text" required="required" class="form-control" id="tempatl1" name="tempatl1" placeholder=". . ." />
                             </div>
                             <div class="col-sm-2">
-                                <input type="date" value="<?php if($data1_count>0){echo $data1->tanggal_lahir;} ?>" class="form-control" required="required" id="tgll1" name="tgll1" placeholder="dd/mm/yyyy"  />
+                                <input type="text" value="<?php if($data1_count>0){echo $data1->tanggal_lahir;} ?>" class="form-control" required="required" id="tgll1_1" name="tgll1" placeholder="dd/mm/yyyy"  />
                             </div>
                         </div>
                         <div class="form-group">
@@ -379,7 +379,7 @@
                                 <input type="text" value="<?php if($data2_count>0){echo $data2->tempat_lahir;} ?>" class="form-control"  required="required" id="tempatl2" name="tempatl2" placeholder=". . ." />
                             </div>
                             <div class="col-sm-2">
-                                <input type="date" value="<?php if($data2_count>0){echo $data2->tanggal_lahir;} ?>" class="form-control" required="required" id="data2_6" name="tgll2" placeholder="dd/mm/yyyy" />
+                                <input type="text" value="<?php if($data2_count>0){echo $data2->tanggal_lahir;} ?>" class="form-control" required="required" id="tgll2" name="tgll2" placeholder="dd/mm/yyyy" />
                             </div>
                         </div>
                         <div class="form-group">
@@ -695,10 +695,10 @@
                         <div class="form-group">
                             <label for="dk4_5" class="col-sm-4 control-label">Tempat & Tanggal Lahir</label>
                             <div class="col-sm-4">
-                                <input type="text" value="<?php if($data3_count>0){echo $data3->tempat_lahir;} ?>" required="required" class="form-control" id="tgll3" name="tgll3" placeholder=". . ." />
+                                <input type="text" value="<?php if($data3_count>0){echo $data3->tempat_lahir;} ?>" required="required" class="form-control" id="tempatl3" name="tempatl3" placeholder=". . ." />
                             </div>
                             <div class="col-sm-2">
-                                <input type="date" value="<?php if($data3_count>0){echo $data3->tanggal_lahir;} ?>" required="required" class="form-control" id="tempatl3" name="tempatl3" placeholder="dd/mm/yyyy"  />
+                                <input type="text" value="<?php if($data3_count>0){echo $data3->tanggal_lahir;} ?>" required="required" class="form-control" id="tgll3" name="tgll3" placeholder="dd/mm/yyyy"  />
                             </div>
                         </div>
                         <div class="form-group">

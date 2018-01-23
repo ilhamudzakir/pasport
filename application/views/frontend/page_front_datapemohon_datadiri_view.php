@@ -545,7 +545,7 @@
 
                                          <?php foreach ($provinsi as $provinsi) { ?><
                                         
-                                            <option value="<?php echo $provinsi->id ?>" <?php if(isset($pekerjaan->id_provinsi)){ if($pekerjaan->id_provinsi == $provinsi->id){ echo "selected"; }else{"";}} ?> ><?php echo $provinsi->provinsi?></option>
+                                            <option value="<?php echo $provinsi->propinsi_id ?>" <?php if(isset($pekerjaan->id_provinsi)){ if($pekerjaan->id_provinsi == $provinsi->propinsi_id){ echo "selected"; }else{"";}} ?> ><?php echo $provinsi->title?></option>
                                    
                                         <?php }?>
                                        </select>
@@ -554,12 +554,12 @@
                             <div class="form-group">
                                 <label for="data5_6" class="col-sm-3 control-label">Kota / Kabupaten</label>
                                 <div class="col-sm-4">
-                                    <select class="form-control select2" id="data5_6" name="id_kota" style="width: 100%;" required>
+                                    <select class="form-control select2" id="user_kota" name="id_kota" nchange="comboCPC('#user_kota','#user_kecamatan','ajax/getKecamatan')" style="width: 100%;" required>
                                         <option value=""></option>
                                    
                                     <?php foreach ($kota as $Kota) { ?><
                                         
-                                            <option value="<?php echo $Kota->id ?>" <?php if(isset($pekerjaan->id_kota)){ if($pekerjaan->id_kota == $Kota->id){ echo "selected"; }else{"";}} ?> ><?php echo $Kota->kota?></option>
+                                            <option value="<?php echo $Kota->kabupaten_id ?>" <?php if(isset($pekerjaan->id_kota)){ if($pekerjaan->id_kota == $Kota->kabupaten_id){ echo "selected"; }else{"";}} ?> ><?php echo $Kota->title?></option>
                                    
                                         <?php }?>
 
@@ -569,12 +569,12 @@
                             <div class="form-group">
                                 <label for="data5_7" class="col-sm-3 control-label">Kecamatan</label>
                                 <div class="col-sm-4">
-                                    <select class="form-control select2" id="data5_7" name="id_kecamatan" style="width: 100%;" required>
+                                    <select class="form-control select2" id="data5_7" name="user_kecamatan" style="width: 100%;" required>
                                         <option value=""></option>
                                       
  <?php foreach ($kecamatan as $kecamatan) { ?>
                                         
-                                            <option value="<?php echo $kecamatan->id ?>" <?php if(isset($pekerjaan->id_kecamatan)){ if($pekerjaan->id_kecamatan == $kecamatan->id){ echo "selected"; }else{"";}} ?> ><?php echo $kecamatan->kecamatan?></option>
+                                            <option value="<?php echo $kecamatan->kecamatan_id ?>" <?php if(isset($pekerjaan->id_kecamatan)){ if($pekerjaan->id_kecamatan == $kecamatan->kecamatan_id){ echo "selected"; }else{"";}} ?> ><?php echo $kecamatan->title?></option>
                                    
                                         <?php }?>
                                     </select>

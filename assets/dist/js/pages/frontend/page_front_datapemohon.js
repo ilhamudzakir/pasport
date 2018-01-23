@@ -8,8 +8,15 @@ var btnFinish = '';
 $(document).ready(function(){
     $(".select2").select2({ "placeholder": "Pilih.." });
     $('#data2_5, #data6_13, #data6_14').datepicker({ autoclose: true, todayHighlight: true, format: 'dd/mm/yyyy' });
+    $('#tgll1_1').datepicker({ autoclose: true, todayHighlight: true, format: 'dd/mm/yyyy' });
+    $('#tgll2').datepicker({ autoclose: true, todayHighlight: true, format: 'dd/mm/yyyy' });
+    $('#tgll3').datepicker({ autoclose: true, todayHighlight: true, format: 'dd/mm/yyyy' });
     $('#dk1_6, #dk2_6, #dk3_6, #dk4_6').datepicker({ autoclose: true, todayHighlight: true, format: 'dd/mm/yyyy' });
-    
+      $('#data2_5, #dk2_6, #dk3_6, #dk4_6').datepicker('setDate', new Date(1990,01,01));
+       $('#tgll1_1').datepicker('setDate', new Date(1990,01,00));
+
+        $('#tgll2').datepicker('setDate', new Date(1990,01,00));
+        $('#tgll3').datepicker('setDate', new Date(1990,01,00));
     $('#reset-btn').click(resetForm);
     $('#data2, #data3, #data4').change(setKuota);
     
