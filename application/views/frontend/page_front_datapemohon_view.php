@@ -311,21 +311,70 @@
         });
 
 
-         $('#as_ktp').click(function() {
+         $('#as_ktp').change(function() {
             if($(this).is(":checked")) {
                 var alamat_1 = $('textarea#alamat_1').val();
-                var kodepos_1 = $('input#kodepos_1').val();
+                var kodepos_1 = $('#kodepos_1').val();
+                
                 var user_negara_t = $("#user_negara option:selected" ).text();
                 var user_negara_id = $("#user_negara option:selected" ).val();
-              console.log(user_negara_t);
-              $("textarea#alamat_2").val(alamat_1);
-              $("#user_negara2").val(user_negara_t);
+                console.log(kodepos_1);
+                $("textarea#alamat_2").val(alamat_1);
+                $("#kodepos_2").val(kodepos_1);
+              // $("#user_negara2").val(user_negara_id);
+                if ($('#user_negara2').find("option[value='" + user_negara_id + "']").length) {
+                    $('#user_negara2').val(user_negara_id).trigger('change');
+                } else { 
+                    // Create a DOM Option and pre-select by default
+                    var newOption = new Option(user_negara_t, user_negara_id, true, true);
+                    // Append it to the select
+                    $('#user_negara2').append(newOption).trigger('change');
+                }  
 
-              // $('#user_negara2').append('<option value="foo" selected="selected">Foo</option>');
-              // $("#user_negara2").append($('<option>').text(user_negara_t).attr('value', user_negara_id));
-              // $('#kodepos_2').val(kodepos_1);
+                var user_province_t = $("#user_province option:selected" ).text();
+                var user_province_id = $("#user_province option:selected" ).val();
+                if ($('#user_province2').find("option[value='" + user_province_id + "']").length) {
+                    $('#user_province2').val(user_province_id).trigger('change');
+                } else { 
+                    // Create a DOM Option and pre-select by default
+                    var newOption = new Option(user_province_t, user_province_t, true, true);
+                    // Append it to the select
+                    $('#user_province2').append(newOption).trigger('change');
+                } 
+
+                var user_kota_t = $("#user_kota option:selected" ).text();
+                var user_kota_id = $("#user_kota option:selected" ).val();
+                if ($('#user_kota2').find("option[value='" + user_kota_id + "']").length) {
+                    $('#user_kota2').val(user_kota_id).trigger('change');
+                } else { 
+                    // Create a DOM Option and pre-select by default
+                    var newOption = new Option(user_kota_t, user_kota_t, true, true);
+                    // Append it to the select
+                    $('#user_kota2').append(newOption).trigger('change');
+                } 
+
+                var user_kecamatan_t = $("#user_kecamatan option:selected" ).text();
+                var user_kecamatan_id = $("#user_kecamatan option:selected" ).val();
+                if ($('#user_kecamatan2').find("option[value='" + user_kecamatan_id + "']").length) {
+                    $('#user_kecamatan2').val(user_kecamatan_id).trigger('change');
+                } else { 
+                    // Create a DOM Option and pre-select by default
+                    var newOption = new Option(user_kecamatan_t, user_kecamatan_t, true, true);
+                    // Append it to the select
+                    $('#user_kecamatan2').append(newOption).trigger('change');
+                } 
+
+
+
+
             }else{
-                console.log("not");
+                console.log("masuk");
+                $("textarea#alamat_2").val("");
+                $("#kodepos_2").val("");
+                $('#user_negara2').select2({
+                    placeholder: "sdfsf",
+                    allowClear: true
+                });
             }
                   
         });

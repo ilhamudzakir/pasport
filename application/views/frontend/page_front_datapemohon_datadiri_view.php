@@ -11,8 +11,10 @@
                 <li><a href="#tab1_6" data-toggle="tab">Tujuan Permohonan Paspor</a></li>
             </ul>
             <div class="tab-content">
-                <div class="tab-pane active" id="tab1_1">
+
+                <div class="tab-pane <?php if($data->cek_tab == 1 OR $data->cek_tab == 0 ){ echo "active"; }else{ echo "";} ?>" id="tab1_1">
                     <form class="form-horizontal" enctype="multipart/form-data" method="post" action="<?php echo base_url() ?>front/save_datadiri/<?php echo $this->uri->segment(2);?>" style="margin-top: 20px;">
+                        <input type="hidden" name="cek_tab" value="1">
                         <input type="hidden" name="id" value="<?php echo isset($data->id)?$data->id:""; ?>">
                         <input type="hidden" name="id_daftar_pengajuan" value="<?php echo isset($data->id_daftar_pengajuan)?$data->id_daftar_pengajuan:""; ?>">
                         <div class="box-body">
@@ -23,7 +25,7 @@
                                     <select class="form-control select2" id="jpengajuan" name="id_jenis_pengajuan" style="width: 100%;" required >
                                         <option value=""></option>
                                         <?php
-                                        // debugCode($data);
+                                         // debugCode($data);
                                             if(isset($data->id_jenis_pengajuan)){
                                                 if($data->id_jenis_pengajuan == 1){
                                                     $s1 = "selected=selected";
@@ -86,6 +88,7 @@
                                 <label for="data1_6" class="col-sm-4 control-label">Kantor Imigrasi</label>
                                 
                                 <div class="col-sm-4">
+                                    <input type="hidden" name="id_kantor_imgirasi" value="<?php echo isset($data->id_kantor_imgirasi)?$data->id_kantor_imgirasi:"" ?>">
                                     <select class="form-control select2"  name="id_kantor_imgirasi" style="width: 100%;" required disabled>
                                         
                                         <?php //debugCode($data); ?>
@@ -178,10 +181,10 @@
                         <!-- /.box-footer -->
                     </form>
                 </div>
-               
-                <div class="tab-pane" id="tab1_3">
+               <?php //debugCode($data->cek_tab); ?>
+                <div class="tab-pane <?php if($data->cek_tab == 2 ){ echo "active"; }else{ echo "";} ?>" id="tab1_3">
                     <form class="form-horizontal" method="POST" action="<?php echo base_url() ?>front/save_data_alamat/<?php echo $this->uri->segment(2);?>" style="margin-top: 20px;">
-                       
+                        <input type="hidden" name="cek_tab" value="2">
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="col-sm-12 text-right" style="margin: 10px 0px 20px 0px;">
@@ -437,8 +440,9 @@
                         </div>
                     </form>
                 </div>
-                <div class="tab-pane" id="tab1_4">
+                <div class="tab-pane <?php if($data->cek_tab == 3 ){ echo "active"; }else{ echo "";} ?>" id="tab1_4">
                     <form class="form-horizontal" enctype="multipart/form-data" method="post" action="<?php echo base_url() ?>front/save_riwayat_pendidikan/<?php echo $this->uri->segment(2);?>/<?php echo isset($pendidikan->id)?$pendidikan->id:""; ?>" style="margin-top: 20px;">
+                         <input type="hidden" name="cek_tab" value="3">
                         <input type="hidden" name="FormXID" value="<?php echo isset($data->id)?$data->id:""; ?>">
                         <input type="hidden" name="id" value="<?php echo isset($pendidikan->id)?$pendidikan->id:""; ?>">
                         <div class="box-body">
@@ -481,8 +485,9 @@
                         <!-- /.box-footer -->
                     </form>
                 </div>
-                <div class="tab-pane" id="tab1_5">
+                <div class="tab-pane <?php if($data->cek_tab == 4 ){ echo "active"; }else{ echo "";} ?>" id="tab1_5">
                     <form class="form-horizontal" enctype="multipart/form-data" method="post" action="<?php echo base_url() ?>front/save_riwayat_pekerjaan/<?php echo $this->uri->segment(2);?>/<?php echo isset($pekerjaan->id)?$pekerjaan->id:""; ?>" style="margin-top: 20px;">
+                         <input type="hidden" name="cek_tab" value="4">
                         <input type="hidden" name="FormXID" value="<?php echo isset($data->id)?$data->id:""; ?>">
                          <input type="hidden" name="id" value="<?php echo isset($pekerjaan->id)?$pekerjaan->id:""; ?>">
                         <div class="box-body">
@@ -523,63 +528,163 @@
                                     <textarea class="form-control" id="data5_3" name="alamat" value="<?php echo isset($pekerjaan->alamat)?$pekerjaan->alamat:""; ?>" placeholder=". . ." required><?php echo isset($pekerjaan->alamat)?$pekerjaan->alamat:""; ?></textarea>
                                 </div>
                             </div>
+                           
                             <div class="form-group">
+
                                 <label for="data5_4" class="col-sm-3 control-label">Negara</label>
-                                <div class="col-sm-4">
-                                    <select class="form-control select2" id="data5_4" name="id_negara" style="width: 100%;" required>
-                                        <option value=""></option>
-                                        <?php foreach ($negara as $negara ) { ?><
 
-                                          <option value="<?php echo $negara->id?>" <?php if(isset($pekerjaan->id_negara)){ if($pekerjaan->id_negara == $negara->id){ echo "selected"; }else{"";}} ?> ><?php echo $negara->negara?></option>
-                                      
-                                        <?php }?>
-                                        </select>
+                                <div class="col-sm-4">
+                                    <select class="form-control select2" id="user_negaraPK" name="id_negara" onchange="comboCPC('#user_negaraPK','#user_provincePK','ajax/getProvince')" style="width: 100%;">
+
+                                        <option value=""></option>
+
+                                        <?php
+
+                                            // debugCode($alamat1);
+
+                                            if(count($negara)>0){
+
+                                                foreach($negara as $r){
+
+                                                    // debugCode($r);
+
+                                                    $t = isset($pekerjaan->id_negara)?$pekerjaan->id_negara:"";
+
+                                                    $s = ($r->id==$t)?"selected='selected'":'';
+
+                                                    echo "<option value='".$r->id."' $s >".$r->negara."</option>";
+
+                                                }
+
+                                            }  
+
+                                        ?>
+
+                                       
+
+                                    </select>
+                                    
+
                                 </div>
+
                             </div>
+
                             <div class="form-group">
+
                                 <label for="data5_5" class="col-sm-3 control-label">Provinsi</label>
+
                                 <div class="col-sm-4">
-                                    <select class="form-control select2" id="data5_5" name="id_provinsi" style="width: 100%;" required>
+                                    
+                                     <select class="form-control select2" id="user_provincePK" name="id_provinsi" onchange="comboCPC('#user_provincePK','#user_kotaPK','ajax/getCity')"  style="width: 100%;">
+
                                         <option value=""></option>
 
+                                         <?php
 
-                                         <?php foreach ($provinsi as $provinsi) { ?><
-                                        
-                                            <option value="<?php echo $provinsi->propinsi_id ?>" <?php if(isset($pekerjaan->id_provinsi)){ if($pekerjaan->id_provinsi == $provinsi->propinsi_id){ echo "selected"; }else{"";}} ?> ><?php echo $provinsi->title?></option>
-                                   
-                                        <?php }?>
-                                       </select>
+                                            // debugCode($alamat1);
+
+                                            if(count($provinsi)>0){
+
+                                                foreach($provinsi as $r){
+
+                                                    // debugCode($r);
+
+                                                    $t = isset($pekerjaan->id_provinsi)?$pekerjaan->id_provinsi:"";
+
+                                                    $s = ($r->propinsi_id==$t)?"selected='selected'":'';
+
+                                                    echo "<option value='".$r->propinsi_id."' $s >".$r->title."</option>";
+
+                                                }
+
+                                            }  
+
+                                        ?>
+
+                                    </select>
+
+                   
+
                                 </div>
+
                             </div>
+
                             <div class="form-group">
+
                                 <label for="data5_6" class="col-sm-3 control-label">Kota / Kabupaten</label>
+
                                 <div class="col-sm-4">
-                                    <select class="form-control select2" id="user_kota" name="id_kota" nchange="comboCPC('#user_kota','#user_kecamatan','ajax/getKecamatan')" style="width: 100%;" required>
+                                    <select class="form-control select2" id="user_kotaPK" name="id_kota" onchange="comboCPC('#user_kotaPK','#user_kecamatanPK','ajax/getKecamatan')" style="width: 100%;">
+
+                                                <option value=""></option>
+
+                                                <?php
+
+                                                    // debugCode($alamat1);
+
+                                                    if(count($kota)>0){
+
+                                                        foreach($kota as $r){
+
+                                                            // debugCode($r);
+
+                                                            $t = isset($pekerjaan->id_kota)?$pekerjaan->id_kota:"";
+
+                                                            $s = ($r->kabupaten_id==$t)?"selected='selected'":'';
+
+                                                            echo "<option value='".$r->kabupaten_id."' $s >".$r->title."</option>";
+
+                                                        }
+
+                                                    }  
+
+                                                ?>
+
+                                            </select>
+                                   
+
+                                </div>
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <label for="data5_7" class="col-sm-3 control-label">Kecamatan</label>
+
+                                <div class="col-sm-4">
+                                    <select class="form-control select2" id="user_kecamatanPK" name="id_kecamatan" style="width: 100%;">
+
                                         <option value=""></option>
-                                   
-                                    <?php foreach ($kota as $Kota) { ?><
-                                        
-                                            <option value="<?php echo $Kota->kabupaten_id ?>" <?php if(isset($pekerjaan->id_kota)){ if($pekerjaan->id_kota == $Kota->kabupaten_id){ echo "selected"; }else{"";}} ?> ><?php echo $Kota->title?></option>
-                                   
-                                        <?php }?>
+
+                                        <?php
+
+                                            // debugCode($alamat1);
+
+                                            if(count($kecamatan)>0){
+
+                                                foreach($kecamatan as $r){
+
+                                                    // debugCode($r);
+
+                                                    $t = isset($pekerjaan->id_kecamatan)?$pekerjaan->id_kecamatan:"";
+
+                                                    $s = ($r->kecamatan_id==$t)?"selected='selected'":'';
+
+                                                    echo "<option value='".$r->kecamatan_id."' $s >".$r->title."</option>";
+
+                                                }
+
+                                            }  
+
+                                        ?>
 
                                     </select>
+                                  
+
                                 </div>
+
                             </div>
-                            <div class="form-group">
-                                <label for="data5_7" class="col-sm-3 control-label">Kecamatan</label>
-                                <div class="col-sm-4">
-                                    <select class="form-control select2" id="data5_7" name="user_kecamatan" style="width: 100%;" required>
-                                        <option value=""></option>
-                                      
- <?php foreach ($kecamatan as $kecamatan) { ?>
-                                        
-                                            <option value="<?php echo $kecamatan->kecamatan_id ?>" <?php if(isset($pekerjaan->id_kecamatan)){ if($pekerjaan->id_kecamatan == $kecamatan->kecamatan_id){ echo "selected"; }else{"";}} ?> ><?php echo $kecamatan->title?></option>
-                                   
-                                        <?php }?>
-                                    </select>
-                                </div>
-                            </div>
+
                             <div class="form-group">
                                 <label for="data5_8" class="col-sm-3 control-label">Kode Pos</label>
                                 <div class="col-sm-4">
@@ -604,8 +709,9 @@
                         <!-- /.box-footer -->
                     </form>
                 </div>
-                <div class="tab-pane" id="tab1_6">
+                <div class="tab-pane <?php if($data->cek_tab == 5 ){ echo "active"; }else{ echo "";} ?>" id="tab1_6">
                     <form class="form-horizontal" enctype="multipart/form-data" method="post" action="<?php echo base_url() ?>front/save_permohonan_paspor/<?php echo $this->uri->segment(2);?>/<?php echo isset($mohon->id)?$mohon->id:""; ?>" style="margin-top: 20px;">
+                          <input type="hidden" name="cek_tab" value="5">
                          <input type="hidden" name="FormXID" value="<?php echo isset($data->id)?$data->id:""; ?>">
                          <input type="hidden" name="id" value="<?php echo isset($mohon->id)?$mohon->id:""; ?>">
                         <div class="box-body">
@@ -642,9 +748,21 @@
                                 <div class="col-sm-4">
                                     <select class="form-control select2" id="data6_2" name="negara_tujuan" style="width: 100%;" required>
                                         <option value=""></option>
-                           
-                                        <option value="SG" <?php if(isset($mohon->negara_tujuan)){ if($mohon->negara_tujuan == "SG"){ echo "selected"; }else{"";}} ?>>Singapura</option>
-                                        <option value="MY" <?php if(isset($mohon->negara_tujuan)){ if($mohon->negara_tujuan == "MY"){ echo "selected"; }else{"";}} ?>>Malaysia</option>
+                                        <?php
+                                            if(count($negara)>0){
+                                                foreach($negara as $r){
+                                                    $t = isset($mohon->negara_tujuan)?$mohon->negara_tujuan:"";
+
+                                                    $s = ($r->id==$t)?"selected='selected'":'';
+
+                                                    echo "<option value='".$r->id."' $s >".$r->negara."</option>";
+                                                }
+
+                                            }  
+
+                                        ?>
+
+                                       
                                     </select>
                                 </div>
                             </div>
@@ -678,8 +796,21 @@
                                 <div class="col-sm-4">
                                     <select class="form-control select2" id="data6_6" name="negara_pernah" style="width: 100%;" required>
                                         <option value=""></option>
-                                        <option value="SG" <?php if(isset($mohon->negara_pernah)){ if($mohon->negara_pernah == "SG"){ echo "selected"; }else{"";}} ?>>Singapura</option>
-                                        <option value="MY" <?php if(isset($mohon->negara_pernah)){ if($mohon->negara_pernah == "MY"){ echo "selected"; }else{"";}} ?>>Malaysia</option>
+                                        <?php
+                                            if(count($negara)>0){
+                                                foreach($negara as $r){
+                                                    $t = isset($mohon->negara_pernah)?$mohon->negara_pernah:"";
+
+                                                    $s = ($r->id==$t)?"selected='selected'":'';
+
+                                                    echo "<option value='".$r->id."' $s >".$r->negara."</option>";
+                                                }
+
+                                            }  
+
+                                        ?>
+
+                                       
                                     </select>
                                 </div>
                             </div>
@@ -700,8 +831,20 @@
                                 <div class="col-sm-4">
                                     <select class="form-control select2" id="data6_9" name="pernah_bekerja_luar_negri" style="width: 100%;" required>
                                         <option value=""></option>
-                                        <option value="1" <?php if(isset($mohon->pernah_bekerja_luar_negri)){ if($mohon->pernah_bekerja_luar_negri == 1){ echo "selected"; }else{"";}} ?>>Ya</option>
-                                        <option value="0" <?php if(isset($mohon->pernah_bekerja_luar_negri)){ if($mohon->pernah_bekerja_luar_negri == 0){ echo "selected"; }else{"";}} ?>>Tidak</option>
+                                         <?php
+                                            if(count($negara)>0){
+                                                foreach($negara as $r){
+                                                    $t = isset($mohon->pernah_bekerja_luar_negri)?$mohon->pernah_bekerja_luar_negri:"";
+
+                                                    $s = ($r->id==$t)?"selected='selected'":'';
+
+                                                    echo "<option value='".$r->id."' $s >".$r->negara."</option>";
+                                                }
+
+                                            }  
+
+                                        ?>
+                                       
                                     </select>
                                 </div>
                             </div>
@@ -729,8 +872,20 @@
                                 <div class="col-sm-4">
                                     <select class="form-control select2" id="data6_11" name="id_kebangsaan" style="width: 100%;" required>
                                         <option value=""></option>
-                                        <option value="SG" <?php if(isset($mohon->id_kebangsaan)){ if($mohon->id_kebangsaan == "SG"){ echo "selected"; }else{"";}} ?>>Singapura</option>
-                                        <option value="MY" <?php if(isset($mohon->id_kebangsaan)){ if($mohon->id_kebangsaan == "MY"){ echo "selected"; }else{"";}} ?>>Malaysia</option>
+                                         <?php
+                                            if(count($negara)>0){
+                                                foreach($negara as $r){
+                                                    $t = isset($mohon->id_kebangsaan)?$mohon->id_kebangsaan:"";
+
+                                                    $s = ($r->id==$t)?"selected='selected'":'';
+
+                                                    echo "<option value='".$r->id."' $s >".$r->negara."</option>";
+                                                }
+
+                                            }  
+
+                                        ?>
+                                       
                                     </select>
                                 </div>
                             </div>

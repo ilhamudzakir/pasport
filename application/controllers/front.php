@@ -28,8 +28,9 @@ class Front extends CI_Controller {
     }
 
     public function save_riwayat_pendidikan($param,$id) {
-       //debugCode($id);
-       print_r($id);
+       // debugCode($param);
+         $cek_tab['cek_tab'] = $_POST['cek_tab'];
+        $queryT=update("dc_data_diri",$cek_tab,'id',$param);
        $table_field = $this->db->list_fields("dc_riwayat_pendidikan");
         $insert = array();
         foreach ($table_field as $field) {
@@ -44,6 +45,7 @@ class Front extends CI_Controller {
          $query=insert_all("dc_riwayat_pendidikan",$insert);
         
         }
+
        
         redirect("data_pemohon/".$param);
     }  
@@ -81,7 +83,9 @@ class Front extends CI_Controller {
             }
             // insert_all('dc_alamat_pengaju_paspor',$arrayAddress);
         }
-     
+        
+        $cek_tab['cek_tab'] = $_POST['cek_tab'];
+        $queryT=update("dc_data_diri",$cek_tab,'id',$id);
        
         redirect("data_pemohon/".$id);
     } 
@@ -103,7 +107,8 @@ class Front extends CI_Controller {
         
         }
 
-       
+         $cek_tab['cek_tab'] = $_POST['cek_tab'];
+        $queryT=update("dc_data_diri",$cek_tab,'id',$param);
        redirect("data_pemohon/".$param);
     }
 
@@ -124,7 +129,8 @@ class Front extends CI_Controller {
         
         }
 
-       
+       $cek_tab['cek_tab'] = $_POST['cek_tab'];
+        $queryT=update("dc_data_diri",$cek_tab,'id',$param);
         redirect("data_pemohon/".$param."#step-2");
     }
 }
